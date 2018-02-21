@@ -39,10 +39,10 @@ export class AppComponent implements OnInit {
     formElements: this.simpleFormElements
   });
 
-  constructor(private simpleFormsService: SimpleFormBuilder) {}
+  constructor() {}
 
   ngOnInit() {
-    this.simpleUnwrappedForm = this.simpleFormsService.toUnwrappedForm(this.simpleFormElements);
+    this.simpleUnwrappedForm = SimpleFormBuilder.toUnwrappedForm(this.simpleFormElements);
 
     this.simpleWrappedForm.submitEmitter.subscribe(value => {
       console.log('Submitted from simpleWrappedForm', value);
