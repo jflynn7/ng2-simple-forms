@@ -1,0 +1,24 @@
+$standard-font-size: 14px;
+$warm-grey: grey;
+$standard-font: 'Tahoma', sans-serif;
+
+label {
+  font-family: $standard-font;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #acabaf;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  background-color: transparent;
+}
+
+input:focus {
+  outline: none;
+  border-bottom-width: 2px;
+}
+
+

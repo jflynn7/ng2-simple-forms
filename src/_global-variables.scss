@@ -1,0 +1,68 @@
+/// LAYOUT
+$gutter-width: 15px;
+
+/// COLOURS
+$metro-dark-blue: #1a3177;
+$metro-light-blue: #2647af;
+$metro-red: red;
+$pale-yellow: #fff9cc;
+$warm-yellow: #fff39e;
+
+// COLOURS
+$black: #000000;
+$light-black: #262626;
+$white: #ffffff;
+$dark-white: #eeeeee;
+
+$lightest-grey: #F1F3F6;
+$extra-light-grey: #cfcfcf;
+$light-grey: #a0a0a0;
+$warm-grey: #757575;
+$grey:#979797;
+$light-grey-blue: #EBF0F9;
+
+$light-metro-blue: #2548af;
+$light-navy: #1a3e7d;
+$extra-dark-navy: #092350;
+
+$new-metro-red: #F2091d;
+$alert-red: #ed091c;
+$extra-light-red: $new-metro-red; // previously #ea2203;
+$light-red: $new-metro-red; // previously #ee2330;
+$red: $new-metro-red; // previously #d91c28;
+$dark-red: $new-metro-red; // previously #ae0e1a;
+$extra-dark-red: #881018; // retained to provide hover contrast on buttons
+
+$weird-green: #34db95;
+
+// STRUCTURE
+$col-padding: 1.5rem;
+$col-margin: -1rem;
+$container-lg: 114rem;
+$container-md: 97rem;
+$container-sm: 100%;
+$grid-gutter-width: 30px !default;
+$double-margin: 6rem;
+$default-margin: 3rem;
+$half-margin: 1.5rem;
+
+// FONTS
+$standard-font: museo_sans300, Arial, "Helvetica Neue", Helvetica, sans-serif;
+$bold-font: museo_sans700, Arial, "Helvetica Neue", Helvetica, sans-serif;
+$extra-bold-font: museo_sans900, Arial, "Helvetica Neue", Helvetica, sans-serif;
+$title-bold-font: museo_sans900, Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+// FONT SIZES
+$standard-font-size: 1.4rem;
+$subtitle-font-size: 2.2rem;
+$label-font-size: 1.4rem;
+
+
+
+// ==========================================================================
+// Radio Button variables
+$radio-fill-color: $light-navy !default;
+$radio-border: 0.2rem solid $radio-fill-color !default;
+
+$input-disabled-color: rgba($black, .26) !default;
+$input-disabled-solid-color: #BDBDBD !default;

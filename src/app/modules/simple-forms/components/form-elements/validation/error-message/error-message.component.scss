@@ -1,0 +1,40 @@
+@import '../../../../../../../global-variables';
+
+.form__validation-box {
+  position: relative;
+  margin: 2rem 0 1rem;
+  border-radius: 0.8rem;
+  background-color: $alert-red;
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    bottom: 100%;
+    left: 15%;
+    border: solid transparent;
+    height: 0;
+    width: 0;
+  }
+
+  &:after {
+    border-color: transparent;
+    border-bottom-color: $alert-red;
+    border-width: 1.5rem;
+    margin-left: -1.5rem;
+  }
+
+  &:before {
+    border-color: transparent;
+    border-bottom-color: transparent;
+    border-width: 1.6rem;
+    margin-left: -1.6rem;
+  }
+}
+
+.form__validation-box--text {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: $white;
+}
