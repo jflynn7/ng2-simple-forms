@@ -1,5 +1,5 @@
 import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { FormElement, UnwrappedForm } from '../state/simple-forms.state';
+import { FormElement, FormElementOption, OptionsObject, UnwrappedForm } from '../state/simple-forms.state';
 
 export class SimpleFormBuilder {
 
@@ -42,4 +42,21 @@ export class SimpleFormBuilder {
     return unwrappedForm;
   }
 
+  static createElement(type: string, label: string, inputId?: string){
+    let elementInputId: string = inputId;
+    if (!inputId) {
+      elementInputId = SimpleFormBuilder.toInputId(label);
+    }
+    return new FormElement({
+      inputId: elementInputId,
+      type: type,
+      label: label
+    });
+  }
+
+  static toInputId(str) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+      return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+    }).replace(/\s+/g, '');
+  }
 }

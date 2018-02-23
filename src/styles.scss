@@ -1,5 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+// BOOTSTRAP GRID
+@import "assets/bootstrap/variables.scss";
+@import "assets/bootstrap/mixins.scss";
+@import "assets/bootstrap/normalize.scss";
+@import "assets/bootstrap/print.scss";
+@import "assets/bootstrap/scaffolding.scss";
+@import "assets/bootstrap/grid.scss";
+@import "assets/bootstrap/utilities.scss";
+@import "assets/bootstrap/responsive-utilities.scss";
+
+// BOOTSTRAP BUTTONS
+@import "assets/bootstrap/buttons.scss";
+
 body {
   background-color: #f9f9f9;
   font-family: 'Tahoma', sans-serif;
+}
+
+h5 {
+  color: grey;
 }

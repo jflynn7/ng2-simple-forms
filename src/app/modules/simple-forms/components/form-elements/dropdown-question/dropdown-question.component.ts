@@ -12,6 +12,8 @@ export class DropdownQuestionComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() elementData: FormElement;
 
+  @Input() cssClass: string;
+
   constructor() { }
 
   ngOnInit() {

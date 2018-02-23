@@ -11,6 +11,7 @@ export class FormElementComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() formElement: FormElement;
+  @Input() classOverride: string;
 
   constructor() { }
 

@@ -1,4 +1,9 @@
-<app-form-wrapper>
-  <app-form-element *ngFor="let element of form.formElements" [formGroup]="formGroup" [formElement]="element"></app-form-element>
-  <button (click)="submit()">Submit</button>
+<app-form-wrapper [classOverride]="formOptions.wrapperCssClass">
+  <app-form-element
+    *ngFor="let element of form.formElements"
+    [formGroup]="formGroup"
+    [formElement]="element">
+  </app-form-element>
+  <button class="btn btn-primary {{ formOptions.buttonCssClass }}" (click)="submit()">{{ formOptions.submitButtonLabel || 'Submit' }}</button>
+  <button class="btn btn-primary {{ formOptions.buttonCssClass }}" (click)="clear()">{{ formOptions.clearButtonLabel || 'Clear' }}</button>
 </app-form-wrapper>

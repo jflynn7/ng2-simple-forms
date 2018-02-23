@@ -11,26 +11,10 @@ export class AppComponent implements OnInit {
 
   simpleUnwrappedForm: UnwrappedForm;
   simpleFormElements: FormElement[] = [
-    new FormElement({
-      inputId: 'simpleOne',
-      type: 'text',
-      label: 'Simple One'
-    }),
-    new FormElement({
-      inputId: 'simpleTwo',
-      type: 'text',
-      label: 'Simple Two'
-    }),
-    new FormElement({
-      inputId: 'simpleThree',
-      type: 'text',
-      label: 'Simple Three'
-    }),
-    new FormElement({
-      inputId: 'simpleFour',
-      type: 'text',
-      label: 'Simple Four'
-    }),
+    SimpleFormBuilder.createElement('text', 'Simple One'),
+    SimpleFormBuilder.createElement('text', 'Simple Two'),
+    SimpleFormBuilder.createElement('text', 'Simple Three'),
+    SimpleFormBuilder.createElement('text', 'Simple Four'),
   ] ;
 
   simpleWrappedForm: FormDefinition = new FormDefinition({
@@ -46,7 +30,7 @@ export class AppComponent implements OnInit {
 
     this.simpleWrappedForm.submitEmitter.subscribe(value => {
       console.log('Submitted from simpleWrappedForm', value);
-    })
+    });
   }
 
   unwrappedSubmit() {

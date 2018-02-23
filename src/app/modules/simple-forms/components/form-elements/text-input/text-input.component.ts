@@ -11,6 +11,7 @@ export class TextInputComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() elementData: FormElement;
+  @Input() cssClass: string;
 
   constructor() { }
 

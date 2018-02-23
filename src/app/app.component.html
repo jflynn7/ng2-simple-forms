@@ -1,12 +1,55 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<h1>Simple Wrapped Form</h1>
-<app-form [form]="simpleWrappedForm"></app-form>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
 
-<h1>Simple Unwrapped Form</h1>
-<app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleOne')"></app-form-element>
-<app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleTwo')"></app-form-element>
-<app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleThree')"></app-form-element>
-<app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleFour')"></app-form-element>
-<!-- Doesn't exist - Should not render, or be part of formGroup -->
-<app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleFive')"></app-form-element>
-<button (click)="unwrappedSubmit()">Submit Unwrapped</button>
+      <!-- WRAPPED FORM -->
+      <h1>Simple Wrapped Form</h1>
+      <h5>A simple, linear form, no frills, just pass a FormDefinition and go.</h5>
+      <app-form
+        [form]="simpleWrappedForm">
+      </app-form>
+      <div class="row">
+        <div class="col-xs-12">
+          <pre>
+            {{ simpleWrappedForm.formGroup.getRawValue() | json }}
+          </pre>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-md-6">
+
+      <!-- UNWRAPPED FORM - ELEMENT BE FREEE! -->
+      <h1>Simple Unwrapped Form</h1>
+      <h5>An unwrapped form creates the formGroup, but leaves elements free to be used.</h5>
+      <div class="row">
+        <div class="col-xs-6">
+          <app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleOne')"></app-form-element>
+        </div>
+        <div class="col-xs-6">
+          <app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleTwo')"></app-form-element>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleThree')"></app-form-element>
+        </div>
+        <div class="col-xs-4">
+          <app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleFour')"></app-form-element>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <pre>
+            {{ simpleUnwrappedForm.formGroup.getRawValue() | json }}
+          </pre>
+        </div>
+      </div>
+
+      <!-- Doesn't exist - Should not render, or be part of formGroup -->
+      <app-form-element [formGroup]="simpleUnwrappedForm.formGroup" [formElement]="simpleUnwrappedForm.get('simpleFive')"></app-form-element>
+      <button class="btn btn-primary" (click)="unwrappedSubmit()">Submit Unwrapped</button>
+    </div>
+  </div>
+</div>

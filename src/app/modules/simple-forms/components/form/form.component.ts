@@ -11,8 +11,14 @@ import { SimpleFormBuilder } from '../../services/simple-forms.service';
 export class FormComponent implements OnInit {
 
   @Input() form: FormDefinition;
-  @Input() buttonLabel: string;
-  @Input() buttonSize: string;
+  @Input() formOptions: FormOptions = {
+    wrapperCssClass: '',
+    formElementCssClass: '',
+    buttonCssClass: '',
+    submitButtonLabel: 'Submit',
+    clearButtonLabel: 'Clear'
+  };
+
   @Input() defaultFormData: any;
   @Output() formData: {};
 
@@ -22,6 +28,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = SimpleFormBuilder.toFormGroup(this.form.formElements);
+    this.form.formGroup = this.formGroup;
     this.formGroup.valueChanges.subscribe(data => {
       this.form.changeEmitter.emit(data);
     });
@@ -30,16 +37,24 @@ export class FormComponent implements OnInit {
       console.log('Setting default form data.', this.defaultFormData);
       this.formGroup.setValue(this.defaultFormData);
     }
+
   }
 
   submit() {
     this.form.submitEmitter.emit(this.formGroup.getRawValue());
+    return;
   }
 
   clear() {
     this.formGroup.reset();
   }
 
+}
 
-
+export interface FormOptions {
+  wrapperCssClass?: string;
+  formElementCssClass?: string;
+  buttonCssClass?: string;
+  submitButtonLabel?: string;
+  clearButtonLabel?: string;
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {FormElement} from '../../../state/simple-forms.state';
+import { FormElement } from '../../../state/simple-forms.state';
 
 @Component({
   selector: 'app-password-input',
@@ -11,6 +11,8 @@ export class PasswordInputComponent implements OnInit {
 
     @Input() formGroup: FormGroup;
     @Input() elementData: FormElement;
+
+    @Input() cssClass: string;
 
     constructor() { }
 
