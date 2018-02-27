@@ -1,20 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormElement } from '../../../state/simple-forms.state';
+import { Component, OnInit } from '@angular/core';
+import { ElementBaseComponent } from '../element-base/element-base.component';
 
 @Component({
   selector: 'app-dropdown-question',
   templateUrl: './dropdown-question.component.html',
   styleUrls: ['./dropdown-question.component.scss']
 })
-export class DropdownQuestionComponent implements OnInit {
+export class DropdownQuestionComponent extends ElementBaseComponent implements OnInit {
 
-  @Input() formGroup: FormGroup;
-  @Input() elementData: FormElement;
-
-  @Input() cssClass: string;
-
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
   }

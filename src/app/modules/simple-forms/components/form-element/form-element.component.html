@@ -1,5 +1,38 @@
 <div *ngIf="formElement" [ngSwitch]="formElement.type">
-  <app-text-input [cssClass]="classOverride" *ngSwitchCase="'text'" [formGroup]="formGroup" [elementData]="formElement"></app-text-input>
-  <app-password-input [cssClass]="classOverride" *ngSwitchCase="'password'" [formGroup]="formGroup" [elementData]="formElement"></app-password-input>
-  <app-dropdown-question [cssClass]="classOverride" *ngSwitchCase="'select'" [formGroup]="formGroup" [elementData]="formElement"></app-dropdown-question>
+
+  <!-- TEXT INPUT FIELD -->
+  <app-text-input
+    *ngSwitchCase="'text'"
+    [formGroup]="formGroup"
+    [elementData]="formElement"
+  ></app-text-input>
+
+  <!-- PASSWORD INPUT FIELD -->
+  <app-password-input
+    *ngSwitchCase="'password'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-password-input>
+
+  <!-- SELECT INPUT FIELD -->
+  <app-dropdown-question
+    *ngSwitchCase="'select'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-dropdown-question>
+
+  <!-- CHECKBOX GROUP FIELD -->
+  <app-checkbox
+    *ngSwitchCase="'checkbox'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-checkbox>
+
+  <!-- RADIO GROUP FIELD -->
+  <app-radio-question
+    *ngSwitchCase="'radio'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-radio-question>
+
 </div>

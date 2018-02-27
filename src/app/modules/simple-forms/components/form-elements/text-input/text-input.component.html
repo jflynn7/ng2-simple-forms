@@ -1,4 +1,10 @@
-<div class="field {{cssClass}}" [formGroup]="formGroup">
-  <label for="{{elementData.inputId}}">{{elementData.label}}</label>
-  <input id="{{elementData.inputId}}" formControlName="{{elementData.inputId}}" type="text"/>
+<div class="field {{ getWrapperClass() }}" [formGroup]="formGroup">
+  <app-label [elementData]="elementData" [requiredMarker]="getRequiredMarker()"></app-label>
+  <input
+    [attr.aria-label]="getAria('label')"
+    [attr.aria-labelledby]="elementData.inputId + '_label'"
+    id="{{elementData.inputId}}"
+    formControlName="{{elementData.inputId}}"
+    type="text"/>
+  <app-help-text *ngIf="elementData.helpText" [elementData]="elementData"></app-help-text>
 </div>

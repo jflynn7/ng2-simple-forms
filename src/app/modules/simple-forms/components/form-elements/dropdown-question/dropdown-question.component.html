@@ -1,5 +1,15 @@
-<div class="field {{cssClass}}">
-  <select>
-    <option>Test</option>
+<span [formGroup]="formGroup">
+<label for="{{elementData.inputId}}">{{elementData.label}}</label><br/>
+  <!-- WITH OPTION GROUPS -->
+  <select formControlName="{{elementData.inputId}}" *ngIf="elementData.optionGroups" id="{{elementData.inputId}}" name="{{elementData.inputId}}">
+      <optgroup *ngFor="let optionGroup of elementData.optionGroups" label="{{optionGroup.groupName}}">
+         <option *ngFor="let option of optionGroup.options" value="{{option.value}}">{{option.display}}</option>
+      </optgroup>
   </select>
-</div>
+
+  <!-- WITH NO OPTION GROUPS -->
+  <select formControlName="{{elementData.inputId}}" *ngIf="!elementData.optionGroups" id="{{elementData.inputId}}" name="{{elementData.inputId}}">
+    <option *ngFor="let option of elementData.options" value="{{option.value}}">{{option.display}}</option>
+  </select>
+</span>
+

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormElement } from '../../../../state/simple-forms.state';
 
 @Component({
   selector: 'app-help-text',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpTextComponent implements OnInit {
 
+  @Input() elementData: FormElement;
+  helpVisible = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleHelp() {
+    this.helpVisible = !this.helpVisible;
   }
 
 }

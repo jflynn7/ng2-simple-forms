@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-form-wrapper',
@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class FormWrapperComponent implements OnInit {
 
-  @Input() classOverride: string;
+  @Input() wrapperCssClass: string;
 
   constructor() { }
 

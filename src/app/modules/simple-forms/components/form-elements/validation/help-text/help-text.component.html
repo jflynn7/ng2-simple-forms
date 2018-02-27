@@ -1,3 +1,3 @@
-<p>
-  help-text works!
-</p>
+<!-- HELP -->
+<span class="help-text" *ngIf="helpVisible">{{ elementData.helpText }}</span>
+<app-help-icon (click)="toggleHelp()"></app-help-icon>

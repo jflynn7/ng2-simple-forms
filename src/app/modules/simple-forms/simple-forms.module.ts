@@ -13,6 +13,10 @@ import { TextInputComponent } from './components/form-elements/text-input/text-i
 import { SuccessIconComponent } from './components/form-elements/validation/success-icon/success-icon.component';
 import { HelpIconComponent } from './components/form-elements/validation/help-icon/help-icon.component';
 import { HelpTextComponent } from './components/form-elements/validation/help-text/help-text.component';
+import { ElementBaseComponent } from './components/form-elements/element-base/element-base.component';
+import { FieldGroupComponent } from './components/field-group/field-group.component';
+import { LabelComponent } from './components/form-elements/validation/label/label.component';
+import { RadioQuestionComponent } from './components/form-elements/radio-question/radio-question.component';
 
 @NgModule({
   imports: [
@@ -30,15 +34,20 @@ import { HelpTextComponent } from './components/form-elements/validation/help-te
     DropdownQuestionComponent,
     PasswordInputComponent,
     TextInputComponent,
+    RadioQuestionComponent,
     SuccessIconComponent,
     HelpIconComponent,
-    HelpTextComponent
+    HelpTextComponent,
+    ElementBaseComponent,
+    FieldGroupComponent,
+    LabelComponent
   ],
   exports: [
     FormComponent,
     FormElementComponent,
     ErrorMessageComponent,
-    FormWrapperComponent
+    FormWrapperComponent,
+    FieldGroupComponent
   ]
 })
 export class SimpleFormsModule { }

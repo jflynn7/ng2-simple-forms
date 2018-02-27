@@ -1,0 +1,19 @@
+.icon-wrapper {
+  z-index: 3;
+  position: absolute;
+  right: 0;
+  top: 30px;
+}
+
+.icon {
+  color: white;
+  background-color: #d6d6d6;
+  border-radius: 100px;
+  padding: 2px 5px;
+  font-size: 8px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #00b3ee;
+  }
+}

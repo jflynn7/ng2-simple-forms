@@ -1,7 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormDefinition } from '../../state/simple-forms.state';
-import { SimpleFormBuilder } from '../../services/simple-forms.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormDetails } from '../../state/simple-forms.state';
 
 @Component({
   selector: 'app-form',
@@ -10,8 +8,11 @@ import { SimpleFormBuilder } from '../../services/simple-forms.service';
 })
 export class FormComponent implements OnInit {
 
-  @Input() form: FormDefinition;
-  @Input() formOptions: FormOptions = {
+  @Input() formTitle: string;
+  @Input() formSubtitle: string;
+  @Input() form: FormDetails;
+
+  @Input() formOptions: FormConfig = {
     wrapperCssClass: '',
     formElementCssClass: '',
     buttonCssClass: '',
@@ -22,36 +23,39 @@ export class FormComponent implements OnInit {
   @Input() defaultFormData: any;
   @Output() formData: {};
 
-  formGroup: FormGroup;
+  @Output() changeEmitter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submitEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
-    this.formGroup = SimpleFormBuilder.toFormGroup(this.form.formElements);
-    this.form.formGroup = this.formGroup;
-    this.formGroup.valueChanges.subscribe(data => {
-      this.form.changeEmitter.emit(data);
+    this.form.formGroup.valueChanges.subscribe(data => {
+      this.changeEmitter.emit(data);
     });
 
     if (this.defaultFormData) {
       console.log('Setting default form data.', this.defaultFormData);
-      this.formGroup.setValue(this.defaultFormData);
+      this.form.formGroup.setValue(this.defaultFormData);
     }
 
   }
 
   submit() {
-    this.form.submitEmitter.emit(this.formGroup.getRawValue());
+    this.submitEmitter.emit(this.form.formGroup.getRawValue());
     return;
   }
 
   clear() {
-    this.formGroup.reset();
+    this.form.formGroup.reset();
+  }
+
+  setConfig(propertyName: string, value: string) {
+    this.formOptions[propertyName] = value;
   }
 
 }
 
-export interface FormOptions {
+export interface FormConfig {
   wrapperCssClass?: string;
   formElementCssClass?: string;
   buttonCssClass?: string;
