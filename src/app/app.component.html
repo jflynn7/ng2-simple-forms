@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <app-form-wrapper *ngIf="unwrapped" [wrapperCssClass]="'default-theme'">
+      <app-form-wrapper *ngIf="unwrapped">
         <h1>Unwrapped Form</h1>
         <h5>An unwrapped form creates the formGroup, but leaves elements free to be used.</h5>
 
@@ -91,10 +91,7 @@
         *ngIf="!unwrapped"
         [form]="simpleForm"
         [formTitle]="'Wrapped Form'"
-        [formSubtitle]="'Simple form, wrapped in a container with linear elements'"
-        [formOptions]="{
-          wrapperCssClass: 'default-theme'
-        }"></app-form>
+        [formSubtitle]="'Simple form, wrapped in a container with linear elements'"></app-form>
     </div>
     <div class="col-xs-12 col-md-6">
       <app-form-wrapper>

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HelpIconComponent implements OnInit {
 
   @Input() iconWrapperClass: string;
+  @Input() icon: string;
 
   constructor() { }
 

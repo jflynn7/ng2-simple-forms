@@ -1,3 +1,8 @@
+// Set theme variables
+$valid-green: #51b663;
+$invalid-red: #e34e50;
+$question-blue: #4683ff;
+
 // Add theme name as overall wrapper class in form config
 .default-theme {
 
@@ -10,11 +15,39 @@
       border-radius: 15px;
       text-indent:  10px;
       padding: 5px;
+
+      &.valid {
+        border-color: $valid-green;
+      }
+
+      &.invalid {
+        border-color: $invalid-red;
+      }
+
     }
 
     .icon-wrapper {
       .icon {
         margin-right: 10px;
+      }
+    }
+
+    .validation-icon {
+      position: absolute;
+      right: 9px;
+      top: 34px;
+      font-size: 16px;
+
+      &.valid {
+        color: $valid-green;
+      }
+
+      &.invalid {
+        color: $invalid-red;
+      }
+
+      &.question {
+        color: $question-blue;
       }
     }
 

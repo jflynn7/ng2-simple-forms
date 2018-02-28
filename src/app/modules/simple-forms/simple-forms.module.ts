@@ -17,6 +17,7 @@ import { ElementBaseComponent } from './components/form-elements/element-base/el
 import { FieldGroupComponent } from './components/field-group/field-group.component';
 import { LabelComponent } from './components/form-elements/validation/label/label.component';
 import { RadioQuestionComponent } from './components/form-elements/radio-question/radio-question.component';
+import { ErrorIconComponent } from './components/form-elements/validation/error-icon/error-icon.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { RadioQuestionComponent } from './components/form-elements/radio-questio
     HelpTextComponent,
     ElementBaseComponent,
     FieldGroupComponent,
-    LabelComponent
+    LabelComponent,
+    ErrorIconComponent
   ],
   exports: [
     FormComponent,

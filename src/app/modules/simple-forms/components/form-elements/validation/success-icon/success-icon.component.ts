@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-success-icon',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./success-icon.component.scss']
 })
 export class SuccessIconComponent implements OnInit {
+
+  @Input() icon: string;
 
   constructor() { }
 

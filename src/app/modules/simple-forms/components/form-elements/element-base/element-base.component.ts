@@ -23,33 +23,36 @@ export class ElementBaseComponent implements OnInit {
     return this.elementData && this.elementData.config;
   }
 
-  helpShown() {
-    return this.helpToggled;
-  }
-
-  toggleHelp() {
-    this.helpToggled = !this.helpToggled;
-  }
-
   getWrapperClass() {
-    if(this.hasConfig()) {
+    if (this.hasConfig()) {
       return this.elementData.config.wrapperCssClass;
     }
   }
 
   getRequiredMarker() {
-    if(this.hasConfig()) {
+    if (this.hasConfig()) {
       return this.elementData.config.requiredMarker || '*';
     }
   }
 
   getAria(type: string) {
-    if(this.hasConfig()) {
-      switch(type) {
+    if (this.hasConfig()) {
+      switch (type) {
         case 'label': return this.elementData.config.ariaLabel;
         case 'describedby': return this.elementData.config.ariaDescribedBy;
       }
     }
   }
 
+  valid() {
+    return this.formGroup.controls[this.elementData.inputId].touched && this.formGroup.controls[this.elementData.inputId].valid;
+  }
+
+  invalid() {
+    return this.formGroup.controls[this.elementData.inputId].touched && this.formGroup.controls[this.elementData.inputId].invalid;
+  }
+
+  showHelp() {
+    return this.elementData.helpText && !this.valid() && !this.invalid();
+  }
 }
