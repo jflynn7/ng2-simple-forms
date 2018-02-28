@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       .setProperty('helpText', 'Here is some helptext!'),
 
     /// Some extras for grouped elements example
-    SimpleFormBuilder.createElement('text', 'Simple Five'),
+    SimpleFormBuilder.createElement('password', 'Simple Five'),
     SimpleFormBuilder.createElement('text', 'Simple Six'),
     SimpleFormBuilder.createElement('text', 'Simple Seven'),
 

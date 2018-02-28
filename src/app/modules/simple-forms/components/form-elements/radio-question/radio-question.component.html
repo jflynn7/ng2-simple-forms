@@ -1,6 +1,7 @@
 <fieldset [formGroup]="formGroup">
   <legend>{{elementData.label}}</legend>
   <span *ngFor="let option of elementData.options">
+
     <input
       formControlName="{{elementData.inputId}}"
       id="{{elementData.inputId}}_{{option.value}}_id"
@@ -8,6 +9,7 @@
       name="{{elementData.inputId}}"
       value="{{option.value}}"
       [attr.data-test-id]="elementData.getTestId('radio', option.value)">
+
   <label
     [attr.data-test-id]="elementData.getTestId('label', option.value)"
     for="{{elementData.inputId}}_{{option.value}}_id">{{option.display}}</label><br>
