@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <app-form-wrapper *ngIf="unwrapped">
-        <h1>Simple Unwrapped Form</h1>
+      <app-form-wrapper *ngIf="unwrapped" [wrapperCssClass]="'default-theme'">
+        <h1>Unwrapped Form</h1>
         <h5>An unwrapped form creates the formGroup, but leaves elements free to be used.</h5>
 
         <!-- Same column widths example -->
@@ -39,14 +39,15 @@
 
         <!-- Grouped elements accessibility example -->
         <div class="row">
-          <app-field-group [groupTitle]="'Grouped Input Fields'">
-            <div class="col-xs-3">
+          <div class="col-xs-12">
+            <app-field-group [groupTitle]="'Grouped Input Fields'" [wrapperCssClass]="'input-fieldset'">
+            <div class="col-xs-4">
               <app-form-element
                 [formGroup]="simpleForm.formGroup"
                 [formElement]="simpleForm.get('simpleFive')">
               </app-form-element>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-8">
               <app-form-element
                 [formGroup]="simpleForm.formGroup"
                 [formElement]="simpleForm.get('simpleSix')">
@@ -65,11 +66,21 @@
               </app-form-element>
             </div>
           </app-field-group>
-
-          <app-form-element
-            [formGroup]="simpleForm.formGroup"
-            [formElement]="simpleForm.get('simpleCheckboxGroup')">
-          </app-form-element>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleCheckboxGroup')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleRadioGroup')">
+            </app-form-element>
+          </div>
         </div>
         <button class="btn btn-primary"
                 *ngIf="simpleForm.formGroup.valid"
@@ -80,7 +91,10 @@
         *ngIf="!unwrapped"
         [form]="simpleForm"
         [formTitle]="'Wrapped Form'"
-        [formSubtitle]="'Simple form, wrapped in a container with linear elements'"></app-form>
+        [formSubtitle]="'Simple form, wrapped in a container with linear elements'"
+        [formOptions]="{
+          wrapperCssClass: 'default-theme'
+        }"></app-form>
     </div>
     <div class="col-xs-12 col-md-6">
       <app-form-wrapper>
