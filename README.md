@@ -63,23 +63,27 @@ Now you can create a form element object in one of two ways.
 `SimpleFormBuilder.createElement('text', 'Simple Two', 'simpleTwoInputId')`
 
 #### With inline configuration
-
-`SimpleFormBuilder.createElement('text', 'Simple Three')
-  .setConfig( 'ariaLabel', 'Simple Three Aria Label')`
+```
+SimpleFormBuilder.createElement('text', 'Simple Three')
+  .setConfig( 'ariaLabel', 'Simple Three Aria Label')
+```
 
 #### With inline property value
-
-`SimpleFormBuilder.createElement('text', 'Simple Four')
-  .setProperty('helpText', 'Here is some helptext!')`
+```
+SimpleFormBuilder.createElement('text', 'Simple Four')
+  .setProperty('helpText', 'Here is some helptext!')
+```
 
 #### Add inline validation
-`SimpleFormBuilder.createElement('text', 'Simple Eight')
+```
+SimpleFormBuilder.createElement('text', 'Simple Eight')
   .setProperty('required', true)
-  .setProperty('minLength', 8)`
+  .setProperty('minLength', 8)
+```
 
 #### Create checkbox group and add options.
-
-`SimpleFormBuilder.createElement('checkbox', 'Simple Checkbox Group')
+```
+SimpleFormBuilder.createElement('checkbox', 'Simple Checkbox Group')
   .setProperty('options', [
     new FormElementOption({
       value: 'test1',
@@ -93,11 +97,12 @@ Now you can create a form element object in one of two ways.
       value: 'test3',
       display: 'Test Checkbox Three'
     })
-  ])`
+  ])
+```
 
 #### Create radio group and add options.
-
-`SimpleFormBuilder.createElement('radio', 'Simple Radio Group')
+```
+SimpleFormBuilder.createElement('radio', 'Simple Radio Group')
   .setProperty('options', [
     new FormElementOption({
       value: 'test1',
@@ -111,11 +116,13 @@ Now you can create a form element object in one of two ways.
       value: 'test3',
       display: 'Test Radio Three'
     })
-  ])`
+  ])
+```
 
 #### Create standard select dropdown
 
-`SimpleFormBuilder.createElement('select', 'Simple Select Box')
+```
+SimpleFormBuilder.createElement('select', 'Simple Select Box')
   .setProperty('options', [
     new FormElementOption({
       value: 'test1',
@@ -129,11 +136,13 @@ Now you can create a form element object in one of two ways.
       value: 'test3',
       display: 'Test Checkbox Three'
     })
-  ])`
+  ])
+```
 
 #### Create standard select dropdown with option groups
 
-`SimpleFormBuilder.createElement('select', 'Simple Select Box With Option Groups')
+```
+SimpleFormBuilder.createElement('select', 'Simple Select Box With Option Groups')
   .setProperty('optionGroups', [
     new FormElementOptionGroup({
       groupName: 'Test Group 1',
@@ -185,6 +194,7 @@ Now you can create a form element object in one of two ways.
           display: 'Test Checkbox Nine'
         })
       ]
-    })`
+    })
+```
     
 # TBC...
