@@ -37,10 +37,9 @@ export class FormElement {
   optionGroups?: FormElementOptionGroup[];
   config?: FormElementConfig;
 
-
   constructor(data: { inputId: string, type: string, label: string, required?: boolean, minLength?: number, maxLength?: number,
                       regex?: string, helpText?: string, errorText?: string, options?: FormElementOption[],
-                      optionGroups?: FormElementOptionGroup[], config?: FormElementConfig }) {
+                      optionGroups?: FormElementOptionGroup[], config?: FormElementConfig}) {
     this.inputId = data.inputId;
     this.type = data.type;
     this.label = data.label;
@@ -68,6 +67,7 @@ export class FormElement {
   getTestId = (type: string, optionValue?: string) => {
     return optionValue ? `${this.inputId}_${optionValue}_${type}` : `${this.inputId}_${type}`;
   }
+
 
 }
 

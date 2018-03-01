@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import { ElementBaseComponent } from '../element-base/element-base.component';
 
 @Component({
@@ -13,6 +13,7 @@ export class TextInputComponent extends ElementBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getFormGroup();
   }
 
 }

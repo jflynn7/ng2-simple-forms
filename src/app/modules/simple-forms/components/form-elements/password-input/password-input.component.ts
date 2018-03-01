@@ -12,6 +12,7 @@ export class PasswordInputComponent extends ElementBaseComponent implements OnIn
     }
 
     ngOnInit() {
+      this.getFormGroup();
     }
 
 }

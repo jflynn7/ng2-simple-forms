@@ -1,0 +1,22 @@
+.header {
+  width: 100%;
+  background-color: #000023;
+  color: white;
+  padding: 15px 0;
+
+  .links {
+    text-align: right;
+
+    a {
+      color: white;
+
+      &:hover {
+        color: #00b3ee;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+}
+

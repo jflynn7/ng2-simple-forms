@@ -1,0 +1,87 @@
+[
+  {
+    "inputId" : "title",
+    "label" : "Title",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your title as shown on your ID",
+    "elementType" : "SELECT",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "firstName",
+    "label" : "First name",
+    "regex" : "^[a-zA-Z\\s\\-]*$",
+    "minLength" : "1",
+    "maxLength" : "50",
+    "validationFailed" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your first name as shown on your ID",
+    "elementType" : "TEXT",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "middleName",
+    "label" : "Middle name",
+    "regex" : "^[a-zA-Z\\s\\-]*$",
+    "minLength" : "1",
+    "maxLength" : "35",
+    "validationFailed" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",
+    "validationRequired" : "NOT_REQUIRED",
+    "elementType" : "TEXT",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "surname",
+    "label" : "Surname",
+    "regex" : "^[a-zA-Z\\s\\-]*$",
+    "minLength" : "1",
+    "maxLength" : "50",
+    "validationFailed" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your surname as shown on your ID",
+    "elementType" : "TEXT",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "gender",
+    "label" : "Gender",
+    "validationRequired" : "REQUIRED",
+    "referenceDataId" : "LOOKUP_GENDERS",
+    "elementType" : "RADIO",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "dateOfBirth",
+    "label" : "Date of birth",
+    "supplementaryLabel" : "[DD/MM/YYYY]",
+    "validationFailed" : "You must be at least 18 years old and enter DoB in DD/MM/YYYY format",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your date of birth as shown on your ID",
+    "elementType" : "DOB",
+    "availableOptions" : [ ]
+  },
+  {
+    "inputId" : "countryOfBirth",
+    "label" : "Country of birth",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your country of birth as shown on your ID",
+    "referenceDataId" : "ISO_COUNTRY_LIST",
+    "elementType" : "SELECT",
+    "availableOptions" : [ {
+      "optionValue" : "GB",
+      "optionDisplay" : "United Kingdom"
+    } ]
+  },
+  {
+    "inputId" : "nationality",
+    "label" : "Nationality",
+    "validationRequired" : "REQUIRED",
+    "helpText" : "Please enter your nationality as shown on your ID",
+    "referenceDataId" : "ISO_COUNTRY_LIST",
+    "elementType" : "SELECT",
+    "availableOptions" : [ {
+      "optionValue" : "GB",
+      "optionDisplay" : "United Kingdom"
+    } ]
+  }
+]

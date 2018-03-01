@@ -1,11 +1,12 @@
-<app-field-group [groupTitle]="elementData.label">
-  <span [formGroup]="formGroup" *ngFor="let option of elementData.options">
+<app-field-group [groupTitle]="elementData.label" [formGroup]="formGroup">
+  <span *ngFor="let option of elementData.options">
     <input
       formControlName="{{elementData.inputId}}"
       id="{{elementData.inputId}}_{{option.value}}_id"
       type="radio"
       name="{{elementData.inputId}}"
       value="{{option.value}}"
+      [attr.selected]="option.value === formGroup.controls[elementData.inputId].value"
       [attr.data-test-id]="elementData.getTestId('radio', option.value)">
   <label
     [attr.data-test-id]="elementData.getTestId('label', option.value)"

@@ -13,6 +13,7 @@ export class RadioQuestionComponent extends ElementBaseComponent implements OnIn
   }
 
   ngOnInit() {
+    this.getFormGroup();
   }
 
 }

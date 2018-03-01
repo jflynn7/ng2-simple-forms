@@ -17,19 +17,50 @@
 @import "assets/bootstrap/_glyphicons.scss";
 
 body {
-  background-color: #f9f9f9;
+  background-color: #efefef;
   font-family: 'Tahoma', sans-serif;
 }
 
-h5 {
+.section {
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+h1 {
+
+  &.title {
+    margin: 0;
+    font-size: 18px;
+
+    &.main {
+      font-size: 22px;
+    }
+  }
+}
+
+h2 {
   color: grey;
+
+  &.subtitle {
+    font-size: 14px;
+    margin: 5px 0;
+  }
 }
 
 
-/// TEST DYNAMIC CONFIG
-.testConfig {
-
-}
 
 /// THEMES
 @import './themes';
+
+
+pre {
+  padding: 15px;
+  border: 1px dotted grey;
+  border-radius: 5px;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}

@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="row section">
+    <div class="col-xs-12">
+      <h1 class="title main">Unwrapped Form</h1>
+      <h2 class="subtitle">An unwrapped form creates the formGroup, but leaves elements free to be used in any layout you want.</h2>
+    </div>
+  </div>
+  <div class="row section">
+    <div class="col-xs-12">
+      <h1 class="title">Creating a form element</h1>
+    </div>
+  </div>
+  <div class="row section">
+    <div class="col-xs-12 col-md-6">
+      <h1 class="title">
+        Form Output
+      </h1>
+      <app-form-wrapper *ngIf="unwrapped">
+        <!-- Same column widths example -->
+        <div class="row">
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleOne')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleTwoInputId')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <!-- Different column widths example -->
+        <div class="row">
+          <div class="col-xs-8">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleThree')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-4">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleFour')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <!-- Grouped elements accessibility example -->
+        <div class="row">
+          <div class="col-xs-12">
+            <app-field-group [groupTitle]="'Grouped Input Fields'" [wrapperCssClass]="'input-fieldset'">
+              <div class="col-xs-4">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleFive')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-8">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleSix')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-12">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleSeven')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-12">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleEight')">
+                </app-form-element>
+              </div>
+            </app-field-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleCheckboxGroup')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleRadioGroup')">
+            </app-form-element>
+          </div>
+        </div>
+        <button class="btn btn-primary"
+                *ngIf="simpleForm.formGroup.valid"
+                (click)="unwrappedSubmit()">Submit Unwrapped</button>
+      </app-form-wrapper>
+
+      <pre><code class="prettyprint">{{example}}</code></pre>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Single Element (without FormGroup)</h1>
+          <app-text-input [elementData]="singleElement" (changeEmitter)="getSingleElementValue($event)"></app-text-input>
+          <app-radio-question [elementData]="singleRadioElement" (changeEmitter)="getSingleElementValue($event)"></app-radio-question>
+        </div>
+      </div>
+      <app-form
+        #wrappedForm
+        *ngIf="!unwrapped"
+        [form]="simpleForm"
+        [formTitle]="'Wrapped Form'"
+        [formSubtitle]="'Simple form, wrapped in a container with linear elements'">
+      </app-form>
+
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <h1 class="title">
+          Formgroup Value
+        </h1>
+        <pre>{{ simpleForm.formGroup.getRawValue() | json }}</pre>
+
+        <fieldset class="test-options">
+          <legend>Test Options</legend>
+          <button (click)="toggle()" class="btn btn-success">Switch Form Type</button>
+          <button (click)="updateButtonLabel()" *ngIf="!unwrapped" class="btn btn-warning">Update Button Label Dynamically</button>
+          <button (click)="updateDemoConfig()" class="btn btn-warning">Update Form Configuration</button>
+          <button (click)="addHelpTextToElement('Here is some dynamically added helptext!', 'simpleEight')" class="btn btn-danger">
+            Dynamically add helptext to element
+          </button>
+        </fieldset>
+    </div>
+  </div>
+</div>
