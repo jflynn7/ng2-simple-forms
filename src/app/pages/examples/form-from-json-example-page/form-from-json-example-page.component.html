@@ -6,12 +6,39 @@
       In some scenarios, it may be more efficient to return a form definition from a server (for example, if you were using a headless CMS to serve
       up data for your Angular frontend.
     </p>
+    <p>
+      For this reason, SimpleFormBuilder has been built to allow receiving a list of form elements from JSON, and converting it into a FormDetails object
+      by using <code>builder.fromJSON()</code>.
+    </p>
   </div>
   <div class="row section">
     <h1 class="title">Reading from JSON to a FormDetails object</h1>
     <h2 class="subtitle"><code>builder.fromJSON()</code> all the things!</h2>
+    <p>Supposing we had the following JSON structure returned from our server:</p>
+    <pre class="prettyprint"><code>{{jsonStructure}}</code></pre>
+    <p>
+      We can then use this response to create our form, with very little code. The benefits of this method are countless, but as an example of one,
+      you may have a number of projects, that use the same form. With this method, you can make changes to the form in one place (either in a .json file)
+      or on a CMS that controls it, and immediately all of your projects can use the updated form!
+    </p>
+    <p>
+      In order to retrieve the form from JSON (in this example, the JSON file is local, but it works exactly the same if its on a remote server), we make
+      use of Angulars <code>HttpClient</code> to make a <code>.get</code> for the file, and then call the builders <code>fromJSON</code> function to turn
+      it into a <code>FormDetails</code> object.
+    </p>
+    <pre class="prettyprint"><code>{{httpGetSample}}</code></pre>
+    <p>
+      Now we can use it in an unwrapped form, or fire it straight into a wrapped form as usual. The only difference is, we need to add a <code>*ngIf</code>
+      so the form doesn't try to render until it has it's elements, else it'll fall over, bigtime. <code>@TODO - Put some guards in the form component 🙄</code>
+    </p>
+    <pre class="prettyprint"><code>{{renderCode}}</code></pre>
+
   </div>
   <div class="row section">
+    <p>
+      Once we've done that, our form is rendered, complete with validation, <a [routerLink]="'/accessibility'">accessibility considerations</a>, and
+      <a [routerLink]="'/testing'">dynamic test IDs</a> for e2e testing! 💣
+    </p>
     <div class="col-xs-6 no-marg left">
       <app-form
         *ngIf="jsonForm"
@@ -22,7 +49,7 @@
       </app-form>
     </div>
     <div class="col-xs-6 no-marg right">
-      <h1 class="title">JSON Form Output</h1>
+      <h1>JSON Form Output</h1>
       <pre class="prettyprint"><code>{{jsonForm.formGroup.getRawValue() | json}}</code></pre>
 
       <h1 class="title">Submitted Value</h1>

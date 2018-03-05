@@ -22,6 +22,10 @@ import { FormGroupsPageComponent } from './pages/examples/form-groups-page/form-
 import { ApiReferencePageComponent } from './pages/api-reference-page/api-reference-page.component';
 import { NavigationRowComponent } from './components/navigation-row/navigation-row.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccessibilityPageComponent } from './pages/accessibility-page/accessibility-page.component';
+import { TestingPageComponent } from './pages/testing-page/testing-page.component';
+import { ConfigurationOptionsPageComponent } from './pages/installation/configuration-options-page/configuration-options-page.component';
+import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
 
 
 @NgModule({
@@ -41,7 +45,11 @@ import { HttpClientModule } from '@angular/common/http';
     RenderingElementsPageComponent,
     FormGroupsPageComponent,
     ApiReferencePageComponent,
-    NavigationRowComponent
+    NavigationRowComponent,
+    AccessibilityPageComponent,
+    TestingPageComponent,
+    ConfigurationOptionsPageComponent,
+    ElementPropertiesPageComponent
   ],
   imports: [
     BrowserModule,

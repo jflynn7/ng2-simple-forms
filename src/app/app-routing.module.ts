@@ -11,6 +11,10 @@ import { FormFromJsonExamplePageComponent } from './pages/examples/form-from-jso
 import { FormGroupsPageComponent } from './pages/examples/form-groups-page/form-groups-page.component';
 import { RenderingElementsPageComponent } from './pages/examples/rendering-elements-page/rendering-elements-page.component';
 import { ApiReferencePageComponent } from './pages/api-reference-page/api-reference-page.component';
+import { AccessibilityPageComponent } from './pages/accessibility-page/accessibility-page.component';
+import { TestingPageComponent } from './pages/testing-page/testing-page.component';
+import { ConfigurationOptionsPageComponent } from './pages/installation/configuration-options-page/configuration-options-page.component';
+import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
 
 const routes: Routes = [
   {
@@ -56,6 +60,22 @@ const routes: Routes = [
   {
     path: 'api/:object',
     component: ApiReferencePageComponent
+  },
+  {
+    path: 'accessibility',
+    component: AccessibilityPageComponent
+  },
+  {
+    path: 'testing',
+    component: TestingPageComponent
+  },
+  {
+    path: 'configuration',
+    component: ConfigurationOptionsPageComponent
+  },
+  {
+    path: 'properties',
+    component: ElementPropertiesPageComponent
   }
 ];
 

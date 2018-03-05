@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormDetails, FormElement } from '../../../modules/simple-forms/state/simple-forms.state';
+import { FormDetails } from '../../../modules/simple-forms/state/simple-forms.state';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '    "label" : "Title",\n' +
     '    "helpText" : "Please enter your title as shown on your ID",\n' +
     '    "type" : "SELECT",\n' +
-    '    "availableOptions" : [\n' +
+    '    "options" : [\n' +
     '      {\n' +
     '        "value" : "mr",\n' +
     '        "display" : "Mr"\n' +
@@ -41,7 +41,7 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '    "inputId" : "firstName",\n' +
     '    "label" : "First name",\n' +
     '    "regex" : "^[a-zA-Z\\\\s\\\\-]*$",\n' +
-    '    "minLength" : "1",\n' +
+    '    "minLength" : "3",\n' +
     '    "maxLength" : "50",\n' +
     '    "errorText" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",\n' +
     '    "helpText" : "Please enter your first name as shown on your ID",\n' +
@@ -51,7 +51,7 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '    "inputId" : "middleName",\n' +
     '    "label" : "Middle name",\n' +
     '    "regex" : "^[a-zA-Z\\\\s\\\\-]*$",\n' +
-    '    "minLength" : "1",\n' +
+    '    "minLength" : "3",\n' +
     '    "maxLength" : "35",\n' +
     '    "errorText" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",\n' +
     '    "type" : "TEXT"\n' +
@@ -60,7 +60,7 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '    "inputId" : "surname",\n' +
     '    "label" : "Surname",\n' +
     '    "regex" : "^[a-zA-Z\\\\s\\\\-]*$",\n' +
-    '    "minLength" : "1",\n' +
+    '    "minLength" : "3",\n' +
     '    "maxLength" : "50",\n' +
     '    "errorText" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",\n' +
     '    "helpText" : "Please enter your surname as shown on your ID",\n' +
@@ -70,7 +70,7 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '    "inputId" : "gender",\n' +
     '    "label" : "Gender",\n' +
     '    "validationRequired" : "REQUIRED",\n' +
-    '    "elementType" : "RADIO",\n' +
+    '    "type" : "RADIO",\n' +
     '    "options" : [\n' +
     '      {\n' +
     '        "value" : "m",\n' +
@@ -110,14 +110,22 @@ export class FormFromJsonExamplePageComponent implements OnInit {
     '      "display" : "United Kingdom"\n' +
     '    } ]\n' +
     '  }\n' +
-    ']';
+    ']\n';
 
   jsonForm: FormDetails = undefined;
 
-  httpGetSample: string = 'this.http.get(\'./assets/sampleForm.json\').subscribe(value => {\n' +
+  httpGetSample: string = 'jsonForm: FormDetails;\n\n' +
+    'this.http.get(\'./assets/sampleForm.json\').subscribe(value => {\n' +
     '      this.jsonForm = builder.fromJson(value);\n' +
-    '      console.log(this.jsonForm.formGroup.get(\'firstName\'));\n' +
     '});';
+
+  renderCode: string = '<app-form\n' +
+    '        *ngIf="jsonForm"\n' +
+    '        [form]="jsonForm"\n' +
+    '        [formTitle]="\'My Form From JSON\'"\n' +
+    '        [formSubtitle]="\'A simple form created dynamically from a JSON file\'"\n' +
+    '        (submitEmitter)="formSubmit($event)">\n' +
+    '</app-form>';
 
   constructor(private http: HttpClient) {
   }
@@ -125,7 +133,6 @@ export class FormFromJsonExamplePageComponent implements OnInit {
   ngOnInit() {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
       this.jsonForm = builder.fromJson(value);
-      console.log(this.jsonForm.formGroup.get('firstName'));
     });
 
   }
