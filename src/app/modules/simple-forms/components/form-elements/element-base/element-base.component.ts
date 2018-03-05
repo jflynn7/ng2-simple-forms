@@ -41,8 +41,8 @@ export class ElementBaseComponent implements OnInit {
       return SimpleFormBuilder.toFormGroup([this.elementData]);
   }
 
-  hasConfig() {
-    return this.elementData && this.elementData.config;
+  hasConfig(): boolean {
+    return !!(this.elementData && this.elementData.config);
   }
 
   getWrapperClass() {

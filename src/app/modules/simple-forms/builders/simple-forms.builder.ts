@@ -10,8 +10,6 @@ export class SimpleFormBuilder {
 
   /**
    * Get Validators from FormElement definition properties
-   * @param element
-   * @returns {any}
    */
   static getValidators(element: FormElement): any {
     const validators: ValidatorFn[] = [];
@@ -36,8 +34,6 @@ export class SimpleFormBuilder {
 
   /**
    * Create a FormGroup from a list FormElement definitions
-   * @param {FormElement[]} formElements
-   * @returns {any}
    */
   static toFormGroup(formElements: FormElement[]): any {
     const formGroup: {} = {};
@@ -52,11 +48,6 @@ export class SimpleFormBuilder {
    * Takes a group of FormElements, and returns an
    * Unwrapped form object of formGroup, and
    * { inputId: string, element: FormElement } array.
-   *
-   * @TOP-TIP: Use <yourVariable>.elements.get(<inputId>);
-   * to render your element.
-   *
-   * @param formElements
    */
   static toFormDetails(formElements: FormElement[]): any {
     const unwrappedForm: FormDetails = new FormDetails();
@@ -76,11 +67,6 @@ export class SimpleFormBuilder {
   /**
    * Simple wrapper to create a FormElement with basic
    * attributes
-   * @param {string} type
-   * @param {string} label
-   * @param {string} inputId
-   * @param config
-   * @returns {FormElement}
    */
   static createElement(type: string, label: string, options: FormElementOptions = {}, config?: FormElementConfig) {
     let elementInputId: string;
@@ -97,33 +83,29 @@ export class SimpleFormBuilder {
       config: config
     });
 
-    return this.setOptions(element, options);
+    return SimpleFormBuilder.setOptions(element, options);
   }
 
   static setOptions(element: FormElement, options: FormElementOptions) {
     Object.getOwnPropertyNames(options).forEach(optionKey => {
-      element.setProperty(optionKey, options[optionKey])
+      element.setProperty(optionKey, options[optionKey]);
     });
 
     return element;
   }
 
 
-
-  static toInputId(str) {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
-      return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
-    }).replace(/\s+/g, '');
-  }
-
-  /**
-   * Rebuild a form from an existing build FormDetails
-   * object (used after dynamically updating config)
-   * @param {FormDetails} builtForm
-   * @returns {any}
-   */
-  static rebuildForm(builtForm: FormDetails) {
-    return SimpleFormBuilder.toFormDetails(builtForm.elements.map(item => item.element ));
+  static toInputId(str: string) {
+    const words = str.split(' ');
+    const mutated: string[] = words.map(function(word, index) {
+      // If it is the first word make sure to lowercase all the chars.
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      // If it is not the first word only upper case the first char and lowercase the rest.
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    return mutated.join('');
   }
 
 }
