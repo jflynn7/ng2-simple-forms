@@ -1,5 +1,5 @@
 import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { FormElement, FormElementConfig, FormDetails } from '../state/simple-forms.state';
+import { FormElement, FormElementConfig, FormDetails, FormElementOptions } from '../state/simple-forms.state';
 
 export class SimpleFormBuilder {
 
@@ -44,7 +44,7 @@ export class SimpleFormBuilder {
   }
 
   /**
-   * Create an 'Unwrapped Form'
+   * Create a 'FormDetails'
    * Takes a group of FormElements, and returns an
    * Unwrapped form object of formGroup, and
    * { inputId: string, element: FormElement } array.
@@ -70,18 +70,33 @@ export class SimpleFormBuilder {
    * @param config
    * @returns {FormElement}
    */
-  static createElement(type: string, label: string, inputId?: string, config?: FormElementConfig) {
-    let elementInputId: string = inputId;
-    if (!inputId) {
+  static createElement(type: string, label: string, options: FormElementOptions = {}, config?: FormElementConfig) {
+    let elementInputId: string;
+
+    if (options && !options.inputId) {
       elementInputId = SimpleFormBuilder.toInputId(label);
+    } else {
+      elementInputId = options.inputId;
     }
-    return new FormElement({
+    const element: FormElement = new FormElement({
       inputId: elementInputId,
       type: type,
       label: label,
       config: config
     });
+
+    return this.setOptions(element, options);
   }
+
+  static setOptions(element: FormElement, options: FormElementOptions) {
+    Object.getOwnPropertyNames(options).forEach(optionKey => {
+      element.setProperty(optionKey, options[optionKey])
+    });
+
+    return element;
+  }
+
+
 
   static toInputId(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {

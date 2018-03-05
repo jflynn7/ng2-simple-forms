@@ -13,4 +13,5 @@
   <app-success-icon *ngIf="valid()"></app-success-icon>
   <app-error-icon *ngIf="invalid()"></app-error-icon>
   <app-help-text *ngIf="showHelp()" [elementData]="elementData"></app-help-text>
+  <app-error-message *ngIf="showError()" [message]="elementData.errorText"></app-error-message>
 </div>

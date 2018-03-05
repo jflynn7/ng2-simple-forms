@@ -18,7 +18,6 @@ import { FieldGroupComponent } from './components/field-group/field-group.compon
 import { LabelComponent } from './components/form-elements/validation/label/label.component';
 import { RadioQuestionComponent } from './components/form-elements/radio-question/radio-question.component';
 import { ErrorIconComponent } from './components/form-elements/validation/error-icon/error-icon.component';
-import { NoFormGroupExamplePageComponent } from '../../pages/no-form-group-example-page/no-form-group-example-page.component';
 
 @NgModule({
   imports: [
@@ -43,8 +42,7 @@ import { NoFormGroupExamplePageComponent } from '../../pages/no-form-group-examp
     ElementBaseComponent,
     FieldGroupComponent,
     LabelComponent,
-    ErrorIconComponent,
-    NoFormGroupExamplePageComponent
+    ErrorIconComponent
   ],
   exports: [
     FormComponent,

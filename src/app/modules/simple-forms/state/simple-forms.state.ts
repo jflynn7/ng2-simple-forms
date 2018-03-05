@@ -33,13 +33,13 @@ export class FormElement {
   regex?: string;
   helpText?: string;
   errorText?: string;
-  options?: FormElementOption[];
-  optionGroups?: FormElementOptionGroup[];
+  options?: ElementOption[];
+  optionGroups?: ElementOptionGroup[];
   config?: FormElementConfig;
 
   constructor(data: { inputId: string, type: string, label: string, required?: boolean, minLength?: number, maxLength?: number,
-                      regex?: string, helpText?: string, errorText?: string, options?: FormElementOption[],
-                      optionGroups?: FormElementOptionGroup[], config?: FormElementConfig}) {
+                      regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
+                      optionGroups?: ElementOptionGroup[], config?: FormElementConfig}) {
     this.inputId = data.inputId;
     this.type = data.type;
     this.label = data.label;
@@ -68,10 +68,48 @@ export class FormElement {
     return optionValue ? `${this.inputId}_${optionValue}_${type}` : `${this.inputId}_${type}`;
   }
 
-
 }
 
-export class FormElementOption {
+export class ComponentValue {
+  inputId: string;
+  value: any;
+  isValid: boolean;
+
+
+  constructor(data: { inputId: string, value: any, isValid: boolean }) {
+    this.inputId = data.inputId;
+    this.value = data.value;
+    this.isValid = data.isValid;
+  }
+}
+
+export class FormElementOptions {
+  inputId?: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  regex?: string;
+  helpText?: string;
+  errorText?: string;
+  options?: ElementOption[];
+  optionGroups?: ElementOptionGroup[];
+
+
+  constructor(data: { inputId: string, required: boolean, minLength: number, maxLength: number, regex: string, helpText: string,
+                      errorText: string, options: ElementOption[], optionGroups: ElementOptionGroup[] }) {
+    this.inputId = data.inputId;
+    this.required = data.required;
+    this.minLength = data.minLength;
+    this.maxLength = data.maxLength;
+    this.regex = data.regex;
+    this.helpText = data.helpText;
+    this.errorText = data.errorText;
+    this.options = data.options;
+    this.optionGroups = data.optionGroups;
+  }
+}
+
+export class ElementOption {
   value: string;
   display: string;
 
@@ -82,29 +120,16 @@ export class FormElementOption {
   }
 }
 
-export class FormElementOptionGroup {
+export class ElementOptionGroup {
   groupName: string;
-  options: FormElementOption[];
+  options: ElementOption[];
 
 
-  constructor(data: { groupName: string, options: FormElementOption[] }) {
+  constructor(data: { groupName: string, options: ElementOption[] }) {
     this.groupName = data.groupName;
     this.options = data.options;
   }
 
-}
-
-export class OptionsObject {
-  object: any;
-  valueKey: string;
-  displayKey: string;
-
-
-  constructor(data: { object: any, valueKey?: string, displayKey?: string }) {
-    this.object = data.object;
-    this.valueKey = data.valueKey;
-    this.displayKey = data.displayKey;
-  }
 }
 
 

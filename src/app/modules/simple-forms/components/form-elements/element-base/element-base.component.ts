@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { FormElement } from '../../../state/simple-forms.state';
+import { ComponentValue, FormElement } from '../../../state/simple-forms.state';
 import { FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
 
@@ -12,8 +12,6 @@ export class ElementBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() elementData: FormElement;
-
-  helpToggled: boolean = false;
   @Output() changeEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
@@ -24,7 +22,11 @@ export class ElementBaseComponent implements OnInit {
 
   emit() {
     this.formGroup.valueChanges.subscribe(value => {
-      this.changeEmitter.emit(value[this.elementData.inputId]);
+      this.changeEmitter.emit(new ComponentValue({
+        inputId: this.elementData.inputId,
+        value: value[this.elementData.inputId],
+        isValid: this.formGroup.valid
+      }));
     });
   }
 
@@ -73,6 +75,10 @@ export class ElementBaseComponent implements OnInit {
 
   showHelp() {
     return this.elementData.helpText && !this.valid() && !this.invalid();
+  }
+
+  showError() {
+    return this.elementData.errorText && this.invalid();
   }
 
 }
