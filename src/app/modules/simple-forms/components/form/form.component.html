@@ -6,6 +6,8 @@
     [formGroup]="form.formGroup"
     [formElement]="element.element">
   </app-form-element>
-  <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="submit()">{{ formOptions.submitButtonLabel || 'Submit' }}</button>
-  <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="clear()">{{ formOptions.clearButtonLabel || 'Clear' }}</button>
+  <span class="controls">
+    <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="submit()">{{ formOptions.submitButtonLabel || 'Submit' }}</button>
+    <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="clear()">{{ formOptions.clearButtonLabel || 'Clear' }}</button>
+  </span>
 </app-form-wrapper>

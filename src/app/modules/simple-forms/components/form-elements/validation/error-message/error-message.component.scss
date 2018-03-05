@@ -6,10 +6,11 @@
   color: white;
   padding: 5px 10px;
   text-align: center;
-  border-radius: 18px;
+  border-radius: 5px;
   z-index: 2;
-  bottom: -17px;
+  bottom: -32px;
   left: 25%;
+  min-width: 50%;
 
   &::after {
     content: " ";

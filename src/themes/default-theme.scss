@@ -8,13 +8,23 @@ $question-blue: #4683ff;
 
   // All elements are wrapped in .field for specificity
   .field {
+    margin-bottom: 15px;
+    display: block;
+
+    select {
+      border: 1px solid #bdbdbd;
+      margin-top: 3px;
+      display: block;
+      height: 32px;
+    }
 
     input {
       background-color: white;
       border: 1px solid #bdbdbd;
-      border-radius: 15px;
+      border-radius: 5px;
       text-indent:  10px;
       padding: 5px;
+      margin-bottom: 0;
 
       &.valid {
         border-color: $valid-green;
@@ -34,8 +44,8 @@ $question-blue: #4683ff;
 
     .validation-icon {
       position: absolute;
-      right: 9px;
-      top: 34px;
+      right: 0px;
+      top: 2px;
       font-size: 16px;
 
       &.valid {
@@ -64,8 +74,8 @@ $question-blue: #4683ff;
     }
 
     fieldset {
-      border: none;
-      border-radius: 15px;
+      border: 1px solid #bdbdbd;
+      border-radius: 5px;
       margin: 10px 0;
       position: relative;
       padding: 30px 15px 10px;

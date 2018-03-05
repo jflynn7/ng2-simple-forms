@@ -14,6 +14,7 @@ export class ElementBaseComponent implements OnInit {
   @Input() elementData: FormElement;
   @Output() changeEmitter: EventEmitter<any> = new EventEmitter<any>();
 
+  helpVisible: boolean = false;
   constructor() {
   }
 
@@ -75,6 +76,10 @@ export class ElementBaseComponent implements OnInit {
 
   showHelp() {
     return this.elementData.helpText && !this.valid() && !this.invalid();
+  }
+
+  toggleHelp() {
+    this.helpVisible = !this.helpVisible;
   }
 
   showError() {

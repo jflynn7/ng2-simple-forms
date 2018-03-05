@@ -163,3 +163,45 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   pre .atn, code .atn { color: #404; }
   pre .atv, code .atv { color: #060; }
 }
+
+
+//// CONFIG EXAMPLE
+
+.myFormWrapper {
+  background-color: #1a2229;
+  padding: 0 20px 20px;
+  border-radius: 3px;
+  border: 1px solid lighten(#1a2229, 5%);
+  color: #00b3ee;
+
+  .myElementClass {
+
+    input {
+      border-radius: 3px;
+      border: 1px solid #455563;
+      background-color: #2e3c48;
+      color: #72c2ff;
+      padding-top: 10px;
+      text-indent: 10px;
+     }
+
+    .validation-icon {
+      font-size: 20px;
+      top: 4px;
+    }
+
+  }
+
+  .myButton {
+    color: #72c2ff;
+    background-color: #2e3c48;
+    border-radius: 2px;
+    border: 1px solid #455563;
+    padding: 12px 10px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten(#2e3c48, 5%);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <div class="container-fluid page">
   <div class="row section">
     <div class="col-xs-12">
-      <h1 class="title main">Unwrapped Form</h1>
+      <h1 class="title">Unwrapped Form</h1>
       <h2 class="subtitle">An unwrapped form creates the formGroup, but leaves elements free to be used in any layout you want.</h2>
       <p>
         In previous examples, we've shown how to use the <code>SimpleFormBuilder</code> to create elements, and to create a FormGroup. In
@@ -35,26 +35,43 @@
   <div class="row section">
     <h1 class="title">Rendering an unwrapped form</h1>
     <h2 class="subtitle">Using the <code>.get()</code> function to render an element from an array</h2>
-    <p></p>
+    <p>
+      On <a [routerLink]="'/rendering-elements'">rendering elements</a> we saw how to render an element using a single form element being passed to the
+      <code>app-form-element</code> component. When using an unwrapped form, we have an array of elements, as part of the <a [routerLink]="'/api/FormDetails'">
+      FormDetails</a> object. So, for this reason, we expose a <code>.get()</code> function to aid in rendering the form. To use <code>.get()</code>, all you
+      need to know to render an element, is its <code>inputId</code> (either explicitly stated, as with <code>simpleTwoInputId</code> in the example above, or
+      generated from the label, as with <code>simpleOne</code> [which was created from the label 'Simple One' automagically]), and we can render it like so...
+    </p>
+    <pre class="prettyprint"><code>{{renderFromInputCode}}</code></pre>
+    <p>
+      ...this will find the element with <code>inputId</code> of <code>simpleOne</code>, and render it, and can be done with all of the elements individually,
+      so you can render your complete form, in any shape you want! An alternative to single element rendering also exists, the <a [routerLink]="'/wrapped-form'">
+      Wrapped Form</a> which renders all the elements in a linear form (useful when you have a lot of forms, and no complicated designs!), but more about that
+      later!
+    </p>
   </div>
   <div class="row section">
     <div class="col-xs-12 col-md-6">
-      <h1 class="title">
-        Form Output
-      </h1>
+      <h1 class="title">Simple Form Output</h1>
+      <h2 class="subtitle">The example below shows an unwrapped form, created with various different element types.</h2>
+      <p>
+        As you can see from the form below, the actual placement of form elements on the page matters not, as once they're created in a FormDetails object,
+        it has one FormGroup, which is accessible via <code>myForm.formGroup</code> (where <code>myForm</code> is the name of the FormDetails object
+        you created.. With this, we can check validity, get its value, track changes, etc, in the same way we would with any other formgroup.
+      </p>
       <app-form-wrapper>
         <!-- Same column widths example -->
         <div class="row">
           <div class="col-xs-6">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleOne')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleOne')">
             </app-form-element>
           </div>
           <div class="col-xs-6">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleTwoInputId')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleTwoInputId')">
             </app-form-element>
           </div>
         </div>
@@ -63,14 +80,14 @@
         <div class="row">
           <div class="col-xs-8">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleThree')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleThree')">
             </app-form-element>
           </div>
           <div class="col-xs-4">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleFour')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleFour')">
             </app-form-element>
           </div>
         </div>
@@ -81,26 +98,26 @@
             <app-field-group [groupTitle]="'Grouped Input Fields'" [wrapperCssClass]="'input-fieldset'">
               <div class="col-xs-4">
                 <app-form-element
-                  [formGroup]="simpleForm.formGroup"
-                  [formElement]="simpleForm.get('simpleFive')">
+                  [formGroup]="myForm.formGroup"
+                  [formElement]="myForm.get('simpleFive')">
                 </app-form-element>
               </div>
               <div class="col-xs-8">
                 <app-form-element
-                  [formGroup]="simpleForm.formGroup"
-                  [formElement]="simpleForm.get('simpleSix')">
+                  [formGroup]="myForm.formGroup"
+                  [formElement]="myForm.get('simpleSix')">
                 </app-form-element>
               </div>
               <div class="col-xs-12">
                 <app-form-element
-                  [formGroup]="simpleForm.formGroup"
-                  [formElement]="simpleForm.get('simpleSeven')">
+                  [formGroup]="myForm.formGroup"
+                  [formElement]="myForm.get('simpleSeven')">
                 </app-form-element>
               </div>
               <div class="col-xs-12">
                 <app-form-element
-                  [formGroup]="simpleForm.formGroup"
-                  [formElement]="simpleForm.get('simpleEight')">
+                  [formGroup]="myForm.formGroup"
+                  [formElement]="myForm.get('simpleEight')">
                 </app-form-element>
               </div>
             </app-field-group>
@@ -111,29 +128,61 @@
         <div class="row">
           <div class="col-xs-6">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleCheckboxGroup')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleCheckboxGroup')">
             </app-form-element>
           </div>
           <div class="col-xs-6">
             <app-form-element
-              [formGroup]="simpleForm.formGroup"
-              [formElement]="simpleForm.get('simpleRadioGroup')">
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleRadioGroup')">
             </app-form-element>
           </div>
         </div>
 
         <button class="btn btn-primary"
-                *ngIf="simpleForm.formGroup.valid"
+                *ngIf="myForm.formGroup.valid"
                 (click)="unwrappedSubmit()">Submit Unwrapped</button>
       </app-form-wrapper>
 
     </div>
     <div class="col-xs-12 col-md-6">
-        <h1 class="title">
-          Formgroup Value
-        </h1>
-      <pre class="prettycontain"><code>{{ simpleForm.formGroup.getRawValue() | json }}</code></pre>
+      <h1 class="title">Formgroup Value</h1>
+      <h2 class="subtitle">Tracking Value and validity via <code>FormDetails</code> object</h2>
+      <p>Tracking the value of the form on the left, is as simple as calling:</p>
+      <pre class="prettyprint"><code>this.myForm.formGroup.value</code></pre>
+      <p>...which returns an object like so..</p>
+      <pre class="prettycontain"><code>{{ myForm.formGroup.getRawValue() | json }}</code></pre>
+      <p>Similarly, we can check the validity of the form, by calling:</p>
+      <pre class="prettyprint"><code>this.myForm.formGroup.valid</code></pre>
+      <p>...which returns a boolean, based on whether the <strong>whole</strong> form is valid.</p>
+      Valid: <pre class="prettyprint"><code>{{ myForm.formGroup.valid }}</code></pre>
     </div>
   </div>
+
+  <div class="row section">
+    <h1 class="title">Tracking individual elements</h1>
+    <h2 class="subtitle">Sometimes you may want to track an individual elements value/validity, as well as the whole form.</h2>
+    <p>
+      As with any FormGroup, tracking an individual elements value or validity is available using the <code>.get()</code> function
+      on the formgroup. For example, in the form above, both <code>simpleFour</code> and <code>simpleEight</code> are required fields,
+      but I may want to carry out some additional logic when <code>simpleFour</code> becomes valid, even if the <strong>whole</strong>
+      form isn't valid at that point. To this end, I can use...
+    </p>
+    <pre class="prettyprint"><code>this.myForm.formGroup.get('simpleFour').valid</code></pre>
+    <p>
+      ...which will return the validity of <strong>just</strong> <code>simpleFour</code>. e.g
+    </p>
+    <strong>Simple Four Validity:</strong> <pre class="prettyprint"><code>{{myForm.formGroup.get('simpleFour').valid}}</code></pre><br>
+    <strong>Whole Form Validity:</strong> <pre class="prettyprint"><code>{{myForm.formGroup.valid}}</code></pre>
+    <p>
+      If you add a value to Simple Four in the form above, you can see 'Simple Four Validity' will be <code>true</code>, whereas 'Whole Form Validity'
+      remains <code>false</code>, as Simple Eight is also required, but has no value.
+    </p>
+  </div>
+
+  <app-navigation-row
+    [prevRoute]="{ label: 'Rendering Elements', route: '/rendering-elements'}"
+    [nextRoute]="{ label: 'Wrapped Forms', route: '/wrapped-form'}"
+    [blurb]="'This section covered unwrapped forms, the alternative is to render a linear form from an array of FormElements, which is covered in Wrapped Forms'"></app-navigation-row>
 </div>

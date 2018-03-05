@@ -1,5 +1,32 @@
 <div class="container-fluid page">
   <div class="row section">
-    <h1>Coming Soon!</h1>
+    <h1 class="title">Creating forms from JSON</h1>
+    <h2 class="subtitle">Server defined form structure? Aye, alright then...</h2>
+    <p>
+      In some scenarios, it may be more efficient to return a form definition from a server (for example, if you were using a headless CMS to serve
+      up data for your Angular frontend.
+    </p>
+  </div>
+  <div class="row section">
+    <h1 class="title">Reading from JSON to a FormDetails object</h1>
+    <h2 class="subtitle"><code>builder.fromJSON()</code> all the things!</h2>
+  </div>
+  <div class="row section">
+    <div class="col-xs-6 no-marg left">
+      <app-form
+        *ngIf="jsonForm"
+        [form]="jsonForm"
+        [formTitle]="'My Form From JSON'"
+        [formSubtitle]="'A simple form created dynamically from a JSON file'"
+        (submitEmitter)="formSubmit($event)">
+      </app-form>
+    </div>
+    <div class="col-xs-6 no-marg right">
+      <h1 class="title">JSON Form Output</h1>
+      <pre class="prettyprint"><code>{{jsonForm.formGroup.getRawValue() | json}}</code></pre>
+
+      <h1 class="title">Submitted Value</h1>
+      <pre class="prettyprint"><code>{{ submittedValue | json}}</code></pre>
+    </div>
   </div>
 </div>

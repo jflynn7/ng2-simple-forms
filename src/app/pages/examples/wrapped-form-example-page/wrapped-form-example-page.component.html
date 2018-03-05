@@ -1,5 +1,127 @@
 <div class="container-fluid page">
+
+  <!-- Creating the form -->
   <div class="row section">
-    <h1>Coming Soon!</h1>
+    <h1 class="title">Creating a wrapped form</h1>
+    <h2 class="subtitle">Simple linear forms from an array of FormElements</h2>
+    <p>
+      ng2-simple-forms provides a simple utility function for times when you may need to just render a simple form quickly, without having
+      to worry about where the elements are placed. A wrapped form simply places the elements one after another, and can be rendered in one
+      simple line of code:
+    </p>
+    <pre class="prettyprint"><code>{{wrappedFormCode}}</code></pre>
+    <p>
+      If we take the example form elements from <a [routerLink]="'/unwrapped-form'">unwrapped forms</a>, we can create <code>myFormDetails</code>
+      the following way:
+    </p>
+    <pre class="prettyprint"><code>{{createFormElementsArrayCode}}</code></pre>
+    <pre class="prettyprint"><code>{{createFormDetailsCode}}</code></pre>
+
+    <p>Using this example, our final rendered wrapped form will look something like this:</p>
+    <div class="col-xs-4 no-marg left">
+      <app-form [form]="myFormDetails"></app-form>
+    </div>
+    <div class="col-xs-8 no-marg right">
+      <h2 class="subtitle">Tracking wrapped forms</h2>
+      <p>As you have created a FormDetails object for the wrapped form, all of its FormGroup functionality is as normal.</p>
+      <h2 class="subtitle">Tracking Value</h2>
+      <pre class="prettyprint"><code>this.myFormDetails.formGroup.getRawValue()</code></pre>
+      <pre class="prettycontain"><code>{{myFormDetails.formGroup.getRawValue() | json}}</code></pre>
+      <h2 class="subtitle">Tracking Validity</h2>
+      <pre class="prettyprint"><code>this.myFormDetails.formGroup.valid</code></pre>
+      <pre class="prettycontain"><code>{{myFormDetails.formGroup.valid | json}}</code></pre>
+    </div>
   </div>
+
+  <!-- Additional Proerties -->
+  <div class="row section">
+    <h1 class="title">Additional Form Properties</h1>
+    <h2 class="subtitle">Give your form some character</h2>
+    <p>
+      In addition to taking a <code>form</code> input, a wrapped form also has a number of additional properties (all of which are outlined in the
+      <a [routerLink]="'/api/Form'">Form API Reference</a>) which can add additional character to your forms. For example, we can add a title to the
+      form using <code>[formTitle]="'My Form Title'"</code>, and/or a subtitle using <code>[formSubtitle]="'A simple form created with ng2-simple-forms'"</code>,
+      e.g Using the form example above:
+    </p>
+    <pre class="prettyprint"><code>{{formWithTitleAndSubtitleCode}}</code></pre>
+    <p>...which renders:</p>
+    <app-form [form]="myFormDetails" [formTitle]="'My Form Title'" [formSubtitle]="'A simple form created with ng2-simple-forms'"></app-form>
+  </div>
+
+  <div class="row section">
+    <h1 class="title">Form Configuration</h1>
+    <h2 class="subtitle">Configuring CSS, labels, etc</h2>
+    <p>
+      Despite the primary usecase for a wrapped form being to rapidly render a form without considering element placement, there are a number of
+      options for configuring the forms to fit into the overall look and feel of your project, by way of <a [routerLink]="'/api/FormConfig'">FormConfig</a>
+      input. The FormConfig object allows a set of <strong>optional</strong> overrides to be applied to form, and takes the following form:
+    </p>
+    <pre class="prettyprint"><code>{{formConfigObjectDef}}</code></pre>
+  </div>
+
+  <div class="row section">
+    <h1 class="title">Configured Form</h1>
+    <h2 class="subtitle">A simple, step-by-step example</h2>
+    <p>If we take the same form as the previous example, we can see how adding some configuration changes how the form looks.</p>
+    <p>Suppose we have a <code>_forms.scss</code> file that has the following:</p>
+    <pre class="prettyprint"><code>{{scssExample}}</code></pre>
+    <p>We can use those classes in our wrapped form by creating a config object like so:</p>
+    <pre class="prettyprint"><code>{{formConfigExample}}</code></pre>
+
+    <p>Now, if we pass that object to our previous example, like so:</p>
+    <pre class="prettyprint"><code>{{withConfigExample}}</code></pre>
+    <p>Our form suddenly looks like this:</p>
+    <app-form
+      [form]="myFormDetails"
+      [formTitle]="'My Form Title'"
+      [formSubtitle]="'A simple form created with ng2-simple-forms'"
+      [formOptions]="myFormConfig"></app-form>
+
+    <p>Yes, it's ugly as all holy hell. But, it's just an example of how a form can be configured to be styled to fit your project.</p>
+  </div>
+  <div class="row section">
+    <h1 class="title">Submitting A Wrapped Form</h1>
+    <h2 class="subtitle">...and indeed, subscribing to change and clearing a wrapped form.</h2>
+    <p>
+      As the form is wrapped up in a component, you might be wondering how we can know when the form has been submitted. Simple. EventEmitters. A wrapped form
+      has two EventEmitters built into it (so you <strong>don't</strong> have to create them! <code>submitEmitter</code> emits when the submit button has
+      been clicked, whereas <code>changeEmitter</code> emits when the forms value changes.
+    </p>
+    <h2 class="subtitle">Listening to the submit action.</h2>
+    <p>
+      This means, we can create a function in the component that uses the form to listen to the <code>submitEmitter</code>, and do something when the
+      form is submitted. We do this by subscribing our function to the emitter when declaring the form.
+    </p>
+    <pre class="prettyprint"><code>{{submitEmitterSubscriptionCode}}</code></pre>
+    <p>
+      The <code>submitEmitter</code> will always emit the value of the form when submitted, so our listening function can receive the value and do
+      whatever we want with it. For example:
+    </p>
+    <pre class="prettyprint"><code>{{listeningFunctionCode}}</code></pre>
+
+    <h2 class="subtitle">Listening to form changes.</h2>
+    <p>
+      By the same token, we could execute a function everytime the form changes, which we do by listening to the <code>changeEmitter</code>
+      of the form.
+    </p>
+    <pre class="prettyprint"><code>{{changeEmitterSubscriptionCode}}</code></pre>
+
+    <h2 class="subtitle">Clearing the form.</h2>
+    <p>
+      Clearing the form is built into the wrapped form, and works by simply resetting the formGroup when the 'Clear' button is clicked. However,
+      you may want to call a forms clear function from the parent component (dunno why, but maybe you would!). In this case, you may want to make
+      use of <code>@ViewChild</code> in your parent component, in which case you can give your form a reference like so:
+    </p>
+    <pre class="prettyprint"><code>{{viewChildRefExampleCode}}</code></pre>
+    <p>
+      Once you have given it a reference (<code>#myViewChildForm</code> in the example above, you can reference the component in your parent by
+      by declaring it as a view child like so:
+    </p>
+    <pre class="prettyprint"><code>{{viewChildDefinition}}</code></pre>
+    <p>Now you have access to all its functions, including the reset function, using <code>this.myViewChildForm.clear()</code></p>
+  </div>
+  <app-navigation-row
+    [prevRoute]="{ label: 'Unwrapped Forms', route: '/unwrapped-form'}"
+    [nextRoute]="{ label: 'Forms from JSON', route: '/from-json'}"
+    [blurb]="'This section covered creating, configuring and rendering wrapped forms. Next up is creating forms from a JSON definition.'"></app-navigation-row>
 </div>

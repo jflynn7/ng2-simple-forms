@@ -21,6 +21,7 @@ import { RenderingElementsPageComponent } from './pages/examples/rendering-eleme
 import { FormGroupsPageComponent } from './pages/examples/form-groups-page/form-groups-page.component';
 import { ApiReferencePageComponent } from './pages/api-reference-page/api-reference-page.component';
 import { NavigationRowComponent } from './components/navigation-row/navigation-row.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NavigationRowComponent } from './components/navigation-row/navigation-r
     BrowserModule,
     SimpleFormsModule,
     AppRoutingModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

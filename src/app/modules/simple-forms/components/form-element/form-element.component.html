@@ -1,4 +1,4 @@
-<div *ngIf="formElement" [ngSwitch]="formElement.type">
+<div *ngIf="formElement" [ngSwitch]="formElement.type.toLowerCase()">
 
   <!-- TEXT INPUT FIELD -->
   <app-text-input

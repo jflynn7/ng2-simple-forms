@@ -14,9 +14,9 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
   @ViewChild('wrappedForm') wrappedForm: FormComponent;
 
   unwrapped = true;
-  simpleForm: FormDetails;
+  myForm: FormDetails;
 
-  createFormElementsArrayCode: string = 'simpleFormElements: FormElement[] = [\n' +
+  createFormElementsArrayCode: string = 'myFormElements: FormElement[] = [\n' +
     '\n' +
     '    /// Simple text element (inputId generated from label)\n' +
     '    builder.createElement(\'text\', \'Simple One\'),\n' +
@@ -31,13 +31,17 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
     '    /// With inline property value (see Setting Properties for more info)\n' +
     '    builder.createElement(\'text\', \'Simple Four\')\n' +
     '      .setProperty(\'helpText\', \'Here is some helptext!\')\n' +
+    '      .setProperty(\'required\', true) ' +
     '\n    /// ....etc\n' +
     '];';
 
-  createUnwrappedFormCode: string = 'this.simpleForm = builder.toUnwrappedForm(this.simpleFormElements);';
+  createUnwrappedFormCode: string = 'this.myForm = builder.toFormDetails(this.myFormElements);';
+  renderFromInputCode: string = '<app-form-element\n' +
+    ' [formGroup]="myForm.formGroup"\n' +
+    ' [formElement]="myForm.get(\'simpleOne\')">\n' +
+    '</app-form-element>';
 
-
-  simpleFormElements: FormElement[] = [
+  myFormElements: FormElement[] = [
 
     /// Simple text element (inputId generated from label)
     builder.createElement('text', 'Simple One'),
@@ -51,7 +55,8 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
 
     /// With inline property value (see Setting Properties for more info)
     builder.createElement('text', 'Simple Four')
-      .setProperty('helpText', 'Here is some helptext!'),
+      .setProperty('helpText', 'Here is some helptext!')
+      .setProperty('required', true),
 
     /// Some extras for grouped elements example
     builder.createElement('password', 'Simple Five'),
@@ -175,9 +180,10 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
   constructor() {}
 
   ngOnInit() {
-    this.simpleForm = builder.toUnwrappedForm(this.simpleFormElements);
+    this.myForm = builder.toFormDetails(this.myFormElements);
     /// Set config on existing element
-    this.simpleForm.get('simpleOne').setConfig('ariaLabel', 'Simple One Aria Label');
+    this.myForm.get('simpleOne').setConfig('ariaLabel', 'Simple One Aria Label');
+
   }
 
   ngAfterViewInit() {
@@ -185,7 +191,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
   }
 
   unwrappedSubmit() {
-    console.log('Submitted from simpleForm', this.simpleForm.formGroup.getRawValue());
+    console.log('Submitted from myForm', this.myForm.formGroup.getRawValue());
   }
 
 }

@@ -13,16 +13,20 @@ export class SimpleFormBuilder {
    * @param element
    * @returns {any}
    */
-  static getValidators(element): any {
+  static getValidators(element: FormElement): any {
     const validators: ValidatorFn[] = [];
     if (element.required) {
       validators.push(Validators.required);
     }
     if (element.minLength) {
-      validators.push(Validators.minLength(element.minLength));
+      const minLength = typeof element.minLength === 'number' ? element.minLength : parseInt(element.minLength, 10);
+      console.log('setting minlength for', element.inputId, minLength);
+      validators.push(Validators.minLength(minLength));
     }
     if (element.maxLength) {
-      validators.push(Validators.maxLength(element.maxLength));
+      const maxLength = typeof element.maxLength === 'number' ? element.maxLength : parseInt(element.maxLength, 10);
+      console.log('setting minlength for', element.inputId, maxLength);
+      validators.push(Validators.maxLength(maxLength));
     }
     if (element.regex) {
       validators.push(Validators.pattern(element.regex));
@@ -54,11 +58,19 @@ export class SimpleFormBuilder {
    *
    * @param formElements
    */
-  static toUnwrappedForm(formElements: FormElement[]): any {
+  static toFormDetails(formElements: FormElement[]): any {
     const unwrappedForm: FormDetails = new FormDetails();
     unwrappedForm.elements = formElements.map(item => ({ inputId: item.inputId, element: item }));
     unwrappedForm.formGroup = SimpleFormBuilder.toFormGroup(formElements);
     return unwrappedForm;
+  }
+
+
+  static fromJson(jsonValue: any) {
+    const elements: FormElement[] = jsonValue.map(value => {
+      return new FormElement(value);
+    });
+    return SimpleFormBuilder.toFormDetails(elements);
   }
 
   /**
@@ -111,7 +123,7 @@ export class SimpleFormBuilder {
    * @returns {any}
    */
   static rebuildForm(builtForm: FormDetails) {
-    return SimpleFormBuilder.toUnwrappedForm(builtForm.elements.map(item => item.element ));
+    return SimpleFormBuilder.toFormDetails(builtForm.elements.map(item => item.element ));
   }
 
 }
