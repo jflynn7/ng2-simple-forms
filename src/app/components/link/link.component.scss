@@ -1,0 +1,65 @@
+.link {
+
+  display: block;
+  position: relative;
+
+  a {
+
+    &.dark {
+      color: white;
+
+      &:hover {
+        color: #c6e3ff;
+      }
+    }
+
+    &.light {
+      color: #72c2ff;
+
+      &:hover {
+        color: #3361bb;
+      }
+    }
+
+    position: relative;
+    text-decoration: none;
+    margin-bottom: 5px;
+
+    &:hover {
+      text-transform: none;
+      cursor: pointer;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background-color: #72c2ff;
+      visibility: hidden;
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0);
+      -webkit-transition: all 0.3s ease-in-out 0s;
+      transition: all 0.3s ease-in-out 0s;
+    }
+
+    &:hover:before {
+      visibility: visible;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+
+  }
+
+  .additional-label {
+    font-size: 7px;
+    text-transform: uppercase;
+    color: #72c2ff;
+    position: absolute;
+    top: 0;
+    margin-left: 5px;
+  }
+
+}

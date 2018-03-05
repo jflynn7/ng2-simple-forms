@@ -1,0 +1,139 @@
+<div class="container-fluid page">
+  <div class="row section">
+    <div class="col-xs-12">
+      <h1 class="title main">Unwrapped Form</h1>
+      <h2 class="subtitle">An unwrapped form creates the formGroup, but leaves elements free to be used in any layout you want.</h2>
+      <p>
+        In previous examples, we've shown how to use the <code>SimpleFormBuilder</code> to create elements, and to create a FormGroup. In
+        addition to those functions, simple-forms also provides a function to create both in one go, using the <code>toFormDetails()</code>
+        function.
+      </p>
+      <p>
+        <code>toFormDetails</code> returns an <code>FormDetails</code> object when passed an array of <code>FormElement</code> objects,
+        meaning, all you have to do is create an array of elements, and your form will be created automagically. We also add a handy <code>get()</code>
+        function to help render the form elements whereever you want, but still keep them as part of the form.
+      </p>
+    </div>
+  </div>
+  <div class="row section">
+    <h1 class="title">Creating an unwrapped form</h1>
+    <h2 class="subtitle">As simple as creating an array of FormElements, and off you go...</h2>
+    <p>
+      Creating an unwrapped form is very simple, and forms the basis of <a [routerLink]="'/from-json'">forms from JSON</a> (covered later). All you need
+      for an unwrapped form, is an array of <a [routerLink]="'/api/FormElement'">FormElement</a> objects, and you can use the <code>SimpleFormBuilder</code>
+      to turn it into an unwrapped form with the <code>toFormDetails()</code> function.
+    </p>
+    <h2 class="subtitle">Example</h2>
+    <p>First, create an array of FormElement objects:</p>
+    <pre class="prettyprint"><code>{{createFormElementsArrayCode}}</code></pre>
+    <p>
+      Now, you have an array of FormElements, so you can create a <a [routerLink]="'/api/FormDetails'">FormDetails</a> object that can be used to render
+      elements wherever you want, but still be part of the same <a [routerLink]="'/formgroups'">FormGroup</a>, using the code below:
+    </p>
+    <pre class="prettyprint"><code>{{createUnwrappedFormCode}}</code></pre>
+  </div>
+  <div class="row section">
+    <h1 class="title">Rendering an unwrapped form</h1>
+    <h2 class="subtitle">Using the <code>.get()</code> function to render an element from an array</h2>
+    <p></p>
+  </div>
+  <div class="row section">
+    <div class="col-xs-12 col-md-6">
+      <h1 class="title">
+        Form Output
+      </h1>
+      <app-form-wrapper>
+        <!-- Same column widths example -->
+        <div class="row">
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleOne')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleTwoInputId')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <!-- Different column widths example -->
+        <div class="row">
+          <div class="col-xs-8">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleThree')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-4">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleFour')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <!-- Grouped elements accessibility example -->
+        <div class="row">
+          <div class="col-xs-12">
+            <app-field-group [groupTitle]="'Grouped Input Fields'" [wrapperCssClass]="'input-fieldset'">
+              <div class="col-xs-4">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleFive')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-8">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleSix')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-12">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleSeven')">
+                </app-form-element>
+              </div>
+              <div class="col-xs-12">
+                <app-form-element
+                  [formGroup]="simpleForm.formGroup"
+                  [formElement]="simpleForm.get('simpleEight')">
+                </app-form-element>
+              </div>
+            </app-field-group>
+          </div>
+        </div>
+
+        <!-- Checkboxes and Radio buttons example -->
+        <div class="row">
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleCheckboxGroup')">
+            </app-form-element>
+          </div>
+          <div class="col-xs-6">
+            <app-form-element
+              [formGroup]="simpleForm.formGroup"
+              [formElement]="simpleForm.get('simpleRadioGroup')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <button class="btn btn-primary"
+                *ngIf="simpleForm.formGroup.valid"
+                (click)="unwrappedSubmit()">Submit Unwrapped</button>
+      </app-form-wrapper>
+
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <h1 class="title">
+          Formgroup Value
+        </h1>
+      <pre class="prettycontain"><code>{{ simpleForm.formGroup.getRawValue() | json }}</code></pre>
+    </div>
+  </div>
+</div>

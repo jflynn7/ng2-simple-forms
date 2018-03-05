@@ -1,0 +1,11 @@
+<div class="row section">
+  <div class="col-xs-3 prev">
+    <app-link [theme]="'light'" [label]="prevRoute.label" [route]="prevRoute.route"></app-link>
+  </div>
+  <div class="col-xs-6 blurb">
+    {{blurb}}
+  </div>
+  <div class="col-xs-3 next">
+    <app-link [theme]="'light'" [label]="nextRoute.label" [route]="nextRoute.route"></app-link>
+  </div>
+</div>

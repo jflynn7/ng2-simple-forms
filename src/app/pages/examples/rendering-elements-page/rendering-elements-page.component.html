@@ -1,0 +1,91 @@
+<div class="container-fluid page">
+  <div class="row section">
+    <h1 class="title">Rendering Elements</h1>
+    <h2 class="subtitle">One component to render them all...</h2>
+    <p>
+      In simple-forms, there are presentational components for each type of form element (text, select, radio, datepicker, etc),
+      but, in order to render them, we use a single smart component <code>app-form-element</code>.
+    </p>
+  </div>
+  <div class="row section">
+    <h1 class="title">Single Wrapper Component Method</h1>
+    <h2 class="subtitle">This method for rendering requires no knowledge of the element type prior to rendering (recommended)</h2>
+    <p>
+      As shown in previous examples, rendering a form element is as simple as...
+    </p>
+    <pre class="prettyprint"><code>{{ simpleElementCode }}</code></pre>
+    <p>
+      ...which will render an element, based on the <code>formElement</code> passed to it.
+    </p>
+    <p>
+      Under the hood of <code>app-form-element</code> a simple switch determines which presentational component to render based on the
+      <code>type</code> of the element passed through to it. Nothing clever there. It simply serves as a consistent wrapper around the
+      presentational components. The idea of a single wrapper becomes really useful when using a <a [routerLink]="'/wrapped-form'">
+      wrapped form</a>, as we can simply take an array of elements in our component, and loop over them, rendering them all inline without
+      any additional code, or requiring <strong>any</strong> knowledge of each elements type:
+    </p>
+    <pre class="prettyprint lang-html"><code>{{ loopCode }}</code></pre>
+    <p>
+      Using the wrapper in either of the above ways, assumes you've created a <a [routerLink]="'/formgroups'">FormGroup</a> for your form elements, and you pass it in as
+      the <code>[formGroup]</code> property of <code>app-form-element</code>. There are, of course, ways to use the presentational components
+      without the wrapper, which is covered in the next section. Additionally, <code>SimpleFormBuilder</code> has a number of utility methods
+      that make creating and rendering forms even easier, which are covered in the <a [routerLink]="'/unwrapped-form'">unwrapped form</a> section
+      of this documentation.
+    </p>
+  </div>
+
+  <div class="row section">
+    <h1 class="title">Single Elements by type</h1>
+    <h2 class="subtitle">Using presentational components without a FormGroup</h2>
+    <p>
+      From time to time, you'll want to use the presentational components outside of the context of a complete form,
+      perhaps for a search box? In this scenario, you probably don't need to make a FormGroup, so simple-forms provides a
+      built in FormGroup for each presentational component (via a <code>toOwnFormgroup()</code> function) so it creates its own.
+    </p>
+    <p>
+      When using a presentation component in this way, the same validation and accessibility options apply, the only difference is,
+      you'll need a function to listen to the data entered into the field, which should subscribe to <code>(changeEmitter)</code> as
+      follows...
+    </p>
+    <pre class="prettyprint"><code>{{ noFormGroupExample }}</code></pre>
+    <p>
+      ...where <code>myFunction($event)</code> is a function in your component that does something with the value of the component.
+      <code>changeEmitter</code> emits a <a [routerLink]="'/api/ComponentValue'">ComponentValue</a> object when the component value changes,
+      which has two propertys; <code>value</code>, which is the current value of the component, and <code>isValid</code>, which, like the
+      name says, determines if the field is valid or not (based on your <code>FormElement</code> objects validation options.
+    </p>
+  </div>
+  <div class="row section">
+    <div class="col-xs-12 default-theme">
+      <h1 class="title">Single Element (without FormGroup)</h1>
+      <h2 class="subtitle">Use one function, to receive all values.</h2>
+      <p>
+        The example below uses a single function in the component to receive all values (<code>getSingleElementValue()</code>), but you could
+        write a function for each, it's up to you. All you really need to know is that your function will receive an object that looks like...
+      </p>
+      <pre class="prettyprint"><code>{{'{'}} inputId: 'yourElementInputId', value: 'a value', isValid: true {{'}'}}</code></pre>
+      <p>
+        ... each time the field value changes. What you do with it from there is up to you! 👌 In the example below, the single function used
+        looks like...
+      </p>
+      <pre class="prettyprint"><code>{{singleFunctionDef}}</code></pre>
+      <p>
+        ...here, we used a switch on the <code>$event</code> values <code>inputId</code> to determine which field was sending the value, but
+        a series of <code>if..else</code> would work just as well. Conversely, if you used a different receiving function on each field, you
+        wouldn't need to calculate which field was sending the value.
+      </p>
+
+      <div class="col-xs-6 no-marg left">
+        <app-text-input [elementData]="singleElement" (changeEmitter)="getSingleElementValue($event)"></app-text-input>
+        <app-radio-question [elementData]="singleRadioElement" (changeEmitter)="getSingleElementValue($event)"></app-radio-question>
+      </div>
+      <div class="col-xs-6 no-marg right">
+        <h2 class="subtitle">Single Element Value Emitted</h2>
+        <pre class="prettycontain"><code>{{singleElementValue | json}}</code></pre>
+
+        <h2 class="subtitle">Single Radio Element Value Emitted</h2>
+        <pre class="prettycontain"><code>{{singleRadioElementValue | json}}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

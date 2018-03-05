@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="row">
+    <img [routerLink]="'/'" class="logo" src="./assets/logo.png">
+  </div>
+  <div class="row">
+    <h1>Installation</h1>
+    <app-link [theme]="'dark'" [route]="'/via-npm'" [label]="'Via NPM'" [additionalLabel]="'SOON!'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/via-modules'" [label]="'Via Modules'"></app-link>
+  </div>
+  <div class="row">
+    <h1>Basic Usage</h1>
+    <app-link [theme]="'dark'" [route]="'/creating-elements'" [label]="'Creating Elements'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/formgroups'" [label]="'Form Groups'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/rendering-elements'" [label]="'Rendering Elements'"></app-link>
+  </div>
+  <div class="row">
+    <h1>Advanced Usage</h1>
+    <app-link [theme]="'dark'" [route]="'/unwrapped-form'" [label]="'Unwrapped Forms'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/wrapped-form'" [label]="'Wrapped Forms'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/from-json'" [label]="'Forms from JSON'"></app-link>
+  </div>
+  <div class="row">
+    <h1>API Reference</h1>
+    <app-link [theme]="'dark'" [route]="'/api/FormDefinition'" [label]="'FormDefinition'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/FormElement'" [label]="'FormElement'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/ComponentValue'" [label]="'ComponentValue'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/FormElementOptions'" [label]="'FormElementOptions'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/ElementOption'" [label]="'ElementOption'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/ElementOptionGroup'" [label]="'ElementOptionGroup'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/FormDetails'" [label]="'FormDetails'"></app-link>
+    <app-link [theme]="'dark'" [route]="'/api/FormElementConfig'" [label]="'FormElementConfig'"></app-link>
+  </div>
+</div>

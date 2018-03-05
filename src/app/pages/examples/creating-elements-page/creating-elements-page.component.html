@@ -1,0 +1,112 @@
+<div class="container-fluid page">
+
+  <div class="row section">
+    <h1 class="title">Creating Form Elements</h1>
+    <h2 class="subtitle">Simple, fast and easy</h2>
+    <app-link [theme]="'light'" [anchor]="'installation'" [label]="'Installation'"></app-link>
+    <app-link [theme]="'light'" [anchor]="'creating-constructor'" [label]="'Creating with constructor'"></app-link>
+    <app-link [theme]="'light'" [anchor]="'creating-builder'" [label]="'Creating with builder'"></app-link>
+  </div>
+  <!-- Installation to component -->
+  <div id="installation" class="row section">
+    <h1 class="title">Importing into your component</h1>
+    <h2 class="subtitle">Import relevent features from simple forms module</h2>
+    <p>
+      Once you have installed <a [routerLink]="'/via-modules'">via modules</a> or <a [routerLink]="'/via-npm'">via npm</a>, the classes
+      and utilities will be available from <code>'simple-forms'</code> in the same way you would from any other package.
+    </p>
+    <p>
+      The primary utility in simple forms is the <code>SimpleFormBuilder</code> which can be aliased in your component in any way you choose.
+      For the purpose of brevity, the following examples assume you have imported it as <code>builder</code> as follows:
+    </p>
+    <pre class="prettyprint"><code>import {{ '{' }} SimpleFormBuilder as builder {{ '}' }} from 'simple-forms';</code></pre>
+  </div>
+
+  <!-- Creating elements in component -->
+  <div id="creating-contructor" class="row section">
+    <h1 class="title">Creating Elements in component (constructor method)</h1>
+    <h2 class="subtitle">Simple form elements, with additional configuration <strong>if required</strong></h2>
+    <p>
+      Form elements in simple-forms take a consistent structure via the following interface:
+    </p>
+    <pre class="prettyprint"><code>export class FormElement {{ '{' }}
+    inputId: string;
+    type: string;
+    label: string;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    regex?: string;
+    helpText?: string;
+    errorText?: string;
+    options?: FormElementOption[];
+    optionGroups?: FormElementOptionGroup[];
+    config?: FormElementConfig;
+{{ '}' }}</code></pre>
+
+    <p>
+      The minimum required parameters for creating a form element are its <code>inputId</code> (so we can use it in a formgroup, but also for
+      <a [routerLink]="'/accessibility'">accessibility</a>, but more on that later), a <code>type</code> (e.g text, select, radio, etc) and its
+      <code>label</code>.
+    </p>
+
+    <p>This means a new form element object can be created with a minimal constructor:</p>
+
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = new FormElement({{'{'}} inputId: 'myInputId', type: 'text', label: 'My Text Input'{{'}'}});</code></pre>
+
+    <p>Further configuration can be applied in two ways:</p>
+
+    <h2 class="subtitle">In the constructor</h2>
+    <p>Additional properties can be applied when first creating the element using the constructor.</p>
+    <pre class="prettyprint"><code>element: FormElement = new FormElement({{'{'}} inputId: 'myInputId', type: 'text', label: 'My Text Input', required: true, helpText: 'My Help Text'{{'}'}});</code></pre>
+
+    <p>or...</p>
+
+    <h2 class="subtitle">Via helper functions</h2>
+    <p>
+      <code>setProperty()</code> and <code>setConfig()</code> after the element is created. If we take the example above, where we created <code>myFirstFormElement</code>,
+      we can add further properties to the already created element.
+    </p>
+
+    <pre class="prettyprint"><code>this.myFirstFormElement.setProperty('required', true);
+this.myFirstFormElement.setProperty('helpText', 'My Help Text');</code></pre>
+  </div>
+
+ <!-- Creating elements using the builder -->
+  <div id="creating-builder" class="row section">
+    <h1 class="title">Creating elements in the component using the builder</h1>
+    <h2 class="subtitle">Simplify the process using the builder utility</h2>
+    <p>
+      In addition to using the constructor method, SimpleFormBuilder also exposes a <code>createElement()</code> function to create an element.
+      Using the builder means your <code>inputId</code> becomes <strong>optional</strong>.
+    </p>
+
+    <p>When using the builder, if you don't provide an <code>inputId</code>, the builder will do it for you by camelcasing the label, for example:</p>
+
+    <p><code>My First Form Element</code> as a label becomes <code>myFirstFormElement</code> as an inputId</p>
+
+    <p>Calling the builder method (assuming you have imported SimpleFormBuilder as <code>builder</code>) for our first example would be:</p>
+
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element', 'myInputId');</code></pre>
+
+    <p>This will create exactly the same form element object as the constructor method. It can also be called without the third parameter, as follows...</p>
+
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element');</code></pre>
+
+    <p>...which will create exactly the same as the first method, except the form elements <code>inputId</code> will now be <code>myFirstFormElement</code>.
+      This can come in <strong>very</strong> handy if you have a lot of elements and don't want to think of an inputId for all of them, or when creating
+      <a [routerLink]="'/from-json'">forms from JSON.</a>
+    </p>
+
+    <p>As with the constructor method, elemetns created with the <code>builder</code> can have additional properties and config set with <code>setProperty()</code>
+       and <code>setConfig()</code>
+    </p>
+  </div>
+
+  <!-- Next Navigation -->
+  <app-navigation-row
+    [prevRoute]="{ route: '/', label: 'Home'}"
+    [nextRoute]="{ route: '/formgroups', label: 'FormGroups'}"
+    [blurb]="'Now you\'ve created your elements in your component, the next step is to (optionally) make them part of a FormGroup'">
+  </app-navigation-row>
+</div>

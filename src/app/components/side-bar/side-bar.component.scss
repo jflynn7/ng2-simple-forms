@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  background-color: #1c262f;
+  color: white;
+  padding: 15px;
+  max-width: 200px;
+
+  .row {
+    padding: 5px 15px;
+  }
+
+  .logo {
+    max-width: 80%;
+    margin: 15px;
+  }
+
+  h1 {
+    font-size: 14px;
+    color: #72c2ff;
+  }
+
+}

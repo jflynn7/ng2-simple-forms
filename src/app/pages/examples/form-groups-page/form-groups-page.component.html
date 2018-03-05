@@ -1,0 +1,128 @@
+<div class="container-fluid page">
+  <div class="row section">
+    <h1 class="title">FormGroups</h1>
+    <h2 class="subtitle">FormGroups are an essential part of Reactive forms, but simple-forms makes them simple...</h2>
+    <p>
+      Formgroups are Angulars way of tracking value and validity of your form elements within the context of a complete form, without them
+      we're stuck listening to emitters or observables for each and every form element we create. This is fine, if our form is small, but what
+      if it has a lot of elements? How do we track validity of the whole form without some crazy business logic? Easy, with a formgroup.
+    </p>
+
+    <p>Angular defines a FormGroup as:</p>
+
+    <blockquote>
+      Tracks the value and validity state of a group of FormControl instances.
+      A FormGroup aggregates the values of each child FormControl into one object, with each control name as the key.
+      It calculates its status by reducing the statuses of its children.
+      For example, if one of the controls in a group is invalid, the entire group becomes invalid.
+    </blockquote>
+
+    <p>
+      Formgroups are relatively easy to create in their own right, but simple-forms provides several utility methods to create a formgroup
+      from an array of form elements, meaning you can create all your elements, and generate a formgroup, complete with validation with
+      one line of code.
+    </p>
+
+    <p>To demonstrate, here are two examples of creating a simple formgroup and form:</p>
+    <app-link [theme]="'light'" [anchor]="'default-way'" [label]="'The Default Way'"></app-link>
+    <app-link [theme]="'light'" [anchor]="'simple-forms-way'" [label]="'The Simple Forms Way'"></app-link>
+  </div>
+  <div class="row section">
+    <h1 class="title">Example One</h1>
+    <h2 id="default-way" class="subtitle">The default way.</h2>
+    <p>
+      Suppose we want to create a form to capture a users title, first name and surname. We require first name and surname to be completed
+      and to have a minimum length of 3 characters</p>
+
+    <p>Using the Angular way, we now need to manually create a formgroup</p>
+
+    <pre class="prettyprint"><code>formGroup: FormGroup = new FormGroup({{'{'}}
+    title: new FormControl('', null),
+    firstname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    surname: new FormControl('', Validators.required, Validators.minLength(3)])
+{{'}'}});</code></pre>
+
+    <p>😷</p>
+
+    <p>Now we have a formgroup, but we still need to create our form, again, manually.</p>
+
+    <pre class="prettyprint"><code>{{manualFormCode}}</code></pre>
+
+    <p>
+      Whilst this isn't exactly the most difficult thing to write, it relies on remembering to add the validators to the formgroup,
+      adding a manual validation check to the form, and manually adding validation messages in <code>*ngIf</code> conditions.
+    </p>
+
+    <p>Tedious. With only 3 elements</p>
+
+    <p>Now, imagine doing it with 30 elements in a form!</p>
+
+    <p>😷😷😷😷😷😷</p>
+  </div>
+  <div class="row section">
+    <h1 class="title">Example Two</h1>
+    <h2 id="simple-forms-way" class="subtitle">The simple forms way</h2>
+
+    <p>Suppose we make our form elements (which we want to be part of the same form), like so:</p>
+
+    <pre class="prettyprint"><code>title = builder.createElement('text', 'Title');
+firstName = builder.createElement('text', 'First Name', options: {{'{'}} required: true, minLength: 3 {{'}'}});
+surname = builder.createElement('text', 'Surname', options: {{'{'}} required: true, minLength: 3 {{'}'}});</code></pre>
+
+    <p>Now, let's add our error text to the fields that are required.</p>
+
+    <pre class="prettyprint"><code>this.firstName.setProperty('errorText', 'First name is a required field and must be 3 characters minimum');
+this.surname.setProperty('errorText', 'Surname is a required field and must be 3 characters minimum');</code></pre>
+    <p>
+      Now, to create a formgroup for our elements, we can simply call the builders <code>toFormGroup()</code> method, which will create
+      the formgroup, formcontrols and validators automagically for us!
+    </p>
+
+    <pre class="prettyprint"><code>formGroup: FormGroup = builder.toFormGroup([this.title, this.firstName, this.surname]);</code></pre>
+
+    <p>Done. Now we can render our form easily using the following snippet:</p>
+
+    <pre class="prettyprint"><code>{{simpleFormsCode}}</code></pre>
+
+  </div>
+  <div class="row section">
+    <h1 class="title">The final output</h1>
+    <h2 class="subtitle">Rendered using simple forms</h2>
+    <p>
+      Read more about <a [routerLink]="'/rendering-elements'">rendering elements</a> on the next page, but for this example, the form renders
+      (using default theme) like so:
+    </p>
+
+    <div class="col-xs-6">
+      <span class="default-theme">
+        <app-form-element [formGroup]="formGroup" [formElement]="title"></app-form-element>
+        <app-form-element [formGroup]="formGroup" [formElement]="firstName"></app-form-element>
+        <app-form-element [formGroup]="formGroup" [formElement]="surname"></app-form-element>
+      </span>
+    </div>
+    <div class="col-xs-6">
+      In order to get the value of the form, we can now use...
+      <pre class="prettyprint"><code>this.formGroup.getRawValue()</code></pre>
+      ... and the validity of the <strong>complete</strong> form with:
+      <pre class="prettyprint"><code>this.formGroup.valid</code></pre>
+
+      <div class="col-xs-8">
+        The below shows the live output of the form we just created:
+      </div>
+      <div class="col-xs-4 validity">
+        <strong>Form Valid:</strong> {{ formGroup.valid }}
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <pre>{{ formGroup.getRawValue() | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Next Navigation -->
+  <app-navigation-row
+    [prevRoute]="{ label: 'Creating Elements', route: '/creating-elements'}"
+    [nextRoute]="{ label: 'Rendering Elements', route: '/rendering-elements'}"
+    [blurb]="'This page covers FormGroups and some basic rendering. For more indepth rendering documentation, see the next page'">
+  </app-navigation-row>
+</div>
