@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormElement, FormDetails, ElementOption, ElementOptionGroup} from "./modules/simple-forms/state/simple-forms.state";
+import {FormElement, FormDetails, ElementOption, ElementOptionGroup} from "./modules/simple-forms/simple-forms.state";
 import { SimpleFormBuilder } from './modules/simple-forms/builders/simple-forms.builder';
 import { FormComponent } from './modules/simple-forms/components/form/form.component';
 

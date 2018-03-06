@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormElement } from '../../../../state/simple-forms.state';
+import { FormElement } from '../../../../simple-forms.state';
 
 @Component({
   selector: 'app-label',
@@ -10,6 +10,9 @@ export class LabelComponent implements OnInit {
 
   @Input() elementData: FormElement;
   @Input() requiredMarker: string;
+  @Input() inputFocussed: boolean;
+  @Input() inputHasValue: boolean;
+
   constructor() { }
 
   ngOnInit() {

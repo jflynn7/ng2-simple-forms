@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormDetails, FormElement } from '../../state/simple-forms.state';
+import { FormDetails, FormElement } from '../../simple-forms.state';
 
 @Component({
   selector: 'app-form',
@@ -11,6 +11,7 @@ export class FormComponent implements OnInit {
   @Input() formTitle: string;
   @Input() formSubtitle: string;
   @Input() form: FormDetails;
+  @Input() hideClear: boolean = false;
 
   @Input() formOptions: FormConfig = {
     wrapperCssClass: '', // Allows you to pass a custom CSS class to apply to the form wrapper container

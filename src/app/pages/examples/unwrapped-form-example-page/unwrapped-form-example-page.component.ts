@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormComponent } from '../../../modules/simple-forms/components/form/form.component';
-import { FormDetails, FormElement } from '../../../modules/simple-forms/state/simple-forms.state';
+import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.state';
 declare var PR: any;
 
 @Component({

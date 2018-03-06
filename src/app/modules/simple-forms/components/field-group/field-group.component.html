@@ -1,6 +1,8 @@
-<span class="field">
-  <fieldset class="{{ wrapperCssClass}}">
-    <legend>{{ groupTitle }}</legend>
-    <ng-content></ng-content>
-  </fieldset>
+<span class="{{wrapperCssClass}}">
+  <span class="field">
+    <fieldset>
+      <legend>{{ groupTitle }}</legend>
+      <ng-content></ng-content>
+    </fieldset>
+  </span>
 </span>

@@ -51,7 +51,8 @@ import { ErrorIconComponent } from './components/form-elements/validation/error-
     FormWrapperComponent,
     FieldGroupComponent,
     TextInputComponent,
-    RadioQuestionComponent
+    RadioQuestionComponent,
+    DropdownQuestionComponent
   ]
 })
 export class SimpleFormsModule { }

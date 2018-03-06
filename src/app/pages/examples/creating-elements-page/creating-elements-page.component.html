@@ -87,7 +87,7 @@ this.myFirstFormElement.setProperty('helpText', 'My Help Text');</code></pre>
 
     <p>Calling the builder method (assuming you have imported SimpleFormBuilder as <code>builder</code>) for our first example would be:</p>
 
-    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element', 'myInputId');</code></pre>
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element', {{'{'}} inputId: 'myInputId' {{'}'}});</code></pre>
 
     <p>This will create exactly the same form element object as the constructor method. It can also be called without the third parameter, as follows...</p>
 

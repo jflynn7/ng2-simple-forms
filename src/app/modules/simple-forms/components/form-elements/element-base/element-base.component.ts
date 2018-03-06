@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { ComponentValue, FormElement } from '../../../state/simple-forms.state';
+
 import { FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
+import { ComponentValue, FormElement } from '../../../simple-forms.types';
 
 @Component({
   selector: 'app-element-base',
@@ -12,9 +13,11 @@ export class ElementBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() elementData: FormElement;
-  @Output() changeEmitter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() changeEmitter: EventEmitter<ComponentValue> = new EventEmitter<ComponentValue>();
 
-  helpVisible: boolean = false;
+  helpVisible = false;
+  isFocussed = false;
+
   constructor() {
   }
 
@@ -84,6 +87,10 @@ export class ElementBaseComponent implements OnInit {
 
   showError() {
     return this.elementData.errorText && this.invalid();
+  }
+
+  toggleFocus(hasFocus: boolean) {
+    this.isFocussed = hasFocus;
   }
 
 }

@@ -4,76 +4,690 @@
     <h2 class="subtitle">All the nity gritty details..</h2>
   </div>
 
-  <!-- FormDefinition -->
-  <div id="FormDefinition" class="row section">
-    <h1 class="title">FormDefinition</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
-    <p>
-      <img src="./assets/soon/1.jpg"/>
-    </p>
-  </div>
-
   <!-- FormElement -->
   <div id="FormElement" class="row section">
     <h1 class="title">FormElement</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
+    <h2 class="subtitle">Building blocks of a form.</h2>
     <p>
-      <img src="./assets/soon/2.jpg"/>
+      <code>FormElement</code> forms the basis for all forms in simple-forms. It is the most important type, as it's the one that holds all the
+      information about your elements, and what determines which presentational component to render.
     </p>
-  </div>
-
-  <!-- ComponentValue -->
-  <div id="ComponentValue" class="row section">
-    <h1 class="title">ComponentValue</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
-    <p>
-      <img src="./assets/soon/3.jpg"/>
-    </p>
-  </div>
-
-  <!-- FormElementOptions -->
-  <div id="FormElementOptions" class="row section">
-    <h1 class="title">FormElementOptions</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
-    <p>
-      <img src="./assets/soon/4.jpg"/>
-    </p>
+    <h2 class="subtitle">Object Structure</h2>
+    <pre class="prettyprint"><code>export class FormElement {{'{'}}
+  inputId: string;
+  type: string;
+  label: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  regex?: string;
+  helpText?: string;
+  errorText?: string;
+  options?: ElementOption[];
+  optionGroups?: ElementOptionGroup[];
+  config?: FormElementConfig;
+{{'}'}}
+  constructor(data: {{'{'}} inputId: string, type: string, label: string, required?: boolean, minLength?: number, maxLength?: number,
+                    regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
+                    optionGroups?: ElementOptionGroup[], config?: FormElementConfig{{'}'}}) {{'{'}}
+  this.inputId = data.inputId;
+  this.type = data.type;
+  this.label = data.label;
+  this.required = data.required;
+  this.minLength = data.minLength;
+  this.maxLength = data.maxLength;
+  this.regex = data.regex;
+  this.helpText = data.helpText;
+  this.errorText = data.errorText;
+  this.options = data.options;
+  this.optionGroups = data.optionGroups;
+  this.config = data.config || {{'{'}}{{'}'}};</code></pre>
+    <h2 class="subtitle">Functions</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Function</th>
+        <th scope="col">Parameters</th>
+        <th scope="col">Returns</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row"><code>setConfig</code></th>
+        <td><code>property: string</code><br><code>value: string</code></td>
+        <td><code>FormElement</code></td>
+        <td>Sets a config value on the element. Can be used after the element is created. e.g <code>myElement.setConfig('ariaLabel', 'My Aria Label');</code></td>
+      </tr>
+      <tr>
+        <th scope="row"><code>setProperty</code></th>
+        <td><code>property: string</code><br><code>value: string</code></td>
+        <td><code>FormElement</code></td>
+        <td>Sets a property value on the element. Can be used after the element is created. e.g <code>myElement.setProperty('required', true);</code></td>
+      </tr>
+      <tr>
+        <th scope="row"><code>getTestId</code></th>
+        <td><code>type: string</code><br><code>optionValue?: string</code></td>
+        <td><code>String</code></td>
+        <td>Generates a test ID from the passed type and inputId. e.g <code>myFormElement_label</code>, or if <code>optionValue</code> is provided, uses it too, e.g <code>myFormElement_valueOne_radio</code></td>
+      </tr>
+      </tbody>
+    </table>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>inputId</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The unique ID for this FormElement, required for creating a formGroup, so Angular knows how to track the elements value and validity in the FormGroup.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>type</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The type of FormElement this object represents. Used for rendering.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>label</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The label to display alongside the input field.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>required</code>
+        </th>
+        <td>
+          <code class="secondary">boolean</code>
+        </td>
+        <td>
+          Determines if the field is required or not. Used by SimpleFormBuilder tp apply the <code>Validators.required</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>minLength</code>
+        </th>
+        <td>
+          <code class="secondary">number</code>
+        </td>
+        <td>
+          Determines the minimum accepted length of the input value. Used by SimpleFormBuilder tp apply the <code>Validators.minLength</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>maxLength</code>
+        </th>
+        <td>
+          <code class="secondary">number</code>
+        </td>
+        <td>
+          Determines the maximum accepted length of the input value. Used by SimpleFormBuilder tp apply the <code>Validators.maxLength</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>regex</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Determines if the field has an input Regular Expression to adhere to. Used by SimpleFormBuilder tp apply the <code>Validators.patter</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>helpText</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+         Any help text associated with the input field.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>errorText</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The error message to show if the field is touched and invalid.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>options</code>
+        </th>
+        <td>
+          <code class="secondary">ElementOption[]</code>
+        </td>
+        <td>
+          An array of <code>ElementOption</code> objects from which to create the selectable options.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>optionGroups</code>
+        </th>
+        <td>
+          <code class="secondary">ElementOptionGroup[]</code>
+        </td>
+        <td>
+          If the selectable options are to be grouped, give the FormElement an array of ElementOptionGroup objects instead of ElementOption objects.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>config</code>
+        </th>
+        <td>
+          <code class="secondary">FormElementConfig</code>
+        </td>
+        <td>
+          Any additional configuration to give to the FormElement.
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- ElementOption -->
   <div id="ElementOption" class="row section">
     <h1 class="title">ElementOption</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
+    <h2 class="subtitle">Simple options for select/radio/checkbox etc...</h2>
     <p>
-      <img src="./assets/soon/5.jpg"/>
+      <code>ElementOption</code> is used when creating a form element that has choices, such as <code>select</code>, <code>radio</code> or
+      <code>checkbox</code>. These are added to a <code>FormElement</code> by passing them as the <code>options</code> to the element, either
+      through:
     </p>
+    <pre class="prettyprint"><code>builder.createElement('select', 'My Select Input', {{'{'}} options: myElementOptions {{'}'}});</code></pre>
+    <p>or using</p>
+    <pre class="prettyprint"><code>mySelectInput.setProperty('options', myElementOptions);</code></pre>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export class ElementOption {{'{'}}
+  value: string;
+  display: string;
+
+  constructor(data: {{'{'}} value: string, display: string {{'}'}}) {{'{'}}
+    this.value = data.value;
+    this.display = data.display;
+  {{'}'}}
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>value</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The value to give the formgroup (or emit) when this option is chosen.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>display</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          What's displayed to the user as the selectable option.
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- ElementOptionGroup -->
   <div id="ElementOptionGroup" class="row section">
     <h1 class="title">ElementOptionGroup</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
+    <h2 class="subtitle">Grouped options for select/radio/checkbox etc...</h2>
     <p>
-      <img src="./assets/soon/6.jpg"/>
+      An <code>ElementOptionGroup</code> is a wrapper for an array of <code>ElementOption</code> objects, which allows them to be grouped.
+      If you want your <code>select</code>/<code>radio</code>/<code>checkbox</code> elements to have groups (think <code>opt-group</code> headers
+      in <code>select</code> elements), then rather than adding an <code>options</code> property to your element as above, instead, use
+      <code>optionGroups</code>. This can be done in the same was as <code>ElementOption</code> options. e.g
     </p>
+    <pre class="prettyprint"><code>builder.createElement('select', 'My Select Input', {{'{'}} optionGroups: myElementOptionGroups {{'}'}});</code></pre>
+    <p>..where <code>myElementOptionsGroups</code> would look something like:</p>
+    <pre class="prettyprint"><code>{{optionGroupsExample}}</code></pre>
+    <p>
+      Which renders as:<br><br>
+      <app-dropdown-question [elementData]="singleSelectWithGroups"></app-dropdown-question>
+    </p>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export class ElementOptionGroup {{'{'}}
+  groupName: string;
+  options: ElementOption[];
+
+  constructor(data: {{'{'}} groupName: string, options: ElementOption[] {{'}'}}) {{'{'}}
+    this.groupName = data.groupName;
+    this.options = data.options;
+  {{'}'}}
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>groupName</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The group name to display above the ElementOptions in the selectable group.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>options</code>
+        </th>
+        <td>
+          <code class="secondary">ElementOption[]</code>
+        </td>
+        <td>
+          The actual selectable options.
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- FormDetails -->
   <div id="FormDetails" class="row section">
     <h1 class="title">FormDetails</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
+    <h2 class="subtitle">An object encapsulating a FormGroup and an array of FormElements for unwrapped forms.</h2>
     <p>
-      <img src="./assets/soon/7.jpg"/>
+      The <code>FormDetails</code> object is another of the most important types in simple-forms, as it provides everything you need for an
+      unwrapped form. The <code>builder</code> method <code>toFormDetails</code> takes an array of <code>FormElement</code> objects, creates
+      a <code>FormGroup</code> from them, and converts the elements to an array of <code>{{'{'}} inputId: string, element: FormElement {{'}'}}</code>
+      objects, which all the <code>.get()</code> method exposed by this type to retrieve a given element from its <code>inputId</code> only, which
+      comes in <strong>MEGA</strong> handy when rendering elements from an unwrapped form.
     </p>
+    <p>For example, suppose I have the following array of <code>FormElement</code> objects:</p>
+    <pre class="prettyprint"><code>{{myElementsArrayCode}}</code></pre>
+    <p>...which I can then convert to a <code>FormDetails</code> object using</p>
+    <pre class="prettyprint"><code>{{myFormDetailsCode}}</code></pre>
+    <p>If I want to render the <code>elementThree</code> (radio with options) input, I can simple call <code>.get('elementThree')</code> on my FormDetails
+    object, rather than having to keep a whole heap of local variables for each element object using:</p>
+    <pre class="prettyprint"><code>{{selectRadioCode}}</code></pre>
+    <p>Which renders as:</p>
+    <app-form-element [formGroup]="myFormDetails.formGroup" [formElement]="myFormDetails.get('elementThree')"></app-form-element>
+    <br>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export class FormDetails {{'{'}}
+  elements: {{'{'}} inputId: string, element: FormElement {{'}'}}[];
+  formGroup: FormGroup;
+
+  constructor(data?: {{'{'}} elements: {{'{'}} inputId: string, element: FormElement {{'}'}}[], formGroup: FormGroup {{'}'}}) {{'{'}}
+    this.elements = data ? data.elements : [];
+    this.formGroup = data ? data.formGroup : undefined;
+  {{'}'}}
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>elements</code>
+        </th>
+        <td>
+          <code class="secondary">{{'{'}} inputId: string, element: FormElement {{'}'}}[]</code>
+        </td>
+        <td>
+          The <code>inputId->element</code> pairs that the form is made up of (note, use <code>.get()</code> to retrieve from the array when rendering)
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>formGroup</code>
+        </th>
+        <td>
+          <code class="secondary">FormGroup</code>
+        </td>
+        <td>
+          The formGroup created from the FormElement[] that makes up the form.
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+
+  <!-- ComponentValue -->
+  <div id="ComponentValue" class="row section">
+    <h1 class="title">ComponentValue</h1>
+    <h2 class="subtitle">Emitting from form element components on change.</h2>
+    <p>
+      A <code>ComponentValue</code> is emitted by a form element component by its <code>changeEmitter</code> everytime the element value changes. It is made of the
+      <code>inputId</code> of the emitting element, the current <code>value</code> of the emitting element, and a boolean value if the element <code>isValid</code>.
+      e.g, in a template we may render a single element using...
+    </p>
+    <pre class="prettyprint"><code>{{singleElementCode}}</code></pre>
+    <p>
+      ...where <code>getSingleElementValue($event)</code> receives a <code>ComponentValue</code> object.
+    </p>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export class ComponentValue {{'{'}}
+  inputId: string;
+  value: any;
+  isValid: boolean;
+
+  constructor(data: {{'{'}} inputId: string, value: any, isValid: boolean {{'}'}}) {{'{'}}
+    this.inputId = data.inputId;
+    this.value = data.value;
+    this.isValid = data.isValid;
+  {{'}'}}
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>value</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The value to give the formgroup (or emit) when this option is chosen.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>display</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          What's displayed to the user as the selectable option.
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FormElementOptions -->
+  <div id="FormElementOptions" class="row section">
+    <h1 class="title">FormElementOptions</h1>
+    <h2 class="subtitle">Form element configuration options.</h2>
+    <p>
+      Provides an interface to pass as the third parameter when using <code>builder.createElement</code> function, where the first parameter
+      is the element <code>type</code>, the second is the <code>label</code>, and the third (optional) is <code>options</code>. For example, creating
+      a required field, with autogenerated inputId would look like..
+    </p>
+    <pre class="prettyprint"><code>builder.createElement('text', 'My Required Text Input', {{'{'}} 'required' : true {{'}'}}</code></pre>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export interface FormElementOptions {{'{'}}
+  inputId?: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  regex?: string;
+  helpText?: string;
+  errorText?: string;
+  options?: ElementOption[];
+  optionGroups?: ElementOptionGroup[];
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>inputId</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The unique ID for this FormElement, required for creating a formGroup, so Angular knows how to track the elements value and validity in the FormGroup.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>required</code>
+        </th>
+        <td>
+          <code class="secondary">boolean</code>
+        </td>
+        <td>
+          Determines if the field is required or not. Used by SimpleFormBuilder tp apply the <code>Validators.required</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>minLength</code>
+        </th>
+        <td>
+          <code class="secondary">number</code>
+        </td>
+        <td>
+          Determines the minimum accepted length of the input value. Used by SimpleFormBuilder tp apply the <code>Validators.minLength</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>maxLength</code>
+        </th>
+        <td>
+          <code class="secondary">number</code>
+        </td>
+        <td>
+          Determines the maximum accepted length of the input value. Used by SimpleFormBuilder tp apply the <code>Validators.maxLength</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>regex</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Determines if the field has an input Regular Expression to adhere to. Used by SimpleFormBuilder tp apply the <code>Validators.patter</code> validator.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>helpText</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Any help text associated with the input field.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>errorText</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          The error message to show if the field is touched and invalid.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>options</code>
+        </th>
+        <td>
+          <code class="secondary">ElementOption[]</code>
+        </td>
+        <td>
+          An array of <code>ElementOption</code> objects from which to create the selectable options.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>optionGroups</code>
+        </th>
+        <td>
+          <code class="secondary">ElementOptionGroup[]</code>
+        </td>
+        <td>
+          If the selectable options are to be grouped, give the FormElement an array of ElementOptionGroup objects instead of ElementOption objects.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>config</code>
+        </th>
+        <td>
+          <code class="secondary">FormElementConfig</code>
+        </td>
+        <td>
+          Any additional configuration to give to the FormElement.
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
 
   <!-- FormElementConfig -->
   <div id="FormElementConfig" class="row section">
     <h1 class="title">FormElementConfig</h1>
-    <h2 class="subtitle">All the nity gritty details..</h2>
+    <h2 class="subtitle">Configuration for a single form element</h2>
     <p>
-      <img src="./assets/soon/8.jpg"/>
+      Provides an interface for adding configuration to a form element that isn't strictly a property, such as accessibility labels, CSS wrappers, etc.
     </p>
+    <h2 class="subtitle">Object Definition</h2>
+    <pre class="prettyprint"><code>export interface FormElementConfig {{'{'}}
+  wrapperCssClass?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  requiredMarker?: string;
+{{'}'}}</code></pre>
+    <h2 class="subtitle">Object Members</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Member</th>
+        <th scope="col">Type</th>
+        <th scope="col">Usage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">
+          <code>wrapperCssClass</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Custom CSS class to wrap the form element in, meaning you can use specificity to target classes
+          within your wrapped (e.g. <code>input</code>, <code>label</code>)
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>ariaLabel</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Used for accessibility. Provide a custom <code>aria-label</code> to apply to the FormElement.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>ariaDescribedBy</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Used for accessibility. Provide a custom <code>aria-describedby</code> to apply to the FormElement.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>requiredMarked</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Provide a custom way to mark a field as required. Default is an asterisk ( <span class="required-marker">*</span> ), with a default
+          CSS class of <code>.required-marker</code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

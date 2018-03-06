@@ -15,6 +15,8 @@ import { AccessibilityPageComponent } from './pages/accessibility-page/accessibi
 import { TestingPageComponent } from './pages/testing-page/testing-page.component';
 import { ConfigurationOptionsPageComponent } from './pages/installation/configuration-options-page/configuration-options-page.component';
 import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
+import { StyleGuidePageComponent } from './pages/theming/style-guide-page/style-guide-page.component';
+import { CsshelpersPageComponent } from './pages/theming/csshelpers-page/csshelpers-page.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,10 @@ const routes: Routes = [
     component: ApiReferencePageComponent
   },
   {
+    path: 'api',
+    component: ApiReferencePageComponent
+  },
+  {
     path: 'accessibility',
     component: AccessibilityPageComponent
   },
@@ -76,6 +82,14 @@ const routes: Routes = [
   {
     path: 'properties',
     component: ElementPropertiesPageComponent
+  },
+  {
+    path: 'style-guide',
+    component: StyleGuidePageComponent
+  },
+  {
+    path: 'css-helpers',
+    component: CsshelpersPageComponent
   }
 ];
 

@@ -3,6 +3,9 @@ $valid-green: #51b663;
 $invalid-red: #e34e50;
 $question-blue: #4683ff;
 
+$inset-shadow: inset 0 2px 4px 0 rgba(78, 78, 78, 0.08);
+
+
 // Add theme name as overall wrapper class in form config
 .default-theme {
 
@@ -25,15 +28,28 @@ $question-blue: #4683ff;
       text-indent:  10px;
       padding: 5px;
       margin-bottom: 0;
+      box-shadow: $inset-shadow;
 
       &.valid {
         border-color: $valid-green;
+        box-shadow: inset 0 2px 4px 0 rgba(81, 182, 99, 0.16);
       }
 
       &.invalid {
         border-color: $invalid-red;
+        box-shadow: inset 0 2px 4px 0 rgba(227, 78, 80, 0.16);
       }
 
+    }
+
+    label {
+      &.has-value {
+
+      }
+
+      &.input-focussed {
+
+      }
     }
 
     .icon-wrapper {
@@ -62,8 +78,10 @@ $question-blue: #4683ff;
     }
 
     .input-fieldset {
-      padding: 45px 0;
+      padding: 45px 0 0;
       margin: 0 -15px;
+      border: 0;
+      box-shadow: none;
 
       legend {
           padding-left: 15px;
@@ -79,6 +97,7 @@ $question-blue: #4683ff;
       margin: 10px 0;
       position: relative;
       padding: 30px 15px 10px;
+      box-shadow: $inset-shadow;
 
       legend {
         position: absolute;

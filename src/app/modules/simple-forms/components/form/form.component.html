@@ -8,6 +8,6 @@
   </app-form-element>
   <span class="controls">
     <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="submit()">{{ formOptions.submitButtonLabel || 'Submit' }}</button>
-    <button class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="clear()">{{ formOptions.clearButtonLabel || 'Clear' }}</button>
+    <button *ngIf="!hideClear" class="{{ formOptions.buttonCssClass || 'btn btn-primary' }}" (click)="clear()">{{ formOptions.clearButtonLabel || 'Clear' }}</button>
   </span>
 </app-form-wrapper>

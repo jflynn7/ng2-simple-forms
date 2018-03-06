@@ -1,10 +1,16 @@
 <div class="field {{ getWrapperClass() }}" [formGroup]="formGroup">
-  <app-label [elementData]="elementData" [requiredMarker]="getRequiredMarker()"></app-label>
+  <app-label
+    [inputFocussed]="isFocussed"
+    [elementData]="elementData"
+    [requiredMarker]="getRequiredMarker()"
+    [inputHasValue]="!!formGroup.get(elementData.inputId).value"></app-label>
   <input
     [attr.aria-label]="getAria('label')"
     [attr.aria-labelledby]="elementData.inputId + '_label'"
     id="{{elementData.inputId}}"
     formControlName="{{elementData.inputId}}"
+    (focus)="toggleFocus(true)"
+    (blur)="toggleFocus(false)"
     type="text"
     [ngClass]='{
       valid: valid(),

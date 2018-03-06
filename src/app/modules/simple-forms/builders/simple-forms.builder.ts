@@ -1,5 +1,5 @@
 import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { FormElement, FormElementConfig, FormDetails, FormElementOptions } from '../state/simple-forms.state';
+import { FormDetails, FormElement, FormElementConfig, FormElementOptions } from '../simple-forms.types';
 
 export class SimpleFormBuilder {
 

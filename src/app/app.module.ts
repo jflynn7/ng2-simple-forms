@@ -26,6 +26,8 @@ import { AccessibilityPageComponent } from './pages/accessibility-page/accessibi
 import { TestingPageComponent } from './pages/testing-page/testing-page.component';
 import { ConfigurationOptionsPageComponent } from './pages/installation/configuration-options-page/configuration-options-page.component';
 import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
+import { StyleGuidePageComponent } from './pages/theming/style-guide-page/style-guide-page.component';
+import { CsshelpersPageComponent } from './pages/theming/csshelpers-page/csshelpers-page.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { ElementPropertiesPageComponent } from './pages/installation/element-pro
     AccessibilityPageComponent,
     TestingPageComponent,
     ConfigurationOptionsPageComponent,
-    ElementPropertiesPageComponent
+    ElementPropertiesPageComponent,
+    StyleGuidePageComponent,
+    CsshelpersPageComponent
   ],
   imports: [
     BrowserModule,

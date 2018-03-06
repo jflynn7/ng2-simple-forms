@@ -1,27 +1,4 @@
-import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
-export interface SimpleFormsState {
-  forms: FormDefinition[];
-}
-
-export class FormDefinition {
-  formId: string;
-  formTitle: string;
-  formElements: FormElement[];
-  submitEmitter?: EventEmitter<any>;
-  changeEmitter?: EventEmitter<any>;
-  formGroup?: FormGroup;
-
-  constructor(data: { formId: string, formTitle: string, formElements: FormElement[]}) {
-    this.formId = data.formId;
-    this.formTitle = data.formTitle;
-    this.formElements = data.formElements;
-    this.submitEmitter = new EventEmitter<any>();
-    this.changeEmitter = new EventEmitter<any>();
-    this.formGroup = undefined;
-  }
-}
 
 export class FormElement {
   inputId: string;
@@ -75,7 +52,6 @@ export class ComponentValue {
   value: any;
   isValid: boolean;
 
-
   constructor(data: { inputId: string, value: any, isValid: boolean }) {
     this.inputId = data.inputId;
     this.value = data.value;
@@ -83,36 +59,9 @@ export class ComponentValue {
   }
 }
 
-export class FormElementOptions {
-  inputId?: string;
-  required?: boolean;
-  minLength?: number;
-  maxLength?: number;
-  regex?: string;
-  helpText?: string;
-  errorText?: string;
-  options?: ElementOption[];
-  optionGroups?: ElementOptionGroup[];
-
-
-  constructor(data: { inputId: string, required: boolean, minLength: number, maxLength: number, regex: string, helpText: string,
-                      errorText: string, options: ElementOption[], optionGroups: ElementOptionGroup[] }) {
-    this.inputId = data.inputId;
-    this.required = data.required;
-    this.minLength = data.minLength;
-    this.maxLength = data.maxLength;
-    this.regex = data.regex;
-    this.helpText = data.helpText;
-    this.errorText = data.errorText;
-    this.options = data.options;
-    this.optionGroups = data.optionGroups;
-  }
-}
-
 export class ElementOption {
   value: string;
   display: string;
-
 
   constructor(data: { value: string, display: string }) {
     this.value = data.value;
@@ -123,7 +72,6 @@ export class ElementOption {
 export class ElementOptionGroup {
   groupName: string;
   options: ElementOption[];
-
 
   constructor(data: { groupName: string, options: ElementOption[] }) {
     this.groupName = data.groupName;
@@ -154,11 +102,20 @@ export class FormDetails {
 
 }
 
+export interface FormElementOptions {
+  inputId?: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  regex?: string;
+  helpText?: string;
+  errorText?: string;
+  options?: ElementOption[];
+  optionGroups?: ElementOptionGroup[];
+}
+
 export interface FormElementConfig {
   wrapperCssClass?: string;
-  validCssClass?: string;
-  invalidCssClass?: string;
-  focusCssClass?: string;
   ariaLabel?: string;
   ariaDescribedBy?: string;
   requiredMarker?: string;

@@ -1,4 +1,4 @@
-<span [formGroup]="formGroup" class="field">
+<span [formGroup]="formGroup" class="field {{getWrapperClass()}}">
 <label for="{{elementData.inputId}}">{{elementData.label}}</label><br/>
   <!-- WITH OPTION GROUPS -->
   <select formControlName="{{elementData.inputId}}" *ngIf="elementData.optionGroups" id="{{elementData.inputId}}" name="{{elementData.inputId}}">

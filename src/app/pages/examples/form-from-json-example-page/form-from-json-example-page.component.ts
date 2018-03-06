@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormDetails } from '../../../modules/simple-forms/state/simple-forms.state';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormDetails } from '../../../modules/simple-forms/simple-forms.state';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { HttpClient } from '@angular/common/http';
+declare var PR: any;
 
 @Component({
   selector: 'app-form-from-json-example-page',
   templateUrl: './form-from-json-example-page.component.html',
   styleUrls: ['./form-from-json-example-page.component.scss']
 })
-export class FormFromJsonExamplePageComponent implements OnInit {
+export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
 
   submittedValue: string = 'No Value Submitted Yet';
 
@@ -135,6 +136,10 @@ export class FormFromJsonExamplePageComponent implements OnInit {
       this.jsonForm = builder.fromJson(value);
     });
 
+  }
+
+  ngAfterViewInit() {
+    PR.prettyPrint();
   }
 
   formSubmit(value: any) {
