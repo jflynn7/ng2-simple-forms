@@ -18,12 +18,10 @@ export class SimpleFormBuilder {
     }
     if (element.minLength) {
       const minLength = typeof element.minLength === 'number' ? element.minLength : parseInt(element.minLength, 10);
-      console.log('setting minlength for', element.inputId, minLength);
       validators.push(Validators.minLength(minLength));
     }
     if (element.maxLength) {
       const maxLength = typeof element.maxLength === 'number' ? element.maxLength : parseInt(element.maxLength, 10);
-      console.log('setting minlength for', element.inputId, maxLength);
       validators.push(Validators.maxLength(maxLength));
     }
     if (element.regex) {

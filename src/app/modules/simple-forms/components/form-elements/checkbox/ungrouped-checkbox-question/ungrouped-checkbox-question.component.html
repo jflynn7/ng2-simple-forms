@@ -1,0 +1,11 @@
+<app-field-group [groupTitle]="elementData.label">
+  <span *ngFor="let option of elementData.options" [formGroup]="checkboxGroup">
+     <input
+       formControlName="{{option.value}}"
+       id="{{option.value + '_id'}}"
+       type="checkbox"
+       name="{{elementData.inputId}}"
+       value="{{option.value}}">
+     <label for="{{option.value + '_id'}}">{{option.display}}</label><br>
+  </span>
+</app-field-group>

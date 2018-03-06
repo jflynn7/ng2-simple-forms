@@ -7,6 +7,13 @@
     [elementData]="formElement"
   ></app-text-input>
 
+  <!-- DATE PICKER FIELD -->
+  <app-date-picker
+    *ngSwitchCase="'date'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-date-picker>
+
   <!-- PASSWORD INPUT FIELD -->
   <app-password-input
     *ngSwitchCase="'password'"

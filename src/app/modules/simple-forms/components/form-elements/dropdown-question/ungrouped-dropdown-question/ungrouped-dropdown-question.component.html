@@ -1,0 +1,7 @@
+<!-- WITH NO OPTION GROUPS -->
+<span [formGroup]="formGroup" class="field {{getWrapperClass()}}">
+  <label for="{{elementData.inputId}}">{{elementData.label}}</label><br/>
+    <select formControlName="{{elementData.inputId}}" *ngIf="!elementData.optionGroups" id="{{elementData.inputId}}" name="{{elementData.inputId}}">
+      <option *ngFor="let option of elementData.options" value="{{option.value}}">{{option.display}}</option>
+    </select>
+</span>

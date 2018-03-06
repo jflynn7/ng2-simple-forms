@@ -1,15 +1,2 @@
-<app-field-group [groupTitle]="elementData.label" [formGroup]="formGroup" [wrapperCssClass]="getWrapperClass()">
-  <span *ngFor="let option of elementData.options">
-    <input
-      formControlName="{{elementData.inputId}}"
-      id="{{elementData.inputId}}_{{option.value}}_id"
-      type="radio"
-      name="{{elementData.inputId}}"
-      value="{{option.value}}"
-      [attr.selected]="option.value === formGroup.controls[elementData.inputId].value"
-      [attr.data-test-id]="elementData.getTestId('radio', option.value)">
-  <label
-    [attr.data-test-id]="elementData.getTestId('label', option.value)"
-    for="{{elementData.inputId}}_{{option.value}}_id">{{option.display}}</label><br>
-  </span>
-</app-field-group>
+<app-grouped-radio-question *ngIf="elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-grouped-radio-question>
+<app-ungrouped-radio-question *ngIf="!elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-ungrouped-radio-question>

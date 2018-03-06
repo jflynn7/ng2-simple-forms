@@ -74,26 +74,110 @@
     "supplementaryLabel" : "[DD/MM/YYYY]",
     "errorText" : "You must be at least 18 years old and enter DoB in DD/MM/YYYY format",
     "helpText" : "Please enter your date of birth as shown on your ID",
-    "type" : "DOB"
+    "type" : "DATE"
   },
   {
     "inputId" : "countryOfBirth",
     "label" : "Country of birth",
     "helpText" : "Please enter your country of birth as shown on your ID",
     "type" : "SELECT",
-    "options" : [ {
-      "value" : "GB",
-      "display" : "United Kingdom"
-    } ]
+    "options" : [
+      {
+        "value" : "UK",
+        "display" : "United Kingdom"
+      },
+      {
+        "value" : "IT",
+        "display" : "Italy"
+      },
+      {
+        "value" : "FR",
+        "display" : "France"
+      }
+    ]
   },
   {
     "inputId" : "nationality",
     "label" : "Nationality",
     "helpText" : "Please enter your nationality as shown on your ID",
     "type" : "SELECT",
-    "options" : [ {
-      "value" : "GB",
-      "display" : "United Kingdom"
-    } ]
+    "optionGroups" : [
+      {
+        "groupName": "Europe",
+        "options" : [
+          {
+            "value" : "UK",
+            "display" : "United Kingdom"
+          },
+          {
+            "value" : "IT",
+            "display" : "Italy"
+          },
+          {
+            "value" : "FR",
+            "display" : "France"
+          }
+        ]
+      },
+      {
+        "groupName": "Americas",
+        "options" : [
+          {
+            "value" : "US",
+            "display" : "United States"
+          },
+          {
+            "value" : "MX",
+            "display" : "Mexico"
+          },
+          {
+            "value" : "CO",
+            "display" : "Columbia"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "inputId" : "countryOfResidence",
+    "label" : "Country of Residence",
+    "helpText" : "Please enter your country of residence as shown on your ID",
+    "type" : "CHECKBOX",
+    "optionGroups" : [
+      {
+        "groupName": "Europe",
+        "options" : [
+          {
+            "value" : "UK",
+            "display" : "United Kingdom"
+          },
+          {
+            "value" : "IT",
+            "display" : "Italy"
+          },
+          {
+            "value" : "FR",
+            "display" : "France"
+          }
+        ]
+      },
+      {
+        "groupName": "Americas",
+        "options" : [
+          {
+            "value" : "US",
+            "display" : "United States"
+          },
+          {
+            "value" : "MX",
+            "display" : "Mexico"
+          },
+          {
+            "value" : "CO",
+            "display" : "Columbia"
+          }
+        ]
+      }
+    ]
   }
 ]

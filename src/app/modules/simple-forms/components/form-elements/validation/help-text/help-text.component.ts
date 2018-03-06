@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormElement } from '../../../../simple-forms.state';
+import { FormElement } from '../../../../simple-forms.types';
 
 @Component({
   selector: 'app-help-text',

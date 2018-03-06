@@ -18,6 +18,12 @@ import { FieldGroupComponent } from './components/field-group/field-group.compon
 import { LabelComponent } from './components/form-elements/validation/label/label.component';
 import { RadioQuestionComponent } from './components/form-elements/radio-question/radio-question.component';
 import { ErrorIconComponent } from './components/form-elements/validation/error-icon/error-icon.component';
+import { GroupedDropdownQuestionComponent } from './components/form-elements/dropdown-question/grouped-dropdown-question/grouped-dropdown-question.component';
+import { UngroupedDropdownQuestionComponent } from './components/form-elements/dropdown-question/ungrouped-dropdown-question/ungrouped-dropdown-question.component';
+import { GroupedRadioQuestionComponent } from './components/form-elements/radio-question/grouped-radio-question/grouped-radio-question.component';
+import { UngroupedRadioQuestionComponent } from './components/form-elements/radio-question/ungrouped-radio-question/ungrouped-radio-question.component';
+import { UngroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/ungrouped-checkbox-question/ungrouped-checkbox-question.component';
+import { GroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/grouped-checkbox-question/grouped-checkbox-question.component';
 
 @NgModule({
   imports: [
@@ -42,7 +48,13 @@ import { ErrorIconComponent } from './components/form-elements/validation/error-
     ElementBaseComponent,
     FieldGroupComponent,
     LabelComponent,
-    ErrorIconComponent
+    ErrorIconComponent,
+    GroupedDropdownQuestionComponent,
+    UngroupedDropdownQuestionComponent,
+    GroupedRadioQuestionComponent,
+    UngroupedRadioQuestionComponent,
+    UngroupedCheckboxQuestionComponent,
+    GroupedCheckboxQuestionComponent
   ],
   exports: [
     FormComponent,

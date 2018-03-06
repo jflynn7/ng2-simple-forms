@@ -2,7 +2,13 @@
 <label
   [id]="elementData.inputId + '_label'"
   for="{{elementData.inputId}}"
-  [ngClass]="{ 'input-focussed' : inputFocussed, 'has-value' : inputHasValue }">
+  [ngClass]="
+    {
+      'input-focussed' : inputFocussed,
+      'has-value' : inputHasValue,
+      'valid' : inputIsValid,
+      'invalid' : inputIsInvalid
+    }">
   {{elementData.label}}
   <!-- REQUIRED MARKER -->
   <span class="required-label" *ngIf="elementData.required">{{requiredMarker}}</span>

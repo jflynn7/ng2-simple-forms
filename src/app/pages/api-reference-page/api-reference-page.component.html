@@ -42,7 +42,7 @@
   this.options = data.options;
   this.optionGroups = data.optionGroups;
   this.config = data.config || {{'{'}}{{'}'}};</code></pre>
-    <h2 class="subtitle">Functions</h2>
+    <h2 class="subtitle">Object Functions</h2>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -371,6 +371,26 @@
     this.formGroup = data ? data.formGroup : undefined;
   {{'}'}}
 {{'}'}}</code></pre>
+    <h2 class="subtitle">Object Functions</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Function</th>
+        <th scope="col">Parameters</th>
+        <th scope="col">Returns</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row"><code>setConfig</code></th>
+        <td><code>inputId: string</code><br><code>property: string</code><br><code>value: string</code></td>
+        <td><code>FormDetails</code></td>
+        <td>Sets a config value on the element with the corresponding inputId. Can be used after the FormDetails is created. <br>e.g <code>myFormDetails.setConfig('myElement', 'ariaLabel', 'My Aria Label');</code></td>
+      </tr>
+      </tbody>
+    </table>
+
     <h2 class="subtitle">Object Members</h2>
     <table class="table table-hover">
       <thead>
@@ -626,6 +646,7 @@
     <h2 class="subtitle">Object Definition</h2>
     <pre class="prettyprint"><code>export interface FormElementConfig {{'{'}}
   wrapperCssClass?: string;
+  groupLabelCssClass?: string;
   ariaLabel?: string;
   ariaDescribedBy?: string;
   requiredMarker?: string;
@@ -650,6 +671,18 @@
         <td>
           Custom CSS class to wrap the form element in, meaning you can use specificity to target classes
           within your wrapped (e.g. <code>input</code>, <code>label</code>)
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>groupLabelCssClass</code>
+        </th>
+        <td>
+          <code class="secondary">string</code>
+        </td>
+        <td>
+          Custom CSS class to apply to a group label (where applicable) on elements with grouped selectable options (such as <code>radio</code>
+          or <code>checkbox</code>.
         </td>
       </tr>
       <tr>

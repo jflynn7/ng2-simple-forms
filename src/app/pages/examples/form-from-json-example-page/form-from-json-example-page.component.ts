@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormDetails } from '../../../modules/simple-forms/simple-forms.state';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { HttpClient } from '@angular/common/http';
+import { FormDetails } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -89,27 +89,111 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
     '    "supplementaryLabel" : "[DD/MM/YYYY]",\n' +
     '    "errorText" : "You must be at least 18 years old and enter DoB in DD/MM/YYYY format",\n' +
     '    "helpText" : "Please enter your date of birth as shown on your ID",\n' +
-    '    "type" : "DOB"\n' +
+    '    "type" : "DATE"\n' +
     '  },\n' +
     '  {\n' +
     '    "inputId" : "countryOfBirth",\n' +
     '    "label" : "Country of birth",\n' +
     '    "helpText" : "Please enter your country of birth as shown on your ID",\n' +
     '    "type" : "SELECT",\n' +
-    '    "options" : [ {\n' +
-    '      "value" : "GB",\n' +
-    '      "display" : "United Kingdom"\n' +
-    '    } ]\n' +
+    '    "options" : [\n' +
+    '      {\n' +
+    '        "value" : "UK",\n' +
+    '        "display" : "United Kingdom"\n' +
+    '      },\n' +
+    '      {\n' +
+    '        "value" : "IT",\n' +
+    '        "display" : "Italy"\n' +
+    '      },\n' +
+    '      {\n' +
+    '        "value" : "FR",\n' +
+    '        "display" : "France"\n' +
+    '      }\n' +
+    '    ]\n' +
     '  },\n' +
     '  {\n' +
     '    "inputId" : "nationality",\n' +
     '    "label" : "Nationality",\n' +
     '    "helpText" : "Please enter your nationality as shown on your ID",\n' +
     '    "type" : "SELECT",\n' +
-    '    "options" : [ {\n' +
-    '      "value" : "GB",\n' +
-    '      "display" : "United Kingdom"\n' +
-    '    } ]\n' +
+    '    "optionGroups" : [\n' +
+    '      {\n' +
+    '        "groupName": "Europe",\n' +
+    '        "options" : [\n' +
+    '          {\n' +
+    '            "value" : "UK",\n' +
+    '            "display" : "United Kingdom"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "IT",\n' +
+    '            "display" : "Italy"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "FR",\n' +
+    '            "display" : "France"\n' +
+    '          }\n' +
+    '        ]\n' +
+    '      },\n' +
+    '      {\n' +
+    '        "groupName": "Americas",\n' +
+    '        "options" : [\n' +
+    '          {\n' +
+    '            "value" : "US",\n' +
+    '            "display" : "United States"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "MX",\n' +
+    '            "display" : "Mexico"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "CO",\n' +
+    '            "display" : "Columbia"\n' +
+    '          }\n' +
+    '        ]\n' +
+    '      }\n' +
+    '    ]\n' +
+    '  },\n' +
+    '  {\n' +
+    '    "inputId" : "countryOfResidence",\n' +
+    '    "label" : "Country of Residence",\n' +
+    '    "helpText" : "Please enter your country of residence as shown on your ID",\n' +
+    '    "type" : "RADIO",\n' +
+    '    "optionGroups" : [\n' +
+    '      {\n' +
+    '        "groupName": "Europe",\n' +
+    '        "options" : [\n' +
+    '          {\n' +
+    '            "value" : "UK",\n' +
+    '            "display" : "United Kingdom"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "IT",\n' +
+    '            "display" : "Italy"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "FR",\n' +
+    '            "display" : "France"\n' +
+    '          }\n' +
+    '        ]\n' +
+    '      },\n' +
+    '      {\n' +
+    '        "groupName": "Americas",\n' +
+    '        "options" : [\n' +
+    '          {\n' +
+    '            "value" : "US",\n' +
+    '            "display" : "United States"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "MX",\n' +
+    '            "display" : "Mexico"\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "value" : "CO",\n' +
+    '            "display" : "Columbia"\n' +
+    '          }\n' +
+    '        ]\n' +
+    '      }\n' +
+    '    ]\n' +
     '  }\n' +
     ']\n';
 
@@ -134,6 +218,7 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
       this.jsonForm = builder.fromJson(value);
+      this.jsonForm.setConfig('countryOfResidence', 'groupLabelCssClass', 'groupLabelSetByConfig');
     });
 
   }

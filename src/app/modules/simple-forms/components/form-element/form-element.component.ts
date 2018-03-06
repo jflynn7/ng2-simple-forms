@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormElement } from '../../simple-forms.state';
+import { FormElement } from '../../simple-forms.types';
+
 
 @Component({
   selector: 'app-form-element',

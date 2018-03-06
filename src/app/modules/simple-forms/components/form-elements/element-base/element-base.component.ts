@@ -54,6 +54,12 @@ export class ElementBaseComponent implements OnInit {
     }
   }
 
+  getGroupLabelClass() {
+    if (this.hasConfig()) {
+      return this.elementData.config.groupLabelCssClass;
+    }
+  }
+
   getRequiredMarker() {
     if (this.hasConfig()) {
       return this.elementData.config.requiredMarker || '*';

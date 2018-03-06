@@ -100,6 +100,17 @@ export class FormDetails {
     return foundElement;
   }
 
+  setConfig = (inputId: string, propertyName: string, value: string) => {
+    const foundElement = this.get(inputId);
+    foundElement.setConfig(propertyName, value);
+    this.elements.forEach((element: { inputId: string, element: FormElement }) => {
+      if (element.inputId === foundElement.inputId) {
+        element.element = foundElement;
+      }
+    });
+    return this;
+  }
+
 }
 
 export interface FormElementOptions {
@@ -116,6 +127,7 @@ export interface FormElementOptions {
 
 export interface FormElementConfig {
   wrapperCssClass?: string;
+  groupLabelCssClass?: string;
   ariaLabel?: string;
   ariaDescribedBy?: string;
   requiredMarker?: string;

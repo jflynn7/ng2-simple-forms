@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormDetails, FormElement } from '../../simple-forms.state';
+import { FormDetails, FormElement } from '../../simple-forms.types';
+
 
 @Component({
   selector: 'app-form',
@@ -41,17 +42,16 @@ export class FormComponent implements OnInit {
       };
     });
 
-    console.log(this.form.elements);
-
     if (this.defaultFormData) {
-      console.log('Setting default form data.', this.defaultFormData);
       this.form.formGroup.setValue(this.defaultFormData);
     }
 
   }
 
   setElementConfig(element: FormElement) {
-    return element.setConfig('wrapperCssClass', this.formOptions.formElementCssClass);
+    element.setConfig('wrapperCssClass', this.formOptions.formElementCssClass);
+    element.setConfig('formElementCssClass', this.formOptions.formElementCssClass);
+    return element;
   }
 
   submit() {
