@@ -51,10 +51,8 @@ export class ApiReferencePageComponent implements OnInit, AfterViewInit {
   ];
 
   singleSelectWithGroups = builder.createElement('select', 'My Select Input', {
-    optionGroups: this.myElementOptionsGroups, config: {
-      wrapperCssClass: 'default-theme'
-    }
-  });
+    optionGroups: this.myElementOptionsGroups
+  }).setConfig('wrapperCssClass', 'default-theme');
 
   myElementsArrayCode: string = 'myElementsArray = [\n' +
     '    builder.createElement(\'text\', \'Element One\'),\n' +

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormComponent } from '../../../modules/simple-forms/components/form/form.component';
-import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.state';
+import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -35,7 +35,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
     '\n    /// ....etc\n' +
     '];';
 
-  createUnwrappedFormCode: string = 'this.myForm = builder.toFormDetails(this.myFormElements);';
+  createUnwrappedFormCode = 'this.myForm = builder.toFormDetails(this.myFormElements);';
   renderFromInputCode: string = '<app-form-element\n' +
     ' [formGroup]="myForm.formGroup"\n' +
     ' [formElement]="myForm.get(\'simpleOne\')">\n' +

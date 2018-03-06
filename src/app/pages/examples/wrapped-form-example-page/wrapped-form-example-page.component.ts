@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
-import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.state';
 import { FormComponent, FormConfig } from '../../../modules/simple-forms/components/form/form.component';
+import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -14,7 +14,7 @@ export class WrappedFormExamplePageComponent implements OnInit, AfterViewInit {
   @ViewChild('myViewChildForm') myViewChildForm: FormComponent;
 
 
-  viewChildDefinition: string = '@ViewChild(\'myViewChildForm\') myViewChildForm: FormComponent;';
+  viewChildDefinition = '@ViewChild(\'myViewChildForm\') myViewChildForm: FormComponent;';
 
   createFormElementsArrayCode: string = 'myFormElements: FormElement[] = [\n' +
     '\n' +
@@ -34,10 +34,12 @@ export class WrappedFormExamplePageComponent implements OnInit, AfterViewInit {
     '      .setProperty(\'required\', true) ' +
     '\n    /// ....etc\n' +
     '];';
-  createFormDetailsCode: string = 'myFormDetails: FormDetails = builder.toFormDetails(this.myFormElements)';
-  formWithTitleAndSubtitleCode: string = '<app-form [form]="myFormDetails" [formTitle]="\'My Form Title\'" [formSubtitle]="\'A simple form created with ng2-simple-forms\'"></app-form>';
-  wrappedFormCode: string = '<app-form [form]="myFormDetails"></app-form>';
-  viewChildRefExampleCode: string = '\'<app-form #myViewChildForm [form]="myFormDetails" [formTitle]="\'My Form Title\'" [formSubtitle]="\'A simple form created with ng2-simple-forms\'"></app-form>\';'
+  createFormDetailsCode = 'myFormDetails: FormDetails = builder.toFormDetails(this.myFormElements)';
+  formWithTitleAndSubtitleCode = '<app-form [form]="myFormDetails" [formTitle]="\'My Form Title\'" ' +
+    '[formSubtitle]="\'A simple form created with ng2-simple-forms\'"></app-form>';
+  wrappedFormCode = '<app-form [form]="myFormDetails"></app-form>';
+  viewChildRefExampleCode = '\'<app-form #myViewChildForm [form]="myFormDetails" ' +
+    '[formTitle]="\'My Form Title\'" [formSubtitle]="\'A simple form created with ng2-simple-forms\'"></app-form>\';';
 
   formConfigObjectDef: string = '{\n' +
     '    wrapperCssClass: \'\', // Allows you to pass a custom CSS class to apply to the form wrapper container\n' +
