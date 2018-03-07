@@ -1,10 +1,8 @@
-<div class="field {{ getWrapperClass() }}" [formGroup]="formGroup">
-  <app-label
-    [inputFocussed]="isFocussed"
-    [elementData]="elementData"
-    [requiredMarker]="getRequiredMarker()"
-    [inputHasValue]="!!formGroup.get(elementData.inputId).value">
-  </app-label>
+<app-field-group
+  [groupTitle]="elementData.label"
+  [valid]="valid()"
+  [invalid]="!valid() && touched()"
+  [formGroup]="formGroup">
   <input
     [attr.aria-label]="getAria('label')"
     [attr.aria-labelledby]="elementData.inputId + '_label'"
@@ -14,18 +12,20 @@
     formControlName="{{elementData.inputId}}"
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
-    type="text"
+    type="range"
+    min="{{elementData.minLength}}"
+    max="{{elementData.maxLength}}"
     [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'/>
-
+  <span class="range-value">{{formGroup.get(elementData.inputId).value || 0}}</span>
   <app-validation-container
     [valid]="valid()"
     [invalid]="invalid()"
     [showError]="showError()"
     [showHelp]="showHelp()"
-    [elementData]="elementData">
+    [elementData]="elementData"
+    [cssClassOverride]="'range-validation'">
   </app-validation-container>
-
-</div>
+</app-field-group>

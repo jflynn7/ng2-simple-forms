@@ -293,5 +293,13 @@
             "display" : "Columbia"
           }
         ]
+  },
+  {
+    "inputId" : "timeInCountry",
+    "label" : "Time spent in country",
+    "minLength" : "0",
+    "maxLength" : "100",
+    "helpText" : "Please select the length of time in years you have spent in your current country",
+    "type" : "RANGE"
   }
 ]

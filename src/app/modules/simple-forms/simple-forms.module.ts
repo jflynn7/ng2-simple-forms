@@ -25,6 +25,8 @@ import { UngroupedRadioQuestionComponent } from './components/form-elements/radi
 import { UngroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/ungrouped-checkbox-question/ungrouped-checkbox-question.component';
 import { GroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/grouped-checkbox-question/grouped-checkbox-question.component';
 import { ValidationContainerComponent } from './components/form-elements/validation/validation-container/validation-container.component';
+import { RangeComponent } from './components/form-elements/range/range.component';
+import { ObjectSelectorComponent } from './components/form-elements/object-selector/object-selector.component';
 
 @NgModule({
   imports: [
@@ -56,18 +58,37 @@ import { ValidationContainerComponent } from './components/form-elements/validat
     UngroupedRadioQuestionComponent,
     UngroupedCheckboxQuestionComponent,
     GroupedCheckboxQuestionComponent,
-    ValidationContainerComponent
+    ValidationContainerComponent,
+    RangeComponent,
+    ObjectSelectorComponent
   ],
   exports: [
     FormComponent,
     FormElementComponent,
     ErrorMessageComponent,
     FormWrapperComponent,
-    FieldGroupComponent,
+    CheckboxComponent,
+    DatePickerComponent,
+    DropdownQuestionComponent,
+    PasswordInputComponent,
     TextInputComponent,
     RadioQuestionComponent,
-    DropdownQuestionComponent,
-    ValidationContainerComponent
+    SuccessIconComponent,
+    HelpIconComponent,
+    HelpTextComponent,
+    ElementBaseComponent,
+    FieldGroupComponent,
+    LabelComponent,
+    ErrorIconComponent,
+    GroupedDropdownQuestionComponent,
+    UngroupedDropdownQuestionComponent,
+    GroupedRadioQuestionComponent,
+    UngroupedRadioQuestionComponent,
+    UngroupedCheckboxQuestionComponent,
+    GroupedCheckboxQuestionComponent,
+    ValidationContainerComponent,
+    RangeComponent,
+    ObjectSelectorComponent
   ]
 })
 export class SimpleFormsModule { }

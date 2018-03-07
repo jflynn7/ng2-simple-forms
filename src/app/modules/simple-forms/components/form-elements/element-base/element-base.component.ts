@@ -89,6 +89,10 @@ export class ElementBaseComponent implements OnInit {
     return this.formGroup.controls[this.elementData.inputId].touched && this.formGroup.controls[this.elementData.inputId].invalid;
   }
 
+  touched() {
+    return this.formGroup.controls[this.elementData.inputId].touched;
+  }
+
   showHelp() {
     return this.elementData.helpText && !this.valid() && !this.invalid();
   }

@@ -6,12 +6,14 @@
 
   &.select-validation {
     top: 15px;
-    right: 10px;
   }
 
   &.fieldset-validation {
     top: -5px;
-    right: 10px;
+  }
+
+  &.range-validation {
+    top: -7px;
   }
 }
 
