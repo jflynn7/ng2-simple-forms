@@ -1,4 +1,9 @@
-<app-field-group [groupTitle]="elementData.label" [formGroup]="formGroup" [wrapperCssClass]="getWrapperClass()">
+<app-field-group
+  [groupTitle]="elementData.label"
+  [formGroup]="formGroup"
+  [wrapperCssClass]="getWrapperClass()"
+  [valid]="isValid()"
+  [invalid]="isInvalid()">
   <span *ngFor="let optionGroup of elementData.optionGroups">
     <label class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
     <span *ngFor="let option of optionGroup.options">
@@ -15,4 +20,12 @@
         for="{{elementData.inputId}}_{{option.value}}_id">{{option.display}}</label><br>
     </span>
   </span>
+  <app-validation-container
+    [valid]="isValid()"
+    [invalid]="isInvalid()"
+    [showError]="showError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData"
+    [cssClassOverride]="'fieldset-validation'">
+  </app-validation-container>
 </app-field-group>

@@ -1,4 +1,7 @@
-<app-field-group [groupTitle]="elementData.label">
+<app-field-group
+  [groupTitle]="elementData.label"
+  [valid]="isValid()"
+  [invalid]="!isValid() && isTouched()">
   <span *ngFor="let option of elementData.options" [formGroup]="checkboxGroup">
      <input
        formControlName="{{option.value}}"
@@ -8,4 +11,12 @@
        value="{{option.value}}">
      <label for="{{option.value + '_id'}}">{{option.display}}</label><br>
   </span>
+  <app-validation-container
+    [valid]="isValid()"
+    [invalid]="!isValid() && isTouched()"
+    [showError]="showCheckboxError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData"
+    [cssClassOverride]="'fieldset-validation'">
+  </app-validation-container>
 </app-field-group>

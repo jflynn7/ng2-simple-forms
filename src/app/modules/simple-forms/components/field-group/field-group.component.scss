@@ -1,0 +1,18 @@
+$valid-green: green;
+$invalid-red: red;
+
+.field {
+  position: relative;
+}
+
+fieldset {
+  &.valid {
+    border-color: $valid-green;
+    box-shadow: inset 0 2px 4px 0 rgba(81, 182, 99, 0.16);
+  }
+
+  &.invalid {
+    border-color: $invalid-red;
+    box-shadow: inset 0 2px 4px 0 rgba(227, 78, 80, 0.16);
+  }
+}

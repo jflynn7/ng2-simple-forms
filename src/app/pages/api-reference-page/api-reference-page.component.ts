@@ -76,10 +76,10 @@ export class ApiReferencePageComponent implements OnInit, AfterViewInit {
     }).setConfig('wrapperCssClass', 'default-theme')
   ];
 
-  myFormDetailsCode: string = 'myFormDetails = builder.toFormDetails(this.myElementsArray);';
+  myFormDetailsCode = 'myFormDetails = builder.toFormDetails(this.myElementsArray);';
   myFormDetails = builder.toFormDetails(this.myElementsArray);
 
-  selectRadioCode: string = '<app-form-element [formGroup]="myFormDetails.formGroup" [formElement]="myFormDetails.get(\'elementThree\')"></app-form-element>';
+  selectRadioCode = '<app-form-element [formGroup]="myFormDetails.formGroup" [formElement]="myFormDetails.get(\'elementThree\')"></app-form-element>';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -87,16 +87,16 @@ export class ApiReferencePageComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    PR.prettyPrint();
     this.activatedRoute.params.subscribe(params => {
       if (params['object']) {
         const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, `#${params['object']}`);
         this.pageScrollService.start(pageScrollInstance);
       }
     });
-  }
-
-  ngAfterViewInit() {
-    PR.prettyPrint();
   }
 
 }

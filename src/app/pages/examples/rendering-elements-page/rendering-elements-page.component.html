@@ -51,8 +51,10 @@
     <p>
       ...where <code>myFunction($event)</code> is a function in your component that does something with the value of the component.
       <code>changeEmitter</code> emits a <a [routerLink]="'/api/ComponentValue'">ComponentValue</a> object when the component value changes,
-      which has two propertys; <code>value</code>, which is the current value of the component, and <code>isValid</code>, which, like the
-      name says, determines if the field is valid or not (based on your <code>FormElement</code> objects validation options.
+      which has three properties;<br>
+      <br><code>inputId</code>, which is the <code>inputId</code> of the element emitting the value (useful if you use one function to listen to all elements).
+      <br><code>value</code>, which is the current value of the component.
+      <br><code>isValid</code>, which, like the name says, determines if the field is valid or not (based on your <code>FormElement</code> objects validation options.
     </p>
   </div>
   <div class="row section">

@@ -69,9 +69,15 @@ export class ElementBaseComponent implements OnInit {
   getAria(type: string) {
     if (this.hasConfig()) {
       switch (type) {
-        case 'label': return this.elementData.config.ariaLabel;
+        case 'label': return this.elementData.config.ariaLabel || this.getDefaultAria('label');
         case 'describedby': return this.elementData.config.ariaDescribedBy;
       }
+    }
+  }
+
+  getDefaultAria(type: string) {
+    switch (type) {
+      case 'label' : return this.elementData.label;
     }
   }
 

@@ -1,0 +1,18 @@
+.validation-container {
+  position: absolute;
+  right: 10px;
+  top: 17px;
+  font-size: 16px;
+
+  &.select-validation {
+    top: 15px;
+    right: 10px;
+  }
+
+  &.fieldset-validation {
+    top: -5px;
+    right: 10px;
+  }
+}
+
+

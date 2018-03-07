@@ -2,13 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ElementOption, FormElement } from '../../../../simple-forms.types';
 import { ElementBaseComponent } from '../../element-base/element-base.component';
+import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
   selector: 'app-grouped-checkbox-question',
   templateUrl: './grouped-checkbox-question.component.html',
   styleUrls: ['./../checkbox.component.scss', './grouped-checkbox-question.component.scss']
 })
-export class GroupedCheckboxQuestionComponent extends ElementBaseComponent implements OnInit {
+export class GroupedCheckboxQuestionComponent extends CheckboxComponent implements OnInit {
 
   checkboxGroup: FormGroup;
   @Input() formGroup: FormGroup;
@@ -35,8 +36,5 @@ export class GroupedCheckboxQuestionComponent extends ElementBaseComponent imple
     return childForm;
   }
 
-  updateParentFormGroup(value: {}) {
-    this.formGroup.controls[this.elementData.inputId].setValue(value);
-  }
 }
 

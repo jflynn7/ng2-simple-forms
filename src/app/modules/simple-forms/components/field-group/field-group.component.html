@@ -1,6 +1,9 @@
 <span class="{{wrapperCssClass}}">
   <span class="field">
-    <fieldset>
+    <fieldset [ngClass]="{
+      'valid' : valid,
+      'invalid' : invalid
+    }">
       <legend>{{ groupTitle }}</legend>
       <ng-content></ng-content>
     </fieldset>

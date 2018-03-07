@@ -217,8 +217,9 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
-      this.jsonForm = builder.fromJson(value);
-      this.jsonForm.setConfig('countryOfResidence', 'groupLabelCssClass', 'groupLabelSetByConfig');
+      this.jsonForm = builder.fromJson(value)
+                      .setConfig('countryOfResidenceGrouped', 'groupLabelCssClass', 'groupLabelSetByConfig')
+                      .setConfig('placesOfInterestGrouped', 'groupLabelCssClass', 'groupLabelSetByConfig');
     });
 
   }

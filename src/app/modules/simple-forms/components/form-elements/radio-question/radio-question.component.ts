@@ -16,4 +16,11 @@ export class RadioQuestionComponent extends ElementBaseComponent implements OnIn
     this.getFormGroup();
   }
 
+  isValid() {
+    return !!this.formGroup.get(this.elementData.inputId).value && this.formGroup.get(this.elementData.inputId).touched;
+  }
+
+  isInvalid() {
+    return false;
+  }
 }

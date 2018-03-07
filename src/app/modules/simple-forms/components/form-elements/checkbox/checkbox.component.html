@@ -1,2 +1,11 @@
-<app-grouped-checkbox-question *ngIf="elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-grouped-checkbox-question>
-<app-ungrouped-checkbox-question *ngIf="!elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-ungrouped-checkbox-question>
+<app-grouped-checkbox-question
+  *ngIf="elementData.optionGroups"
+  [formGroup]="formGroup"
+  [elementData]="elementData">
+</app-grouped-checkbox-question>
+
+<app-ungrouped-checkbox-question
+  *ngIf="!elementData.optionGroups"
+  [formGroup]="formGroup"
+  [elementData]="elementData">
+</app-ungrouped-checkbox-question>

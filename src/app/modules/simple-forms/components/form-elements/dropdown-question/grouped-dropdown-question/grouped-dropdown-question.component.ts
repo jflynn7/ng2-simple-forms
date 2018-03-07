@@ -6,7 +6,10 @@ import { ElementBaseComponent } from '../../element-base/element-base.component'
 @Component({
   selector: 'app-grouped-dropdown-question',
   templateUrl: './grouped-dropdown-question.component.html',
-  styleUrls: ['./../dropdown-question.component.scss', './grouped-dropdown-question.component.scss']
+  styleUrls: [
+    './../../form-element.base.scss',
+    './../dropdown-question.component.scss',
+    './grouped-dropdown-question.component.scss']
 })
 export class GroupedDropdownQuestionComponent extends ElementBaseComponent implements OnInit {
 

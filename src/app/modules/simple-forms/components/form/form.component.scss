@@ -8,3 +8,8 @@ h2 {
   margin-top: 15px;
   display: block;
 }
+
+.disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}

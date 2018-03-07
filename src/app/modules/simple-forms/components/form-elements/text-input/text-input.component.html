@@ -3,7 +3,8 @@
     [inputFocussed]="isFocussed"
     [elementData]="elementData"
     [requiredMarker]="getRequiredMarker()"
-    [inputHasValue]="!!formGroup.get(elementData.inputId).value"></app-label>
+    [inputHasValue]="!!formGroup.get(elementData.inputId).value">
+  </app-label>
   <input
     [attr.aria-label]="getAria('label')"
     [attr.aria-labelledby]="elementData.inputId + '_label'"
@@ -16,11 +17,13 @@
       valid: valid(),
       invalid: invalid()
     }'/>
-  <span class="validation-icon">
-    <app-success-icon *ngIf="valid()"></app-success-icon>
-    <app-error-icon *ngIf="invalid()"></app-error-icon>
-    <app-help-icon *ngIf="showHelp()" (click)="toggleHelp()"></app-help-icon>
-  </span>
-  <app-help-text *ngIf="helpVisible" [elementData]="elementData"></app-help-text>
-  <app-error-message *ngIf="showError()" [message]="elementData.errorText"></app-error-message>
+
+  <app-validation-container
+    [valid]="valid()"
+    [invalid]="invalid()"
+    [showError]="showError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData">
+  </app-validation-container>
+
 </div>

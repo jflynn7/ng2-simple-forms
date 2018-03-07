@@ -55,8 +55,10 @@ export class FormComponent implements OnInit {
   }
 
   submit() {
-    this.submitEmitter.emit(this.form.formGroup.getRawValue());
-    return;
+    if (this.form.formGroup.valid) {
+      this.submitEmitter.emit(this.form.formGroup.getRawValue());
+      return;
+    }
   }
 
   clear() {
@@ -65,6 +67,10 @@ export class FormComponent implements OnInit {
 
   setConfig(propertyName: string, value: string) {
     this.formOptions[propertyName] = value;
+  }
+
+  isValid() {
+    return this.form.formGroup.valid;
   }
 
 }

@@ -139,10 +139,42 @@
     ]
   },
   {
-    "inputId" : "countryOfResidence",
-    "label" : "Country of Residence",
+    "inputId" : "countryOfResidenceUngrouped",
+    "label" : "Country of Residence (Ungrouped)",
     "helpText" : "Please enter your country of residence as shown on your ID",
-    "type" : "CHECKBOX",
+    "type" : "RADIO",
+    "options" : [
+      {
+        "value" : "UK",
+        "display" : "United Kingdom"
+      },
+      {
+        "value" : "IT",
+        "display" : "Italy"
+      },
+      {
+        "value": "FR",
+        "display": "France"
+      },
+      {
+        "value" : "US",
+        "display" : "United States"
+      },
+      {
+        "value" : "MX",
+        "display" : "Mexico"
+      },
+      {
+        "value" : "CO",
+        "display" : "Columbia"
+      }
+    ]
+  },
+  {
+    "inputId" : "countryOfResidenceGrouped",
+    "label" : "Country of Residence (Grouped)",
+    "helpText" : "Please enter your country of residence as shown on your ID",
+    "type" : "RADIO",
     "optionGroups" : [
       {
         "groupName": "Europe",
@@ -179,5 +211,87 @@
         ]
       }
     ]
+  },
+  {
+    "inputId" : "placesOfInterestGrouped",
+    "label" : "Places of Interest (Grouped)",
+    "helpText" : "Please tick any countries you would like to live in.",
+    "errorText" : "Please select 2 or more, but no more than 4 options",
+    "type" : "CHECKBOX",
+    "minLength": "2",
+    "maxLength": "4",
+    "required": true,
+    "optionGroups" : [
+      {
+        "groupName": "Europe",
+        "options" : [
+          {
+            "value" : "UK",
+            "display" : "United Kingdom"
+          },
+          {
+            "value" : "IT",
+            "display" : "Italy"
+          },
+          {
+            "value" : "FR",
+            "display" : "France"
+          }
+        ]
+      },
+      {
+        "groupName": "Americas",
+        "options" : [
+          {
+            "value" : "US",
+            "display" : "United States"
+          },
+          {
+            "value" : "MX",
+            "display" : "Mexico"
+          },
+          {
+            "value" : "CO",
+            "display" : "Columbia"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "inputId" : "placesOfInterestUngrouped",
+    "label" : "Places of Interest (Ungrouped)",
+    "helpText" : "Please tick any countries you would like to live in.",
+    "errorText" : "Please select 2 or more, but no more than 4 options",
+    "type" : "CHECKBOX",
+    "minLength": "2",
+    "maxLength": "4",
+    "required": true,
+    "options" : [
+          {
+            "value" : "UK",
+            "display" : "United Kingdom"
+          },
+          {
+            "value" : "IT",
+            "display" : "Italy"
+          },
+          {
+            "value" : "FR",
+            "display" : "France"
+          },
+          {
+            "value" : "US",
+            "display" : "United States"
+          },
+          {
+            "value" : "MX",
+            "display" : "Mexico"
+          },
+          {
+            "value" : "CO",
+            "display" : "Columbia"
+          }
+        ]
   }
 ]

@@ -1,2 +1,10 @@
-<app-grouped-radio-question *ngIf="elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-grouped-radio-question>
-<app-ungrouped-radio-question *ngIf="!elementData.optionGroups" [formGroup]="formGroup" [elementData]="elementData"></app-ungrouped-radio-question>
+<app-grouped-radio-question
+  *ngIf="elementData.optionGroups"
+  [formGroup]="formGroup"
+  [elementData]="elementData">
+</app-grouped-radio-question>
+<app-ungrouped-radio-question
+  *ngIf="!elementData.optionGroups"
+  [formGroup]="formGroup"
+  [elementData]="elementData">
+</app-ungrouped-radio-question>

@@ -4,4 +4,12 @@
     <select formControlName="{{elementData.inputId}}" *ngIf="!elementData.optionGroups" id="{{elementData.inputId}}" name="{{elementData.inputId}}">
       <option *ngFor="let option of elementData.options" value="{{option.value}}">{{option.display}}</option>
     </select>
+  <app-validation-container
+    [valid]="valid()"
+    [invalid]="invalid()"
+    [showError]="showError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData"
+    [cssClassOverride]="'select-validation'">
+  </app-validation-container>
 </span>

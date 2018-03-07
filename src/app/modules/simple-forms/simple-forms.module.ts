@@ -24,6 +24,7 @@ import { GroupedRadioQuestionComponent } from './components/form-elements/radio-
 import { UngroupedRadioQuestionComponent } from './components/form-elements/radio-question/ungrouped-radio-question/ungrouped-radio-question.component';
 import { UngroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/ungrouped-checkbox-question/ungrouped-checkbox-question.component';
 import { GroupedCheckboxQuestionComponent } from './components/form-elements/checkbox/grouped-checkbox-question/grouped-checkbox-question.component';
+import { ValidationContainerComponent } from './components/form-elements/validation/validation-container/validation-container.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { GroupedCheckboxQuestionComponent } from './components/form-elements/che
     GroupedRadioQuestionComponent,
     UngroupedRadioQuestionComponent,
     UngroupedCheckboxQuestionComponent,
-    GroupedCheckboxQuestionComponent
+    GroupedCheckboxQuestionComponent,
+    ValidationContainerComponent
   ],
   exports: [
     FormComponent,
@@ -64,7 +66,8 @@ import { GroupedCheckboxQuestionComponent } from './components/form-elements/che
     FieldGroupComponent,
     TextInputComponent,
     RadioQuestionComponent,
-    DropdownQuestionComponent
+    DropdownQuestionComponent,
+    ValidationContainerComponent
   ]
 })
 export class SimpleFormsModule { }
