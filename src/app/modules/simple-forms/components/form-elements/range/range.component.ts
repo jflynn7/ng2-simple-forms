@@ -14,10 +14,11 @@ export class RangeComponent extends ElementBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formGroup.get(this.elementData.inputId).setValue(0);
   }
 
   toValueText(value: number) {
-    return value ? numberToWords.toWords(value) : 'No Value';
+    return value ? numberToWords.toWords(value) : 'zero';
   }
 
 }

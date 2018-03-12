@@ -1,7 +1,8 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
-import { ElementOption, ElementOptionGroup, FormElement } from '../../../simple-forms.types';
+import { FormElement } from '../../../simple-forms.types';
 import { FormGroup } from '@angular/forms';
+const unsupportedRequiredAria: string[] = ['radio', 'checkbox'];
 
 @Directive({
   selector: '[appDefaultAccessibility]'
@@ -17,7 +18,11 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
   ngAfterViewInit() {
     this.renderer2.setAttribute(this.el.nativeElement, 'aria-label', this.getAriaLabel());
     this.renderer2.setAttribute(this.el.nativeElement, 'aria-labelledby', this.getLabelledBy());
-    this.renderer2.setAttribute(this.el.nativeElement, 'aria-required', this.getRequired());
+
+    if (this.requiredAriaSupported()) {
+      this.renderer2.setAttribute(this.el.nativeElement, 'aria-required', this.getRequired());
+    }
+
     this.renderer2.setAttribute(this.el.nativeElement, 'data-test-id', this.getTestId());
 
     if (this.getReadOnly()) {
@@ -25,6 +30,10 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
       this.renderer2.setAttribute(this.el.nativeElement, 'readonly', String(this.getReadOnly()));
     }
 
+  }
+
+  requiredAriaSupported() {
+    return !unsupportedRequiredAria.includes(this.appDefaultAccessibility.elementData.type.toLowerCase());
   }
 
   hasConfig(): boolean {
@@ -36,7 +45,7 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
   }
 
   getLabelledBy(): string {
-    return `${this.appDefaultAccessibility.elementData.inputId}_label ${this.getOptionLabel()}`;
+    return `${this.appDefaultAccessibility.elementData.inputId}_label`;
   }
 
   getRequired(): string {
@@ -64,13 +73,6 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
   getTestId() {
     const option = this.appDefaultAccessibility.option;
     return option ? this.appDefaultAccessibility.elementData.getTestId(option.value) : this.appDefaultAccessibility.elementData.getTestId();
-  }
-
-  getOptionLabel() {
-    const option: ElementOption = this.appDefaultAccessibility.option;
-    if (option) {
-      return `${this.appDefaultAccessibility.elementData.inputId}_${this.toInputId(option.display)}_label`;
-    }
   }
 
   toInputId(str: string) {

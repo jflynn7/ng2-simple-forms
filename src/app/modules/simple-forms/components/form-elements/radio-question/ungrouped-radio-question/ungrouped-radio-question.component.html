@@ -18,8 +18,7 @@
         [appDefaultAccessibility]="getElementData(option)"
 
         [attr.aria-invalid]="!valid()"
-        [attr.aria-selected]="isSelected(option.value)"
-        [attr.selected]="isSelected(option.value)">
+        [attr.aria-checked]="isSelected(option.value)">
 
       <label
         [attr.aria-label]="option.display"

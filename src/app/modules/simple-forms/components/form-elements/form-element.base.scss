@@ -17,7 +17,7 @@ label {
   font-family: $standard-font;
 }
 
-input {
+input, textarea {
   width: 100%;
   border: none;
   border-bottom: 1px solid #acabaf;
@@ -26,6 +26,7 @@ input {
   padding-bottom: 10px;
   background-color: transparent;
 }
+
 
 input:focus {
   outline: none;

@@ -67,7 +67,7 @@ strong {
 }
 
 code {
-  color: #00b3ee;
+  color: #004c66;
 
   &.secondary {
     color: #ca4800;
@@ -76,8 +76,9 @@ code {
 
 .groupLabelSetByConfig {
   display: block;
-  color: grey;
+  color: #465d7b;
   margin: 5px 0;
+  font-weight: 600;
 }
 
 
@@ -94,7 +95,7 @@ h1 {
 }
 
 h2 {
-  color: grey;
+  color: #3a3939;
 
   &.subtitle {
     font-size: 14px;
@@ -158,6 +159,11 @@ pre.prettyprint, pre.prettycontain {
   white-space: pre-wrap;
 }
 
+pre.prettycontain, pre {
+  code {
+    color: #b4e2ff;
+  }
+}
 
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */

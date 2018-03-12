@@ -29,6 +29,7 @@ import { RangeComponent } from './components/form-elements/range/range.component
 import { ObjectSelectorComponent } from './components/form-elements/object-selector/object-selector.component';
 import { LegendComponent } from './components/form-elements/validation/label/legend/legend.component';
 import { DefaultAccessibilityDirective } from './components/form-elements/directives/default-accessibility.directive';
+import { TextAreaComponent } from './components/form-elements/text-area/text-area.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { DefaultAccessibilityDirective } from './components/form-elements/direct
     RangeComponent,
     ObjectSelectorComponent,
     LegendComponent,
-    DefaultAccessibilityDirective
+    DefaultAccessibilityDirective,
+    TextAreaComponent
   ],
   exports: [
     FormComponent,

@@ -4,19 +4,18 @@
   [invalid]="!isValid() && isTouched()"
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
-  <span *ngFor="let optionGroup of elementData.optionGroups">
+  <span *ngFor="let optionGroup of elementData.optionGroups" id="{{toInputId(optionGroup.groupName)}}_checkbox_optionGroup">
 
     <!-- Group Label -->
     <label
       [attr.aria-label]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
-      for="{{optionGroup.groupName}}"
+      for="{{toInputId(optionGroup.groupName)}}_checkbox_optionGroup"
       class="{{getGroupLabelClass() || 'groupLabel'}}">
       {{optionGroup.groupName}}
     </label>
 
     <!-- Option Groups -->
     <span
-      id="{{optionGroup.groupName}}"
       *ngFor="let option of optionGroup.options"
       [formGroup]="checkboxGroup"
       [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
@@ -32,8 +31,8 @@
          [appDefaultAccessibility]="getElementData(option)"
 
          [attr.aria-invalid]="!valid()"
-         [attr.aria-selected]="isSelected(option.value)"
-         [attr.selected]="isSelected(option.value)">
+         [attr.aria-checked]="isSelected(option.value)"
+         [attr.checked]="isSelected(option.value)">
 
       <!-- Checkbox Label -->
       <label

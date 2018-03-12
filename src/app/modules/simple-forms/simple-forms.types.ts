@@ -137,7 +137,7 @@ export interface FormElementConfig {
 }
 
 export interface LabelConfig {
-  isFocussed?: boolean;
+  inputFocussed?: boolean;
   inputHasValue?: boolean;
   requiredMarker?: string;
   elementData: FormElement;

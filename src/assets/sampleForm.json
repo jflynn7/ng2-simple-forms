@@ -63,6 +63,13 @@
     "type" : "TEXT"
   },
   {
+    "inputId" : "biography",
+    "label" : "Your Bio",
+    "maxLength" : "500",
+    "errorText" : "Please ensure your bio is less than 500 characters.",
+    "type" : "TEXTAREA"
+  },
+  {
     "inputId" : "gender",
     "label" : "Gender",
     "required": true,

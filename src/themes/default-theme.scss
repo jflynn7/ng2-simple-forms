@@ -9,6 +9,10 @@ $field-border: 1px solid #dfdfdf;
 // Add theme name as overall wrapper class in form config
 .default-theme {
 
+  h2 {
+    color: darkblue;
+  }
+
   // All elements are wrapped in .field for specificity
   .field {
     margin-bottom: 15px;
@@ -21,7 +25,11 @@ $field-border: 1px solid #dfdfdf;
       height: 32px;
     }
 
-    input, select {
+    textarea {
+      resize: vertical;
+    }
+
+    input, select, textarea {
       background-color: white;
       border: $field-border;
       border-radius: 5px;
@@ -114,6 +122,6 @@ $field-border: 1px solid #dfdfdf;
 }
 
 .required-label {
-  color: $invalid-red;
+  color: darken($invalid-red, 10%);
   margin-left: -2px;
 }

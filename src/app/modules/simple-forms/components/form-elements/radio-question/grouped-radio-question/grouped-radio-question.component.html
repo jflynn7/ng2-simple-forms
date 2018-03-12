@@ -11,15 +11,15 @@
     <label
       [id]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
       [attr.aria-label]="optionGroup.groupName"
-      for="{{toInputId(optionGroup.groupName)}}"
+
       class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
 
     <!-- Option Groups -->
     <span
-      id="{{toInputId(optionGroup.groupName)}}"
+
       *ngFor="let option of optionGroup.options"
 
-      [attr.labelledby]="optionGroup.groupName + '_optionGroup_label'">
+      [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
 
 
       <!-- Radio Options -->
@@ -34,8 +34,8 @@
         [appDefaultAccessibility]="getElementData(option)"
 
         [attr.aria-invalid]="!valid()"
-        [attr.aria-selected]="isSelected(option.value)"
-        [attr.selected]="isSelected(option.value)">
+        [attr.aria-checked]="isSelected(option.value)"
+        [attr.checked]="isSelected(option.value)">
 
       <label
         [id]="elementData.inputId + '_' + toInputId(option.display)"

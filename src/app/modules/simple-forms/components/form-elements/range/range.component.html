@@ -6,14 +6,11 @@
   [formGroup]="formGroup">
 
   <input
-    [appDefaultAccessibility]="getElementData()"
-    [attr.aria-invalid]="!valid()"
-
     [attr.aria-valuenow]="formGroup.get(elementData.inputId).value"
     [attr.aria-valuemin]="elementData.minLength"
     [attr.aria-valuemax]="elementData.maxLength"
     [attr.aria-valuetext]="toValueText(formGroup.get(elementData.inputId).value)"
-
+    [attr.aria-labelledby]="elementData.inputId + '_label'"
     [attr.role]="'slider'"
 
     id="{{elementData.inputId}}"

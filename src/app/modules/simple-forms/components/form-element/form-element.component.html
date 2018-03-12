@@ -7,6 +7,13 @@
     [elementData]="formElement"
   ></app-text-input>
 
+  <!-- TEXT INPUT FIELD -->
+  <app-text-area
+    *ngSwitchCase="'textarea'"
+    [formGroup]="formGroup"
+    [elementData]="formElement"
+  ></app-text-area>
+
   <!-- DATE PICKER FIELD -->
   <app-date-picker
     *ngSwitchCase="'date'"

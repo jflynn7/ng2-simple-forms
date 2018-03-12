@@ -1,0 +1,33 @@
+<div class="field {{ getWrapperClass() }}" [formGroup]="formGroup" xmlns="http://www.w3.org/1999/html">
+
+  <app-label
+    [labelConfig]="getLabelConfig()">
+  </app-label>
+
+  <textarea
+    [appDefaultAccessibility]="getElementData()"
+    [attr.aria-invalid]="!valid()"
+
+    id="{{elementData.inputId}}"
+    formControlName="{{elementData.inputId}}"
+
+    (focus)="toggleFocus(true)"
+    (blur)="toggleFocus(false)"
+
+    type="textarea"
+
+    [ngClass]='{
+      valid: valid(),
+      invalid: invalid()
+    }'></textarea>
+
+  <!-- Validation Container -->
+  <app-validation-container
+    [valid]="valid()"
+    [invalid]="invalid()"
+    [showError]="showError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData">
+  </app-validation-container>
+
+</div>

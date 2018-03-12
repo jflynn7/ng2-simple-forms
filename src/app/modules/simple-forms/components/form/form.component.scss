@@ -1,6 +1,6 @@
 h2 {
   font-size: 12px;
-  color: grey;
+  color: #5b6b8c;
   margin-top: -20px;
 }
 
@@ -10,6 +10,7 @@ h2 {
 }
 
 .disabled {
-  opacity: 0.8;
+  background-color: lightgray;
+  color: black;
   cursor: not-allowed;
 }
