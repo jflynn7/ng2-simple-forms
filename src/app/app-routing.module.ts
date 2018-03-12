@@ -17,6 +17,7 @@ import { ConfigurationOptionsPageComponent } from './pages/installation/configur
 import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
 import { StyleGuidePageComponent } from './pages/theming/style-guide-page/style-guide-page.component';
 import { CsshelpersPageComponent } from './pages/theming/csshelpers-page/csshelpers-page.component';
+import { ComponentApiPageComponent } from './pages/component-api-page/component-api-page.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,14 @@ const routes: Routes = [
   {
     path: 'api',
     component: ApiReferencePageComponent
+  },
+  {
+    path: 'components/:object',
+    component: ComponentApiPageComponent
+  },
+  {
+    path: 'components',
+    component: ComponentApiPageComponent
   },
   {
     path: 'accessibility',

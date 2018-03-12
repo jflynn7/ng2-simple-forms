@@ -39,7 +39,7 @@
       Once we've done that, our form is rendered, complete with validation, <a [routerLink]="'/accessibility'">accessibility considerations</a>, and
       <a [routerLink]="'/testing'">dynamic test IDs</a> for e2e testing! 💣
     </p>
-    <div class="col-xs-6 no-marg left">
+    <div class="col-xs-12 col-md-6 no-marg left">
       <app-form
         *ngIf="jsonForm"
         [form]="jsonForm"
@@ -48,7 +48,7 @@
         (submitEmitter)="formSubmit($event)">
       </app-form>
     </div>
-    <div class="col-xs-6 no-marg right">
+    <div class="col-xs-12 col-md-6 no-marg right">
       <h1>JSON Form Output</h1>
       <pre class="prettycontain"><code *ngIf="jsonForm">{{jsonForm.formGroup.getRawValue() | json}}</code></pre>
 

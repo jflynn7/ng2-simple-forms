@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormElement } from '../../../../simple-forms.types';
 import { FormGroup } from '@angular/forms';
-import { ElementBaseComponent } from '../../element-base/element-base.component';
+import { DropdownQuestionComponent } from '../dropdown-question.component';
 
 @Component({
   selector: 'app-grouped-dropdown-question',
@@ -11,7 +11,7 @@ import { ElementBaseComponent } from '../../element-base/element-base.component'
     './../dropdown-question.component.scss',
     './grouped-dropdown-question.component.scss']
 })
-export class GroupedDropdownQuestionComponent extends ElementBaseComponent implements OnInit {
+export class GroupedDropdownQuestionComponent extends DropdownQuestionComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() elementData: FormElement;

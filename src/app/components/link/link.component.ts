@@ -21,12 +21,29 @@ export class LinkComponent implements OnInit {
   ngOnInit() {
   }
 
-  clickLink() {
-    if (this.route) {
-      this.router.navigate([this.route]);
+  clickLink(link?: Link) {
+    let clickedLink: Link = {
+      label: this.label,
+      route: this.route,
+      anchor: this.anchor
+    };
+
+    if (link) {
+      clickedLink = link;
+    }
+
+    if (clickedLink.route) {
+      this.router.navigate([clickedLink.route]);
     } else {
-      const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, `#${this.anchor}`);
+      const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, `#${clickedLink.anchor}`);
       this.pageScrollService.start(pageScrollInstance);
     }
   }
 }
+
+export interface Link {
+  label?: string;
+  route?: string;
+  anchor?: string;
+}
+

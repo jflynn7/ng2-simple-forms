@@ -27,6 +27,8 @@ import { GroupedCheckboxQuestionComponent } from './components/form-elements/che
 import { ValidationContainerComponent } from './components/form-elements/validation/validation-container/validation-container.component';
 import { RangeComponent } from './components/form-elements/range/range.component';
 import { ObjectSelectorComponent } from './components/form-elements/object-selector/object-selector.component';
+import { LegendComponent } from './components/form-elements/validation/label/legend/legend.component';
+import { DefaultAccessibilityDirective } from './components/form-elements/directives/default-accessibility.directive';
 
 @NgModule({
   imports: [
@@ -60,7 +62,9 @@ import { ObjectSelectorComponent } from './components/form-elements/object-selec
     GroupedCheckboxQuestionComponent,
     ValidationContainerComponent,
     RangeComponent,
-    ObjectSelectorComponent
+    ObjectSelectorComponent,
+    LegendComponent,
+    DefaultAccessibilityDirective
   ],
   exports: [
     FormComponent,
@@ -88,7 +92,9 @@ import { ObjectSelectorComponent } from './components/form-elements/object-selec
     GroupedCheckboxQuestionComponent,
     ValidationContainerComponent,
     RangeComponent,
-    ObjectSelectorComponent
+    ObjectSelectorComponent,
+    LegendComponent,
+    DefaultAccessibilityDirective
   ]
 })
 export class SimpleFormsModule { }

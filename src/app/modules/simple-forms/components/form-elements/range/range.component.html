@@ -2,23 +2,36 @@
   [groupTitle]="elementData.label"
   [valid]="valid()"
   [invalid]="!valid() && touched()"
+  [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
+
   <input
-    [attr.aria-label]="getAria('label')"
-    [attr.aria-labelledby]="elementData.inputId + '_label'"
-    [attr.aria-required]="elementData.required"
+    [appDefaultAccessibility]="getElementData()"
     [attr.aria-invalid]="!valid()"
+
+    [attr.aria-valuenow]="formGroup.get(elementData.inputId).value"
+    [attr.aria-valuemin]="elementData.minLength"
+    [attr.aria-valuemax]="elementData.maxLength"
+    [attr.aria-valuetext]="toValueText(formGroup.get(elementData.inputId).value)"
+
+    [attr.role]="'slider'"
+
     id="{{elementData.inputId}}"
     formControlName="{{elementData.inputId}}"
+    type="range"
+
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
-    type="range"
+
     min="{{elementData.minLength}}"
     max="{{elementData.maxLength}}"
+
+
     [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'/>
+
   <span class="range-value">{{formGroup.get(elementData.inputId).value || 0}}</span>
   <app-validation-container
     [valid]="valid()"

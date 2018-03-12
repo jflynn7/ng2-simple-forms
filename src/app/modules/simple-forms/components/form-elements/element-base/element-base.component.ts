@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
-import { ComponentValue, FormElement } from '../../../simple-forms.types';
+import { ComponentValue, FormElement, LabelConfig } from '../../../simple-forms.types';
 
 @Component({
   selector: 'app-element-base',
@@ -17,6 +17,8 @@ export class ElementBaseComponent implements OnInit {
 
   helpVisible = false;
   isFocussed = false;
+
+  labelConfig: LabelConfig;
 
   constructor() {
   }
@@ -34,6 +36,25 @@ export class ElementBaseComponent implements OnInit {
     });
   }
 
+  getElementData(option?: { display: string, value: any }) {
+    return {
+      elementData: this.elementData,
+      formGroup: this.formGroup,
+      option: option
+    };
+  }
+
+  getLabelConfig() {
+    return {
+      isFocussed: this.isFocussed,
+      elementData: this.elementData,
+      inputHasValue: this.hasValue(),
+      requiredMarker: this.getRequiredMarker(),
+      inputIsInvalid: this.invalid(),
+      inputIsValid: this.valid()
+    };
+  }
+
   getFormGroup() {
     this.formGroup = this.formGroup ? this.formGroup : this.toOwnFormgroup();
     this.elementData.setProperty('formGroup', this.formGroup);
@@ -46,6 +67,28 @@ export class ElementBaseComponent implements OnInit {
 
   hasConfig(): boolean {
     return !!(this.elementData && this.elementData.config);
+  }
+
+  getAriaLabel(): string {
+    return this.elementData.config.ariaLabel || this.getDefaultAria('label');
+  }
+
+  getLabelledBy(): string {
+    return `${this.elementData.inputId}_label`;
+  }
+
+  getRequired(): boolean {
+    return !!this.elementData.required;
+  }
+
+  getReadOnly() {
+    if (this.hasConfig()) {
+      return this.elementData.config.readOnly;
+    }
+  }
+
+  getTestId() {
+    return this.elementData.getTestId();
   }
 
   getWrapperClass() {
@@ -66,21 +109,30 @@ export class ElementBaseComponent implements OnInit {
     }
   }
 
-  getAria(type: string) {
-    if (this.hasConfig()) {
-      switch (type) {
-        case 'label': return this.elementData.config.ariaLabel || this.getDefaultAria('label');
-        case 'describedby': return this.elementData.config.ariaDescribedBy;
-      }
-    }
-  }
-
   getDefaultAria(type: string) {
     switch (type) {
       case 'label' : return this.elementData.label;
     }
   }
 
+  toggleFocus(hasFocus: boolean) {
+    this.isFocussed = hasFocus;
+  }
+
+  toInputId(str: string) {
+    const words = str.split(' ');
+    const mutated: string[] = words.map(function(word, index) {
+      // If it is the first word make sure to lowercase all the chars.
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      // If it is not the first word only upper case the first char and lowercase the rest.
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    return mutated.join('');
+  }
+
+  /// VALIDATION FUNCTIONS
   valid() {
     return this.formGroup.controls[this.elementData.inputId].touched && this.formGroup.controls[this.elementData.inputId].valid;
   }
@@ -97,16 +149,16 @@ export class ElementBaseComponent implements OnInit {
     return this.elementData.helpText && !this.valid() && !this.invalid();
   }
 
-  toggleHelp() {
-    this.helpVisible = !this.helpVisible;
+  hasValue() {
+    if (this.formGroup && this.elementData) {
+      return !!this.formGroup.get(this.elementData.inputId).value;
+    }
+
+    return false;
   }
 
   showError() {
     return this.elementData.errorText && this.invalid();
-  }
-
-  toggleFocus(hasFocus: boolean) {
-    this.isFocussed = hasFocus;
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementBaseComponent } from '../element-base/element-base.component';
+import * as numberToWords from 'number-to-words';
 
 @Component({
   selector: 'app-range',
@@ -13,6 +14,10 @@ export class RangeComponent extends ElementBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  toValueText(value: number) {
+    return value ? numberToWords.toWords(value) : 'No Value';
   }
 
 }

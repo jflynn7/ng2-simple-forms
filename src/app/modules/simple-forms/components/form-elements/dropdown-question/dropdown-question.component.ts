@@ -16,4 +16,8 @@ export class DropdownQuestionComponent extends ElementBaseComponent implements O
     this.getFormGroup();
   }
 
+  isSelected(value: any) {
+    return value === this.formGroup.get(this.elementData.inputId).value;
+  }
+
 }

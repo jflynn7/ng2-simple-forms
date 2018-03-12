@@ -1,19 +1,51 @@
 <app-field-group
   [groupTitle]="elementData.label"
   [valid]="isValid()"
-  [invalid]="!isValid() && isTouched()">
+  [invalid]="!isValid() && isTouched()"
+  [labelConfig]="getLabelConfig()"
+  [formGroup]="formGroup">
   <span *ngFor="let optionGroup of elementData.optionGroups">
-    <label class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
-    <span *ngFor="let option of optionGroup.options" [formGroup]="checkboxGroup">
-       <input
+
+    <!-- Group Label -->
+    <label
+      [attr.aria-label]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
+      for="{{optionGroup.groupName}}"
+      class="{{getGroupLabelClass() || 'groupLabel'}}">
+      {{optionGroup.groupName}}
+    </label>
+
+    <!-- Option Groups -->
+    <span
+      id="{{optionGroup.groupName}}"
+      *ngFor="let option of optionGroup.options"
+      [formGroup]="checkboxGroup"
+      [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
+
+      <!-- Checkbox -->
+      <input
          formControlName="{{option.value}}"
          id="{{option.value + '_id'}}"
          type="checkbox"
          name="{{elementData.inputId}}"
-         value="{{option.value}}">
-       <label for="{{option.value + '_id'}}">{{option.display}}</label><br>
+         value="{{option.value}}"
+
+         [appDefaultAccessibility]="getElementData(option)"
+
+         [attr.aria-invalid]="!valid()"
+         [attr.aria-selected]="isSelected(option.value)"
+         [attr.selected]="isSelected(option.value)">
+
+      <!-- Checkbox Label -->
+      <label
+         for="{{option.value + '_id'}}">
+         {{option.display}}
+      </label><br>
+
     </span>
+
   </span>
+
+  <!-- Validation Container -->
   <app-validation-container
     [valid]="isValid()"
     [invalid]="!isValid() && isTouched()"
@@ -22,4 +54,5 @@
     [elementData]="elementData"
     [cssClassOverride]="'fieldset-validation'">
   </app-validation-container>
+
 </app-field-group>

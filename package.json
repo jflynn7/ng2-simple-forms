@@ -24,6 +24,7 @@
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
     "ngx-page-scroll": "^4.0.2",
+    "number-to-words": "^1.2.3",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

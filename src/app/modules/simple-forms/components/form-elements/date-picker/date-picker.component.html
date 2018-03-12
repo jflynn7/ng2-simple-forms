@@ -1,29 +1,29 @@
 <div class="field {{ getWrapperClass() }}" [formGroup]="formGroup">
   <app-label
-    [inputFocussed]="isFocussed"
-    [elementData]="elementData"
-    [requiredMarker]="getRequiredMarker()"
-    [inputHasValue]="!!formGroup.get(elementData.inputId).value"
-    [inputIsInvalid]="invalid()"
-    [inputIsValid]="valid()">
+    [labelConfig]="getLabelConfig()">
   </app-label>
   <input
-    type="date"
-    [attr.aria-label]="getAria('label')"
-    [attr.aria-labelledby]="elementData.inputId + '_label'"
+    [appDefaultAccessibility]="getElementData()"
+    [attr.aria-invalid]="!valid()"
+
     id="{{elementData.inputId}}"
     formControlName="{{elementData.inputId}}"
+    type="date"
+
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
+
     [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'/>
-  <span class="validation-icon">
-    <app-success-icon *ngIf="valid()"></app-success-icon>
-    <app-error-icon *ngIf="invalid()"></app-error-icon>
-    <app-help-icon *ngIf="showHelp()" (click)="toggleHelp()"></app-help-icon>
-  </span>
-  <app-help-text *ngIf="helpVisible" [elementData]="elementData"></app-help-text>
-  <app-error-message *ngIf="showError()" [message]="elementData.errorText"></app-error-message>
+
+  <app-validation-container
+    [valid]="valid()"
+    [invalid]="invalid()"
+    [showError]="showError()"
+    [showHelp]="showHelp()"
+    [elementData]="elementData">
+  </app-validation-container>
+
 </div>

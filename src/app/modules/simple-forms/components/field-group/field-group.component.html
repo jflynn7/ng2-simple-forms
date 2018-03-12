@@ -4,7 +4,12 @@
       'valid' : valid,
       'invalid' : invalid
     }">
-      <legend>{{ groupTitle }}</legend>
+      <app-legend
+        *ngIf="labelConfig"
+        [labelConfig]="labelConfig"
+        [cssParent]="'fieldset'">
+      </app-legend>
+      <legend class="label"  *ngIf="!labelConfig">{{groupTitle}}</legend>
       <ng-content></ng-content>
     </fieldset>
   </span>

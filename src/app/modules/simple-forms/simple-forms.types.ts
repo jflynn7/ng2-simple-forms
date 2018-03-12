@@ -4,6 +4,7 @@ export class FormElement {
   inputId: string;
   type: string;
   label: string;
+  subType?: string;
   required?: boolean;
   minLength?: number;
   maxLength?: number;
@@ -14,11 +15,12 @@ export class FormElement {
   optionGroups?: ElementOptionGroup[];
   config?: FormElementConfig;
 
-  constructor(data: { inputId: string, type: string, label: string, required?: boolean, minLength?: number, maxLength?: number,
-                      regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
+  constructor(data: { inputId: string, type: string, label: string, subType?: string, required?: boolean, minLength?: number,
+                      maxLength?: number, regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
                       optionGroups?: ElementOptionGroup[], config?: FormElementConfig}) {
     this.inputId = data.inputId;
     this.type = data.type;
+    this.subType = data.subType;
     this.label = data.label;
     this.required = data.required;
     this.minLength = data.minLength;
@@ -41,8 +43,8 @@ export class FormElement {
     return this;
   }
 
-  getTestId = (type: string, optionValue?: string) => {
-    return optionValue ? `${this.inputId}_${optionValue}_${type}` : `${this.inputId}_${type}`;
+  getTestId = (optionValue?: string) => {
+    return optionValue ? `${this.inputId}_${optionValue}_${this.type}` : `${this.inputId}_${this.type}`;
   }
 
 }
@@ -131,4 +133,15 @@ export interface FormElementConfig {
   ariaLabel?: string;
   ariaDescribedBy?: string;
   requiredMarker?: string;
+  readOnly?: boolean;
+}
+
+export interface LabelConfig {
+  isFocussed?: boolean;
+  inputHasValue?: boolean;
+  requiredMarker?: string;
+  elementData: FormElement;
+  inputIsValid?: boolean;
+  inputIsInvalid?: boolean;
+  testId: string;
 }

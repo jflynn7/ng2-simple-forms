@@ -1,8 +1,6 @@
-<!-- LABEL -->
-<label
+<legend
   [id]="getLabelId()"
-  [attr.data-test-id]="getTestId()"
-  [for]="getInputIdLabel()"
+  [attr.data-test-id]="getTestId('legend')"
   class="{{cssParent}}"
   [ngClass]="
     {
@@ -14,4 +12,4 @@
   {{labelConfig.elementData.label}}
   <!-- REQUIRED MARKER -->
   <span class="required-label" *ngIf="labelConfig.elementData.required">{{labelConfig.requiredMarker}}</span>
-</label>
+</legend>

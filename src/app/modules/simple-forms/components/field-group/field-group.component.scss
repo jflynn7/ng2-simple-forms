@@ -1,5 +1,5 @@
-$valid-green: green;
-$invalid-red: red;
+@import './../form-elements/form-element.base';
+
 
 .field {
   position: relative;
@@ -15,4 +15,11 @@ fieldset {
     border-color: $invalid-red;
     box-shadow: inset 0 2px 4px 0 rgba(227, 78, 80, 0.16);
   }
+}
+
+label {
+  display: block;
+  margin: 0 0 15px 15px;
+  font-weight: 600;
+  color: gray;
 }

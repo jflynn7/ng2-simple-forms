@@ -24,9 +24,19 @@
     ]
   },
   {
+    "inputId" : "password",
+    "label" : "Password",
+    "required": true,
+    "minLength" : "3",
+    "maxLength" : "50",
+    "errorText" : "Please ensure your password is more than 3 characters",
+    "type" : "PASSWORD"
+  },
+  {
     "inputId" : "firstName",
     "label" : "First name",
     "regex" : "^[a-zA-Z\\s\\-]*$",
+    "required": true,
     "minLength" : "3",
     "maxLength" : "50",
     "errorText" : "Please don’t use special characters, only letters and hyphens (for double-barrel names) are valid",
@@ -55,7 +65,7 @@
   {
     "inputId" : "gender",
     "label" : "Gender",
-    "validationRequired" : "REQUIRED",
+    "required": true,
     "type" : "RADIO",
     "options" : [
       {

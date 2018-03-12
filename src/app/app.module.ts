@@ -28,6 +28,8 @@ import { ConfigurationOptionsPageComponent } from './pages/installation/configur
 import { ElementPropertiesPageComponent } from './pages/installation/element-properties-page/element-properties-page.component';
 import { StyleGuidePageComponent } from './pages/theming/style-guide-page/style-guide-page.component';
 import { CsshelpersPageComponent } from './pages/theming/csshelpers-page/csshelpers-page.component';
+import { LinkWithSubComponent } from './components/link/link-with-sub/link-with-sub.component';
+import { ComponentApiPageComponent } from './pages/component-api-page/component-api-page.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { CsshelpersPageComponent } from './pages/theming/csshelpers-page/csshelp
     ConfigurationOptionsPageComponent,
     ElementPropertiesPageComponent,
     StyleGuidePageComponent,
-    CsshelpersPageComponent
+    CsshelpersPageComponent,
+    LinkWithSubComponent,
+    ComponentApiPageComponent
   ],
   imports: [
     BrowserModule,

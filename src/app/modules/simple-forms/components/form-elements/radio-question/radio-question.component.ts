@@ -23,4 +23,13 @@ export class RadioQuestionComponent extends ElementBaseComponent implements OnIn
   isInvalid() {
     return false;
   }
+
+  isTouched() {
+    return this.formGroup.get(this.elementData.inputId).touched;
+  }
+
+  isSelected(value: any) {
+    return value === this.formGroup.controls[this.elementData.inputId].value;
+  }
+
 }

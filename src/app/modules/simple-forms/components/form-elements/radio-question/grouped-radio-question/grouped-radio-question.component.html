@@ -1,25 +1,51 @@
 <app-field-group
   [groupTitle]="elementData.label"
-  [formGroup]="formGroup"
-  [wrapperCssClass]="getWrapperClass()"
   [valid]="isValid()"
-  [invalid]="isInvalid()">
+  [invalid]="!isValid() && isTouched()"
+  [labelConfig]="getLabelConfig()"
+  [formGroup]="formGroup">
+
   <span *ngFor="let optionGroup of elementData.optionGroups">
-    <label class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
-    <span *ngFor="let option of optionGroup.options">
+
+    <!-- Option Group Label -->
+    <label
+      [id]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
+      [attr.aria-label]="optionGroup.groupName"
+      for="{{toInputId(optionGroup.groupName)}}"
+      class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
+
+    <!-- Option Groups -->
+    <span
+      id="{{toInputId(optionGroup.groupName)}}"
+      *ngFor="let option of optionGroup.options"
+
+      [attr.labelledby]="optionGroup.groupName + '_optionGroup_label'">
+
+
+      <!-- Radio Options -->
       <input
         formControlName="{{elementData.inputId}}"
         id="{{elementData.inputId}}_{{option.value}}_id"
-        type="radio"
         name="{{elementData.inputId}}"
         value="{{option.value}}"
-        [attr.selected]="option.value === formGroup.controls[elementData.inputId].value"
-        [attr.data-test-id]="elementData.getTestId('radio', option.value)">
+        type="radio"
+
+
+        [appDefaultAccessibility]="getElementData(option)"
+
+        [attr.aria-invalid]="!valid()"
+        [attr.aria-selected]="isSelected(option.value)"
+        [attr.selected]="isSelected(option.value)">
+
       <label
-        [attr.data-test-id]="elementData.getTestId('label', option.value)"
+        [id]="elementData.inputId + '_' + toInputId(option.display)"
+        [attr.aria-label]="elementData.inputId + '_' + toInputId(option.display) + '_option_label'"
+        [attr.data-test-id]="elementData.getTestId(option.value)"
         for="{{elementData.inputId}}_{{option.value}}_id">{{option.display}}</label><br>
     </span>
   </span>
+
+  <!-- Validation -->
   <app-validation-container
     [valid]="isValid()"
     [invalid]="isInvalid()"
@@ -28,4 +54,5 @@
     [elementData]="elementData"
     [cssClassOverride]="'fieldset-validation'">
   </app-validation-container>
+
 </app-field-group>

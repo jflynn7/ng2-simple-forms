@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ElementOption, FormElement } from '../../../../simple-forms.types';
-import { ElementBaseComponent } from '../../element-base/element-base.component';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -34,6 +33,10 @@ export class GroupedCheckboxQuestionComponent extends CheckboxComponent implemen
       });
     });
     return childForm;
+  }
+
+  isSelected(value: any) {
+    return !!this.checkboxGroup.controls[value].value;
   }
 
 }

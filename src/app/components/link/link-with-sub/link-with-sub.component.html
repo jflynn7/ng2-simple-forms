@@ -1,0 +1,8 @@
+<span class="link">
+  <a class="{{theme}}" (click)="clickLink()">{{label}}</a>
+  <span *ngIf="additionalLabel" class="additional-label">{{additionalLabel}}</span>
+  <span *ngFor="let link of subLinks">
+    <a class="{{theme}} sublink" (click)="clickLink(link)"><span class="arrow">&#x21FE;</span>{{link.label}}</a>
+  </span>
+</span>
+

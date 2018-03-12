@@ -2,8 +2,168 @@
   <div class="row section">
     <h1 class="title">Accessibility Configuration</h1>
     <h2 class="subtitle">ARIA errrrrythingggg.</h2>
+    <p>The tables below outline which ARIA features are currently supported by each component in SimpleForms.</p>
+
+      <div class="row">
+        <div class="col-xs-1">
+          <span class="tick glossary">&#10004;</span>
+        </div>
+        <div class="col-xs-11">
+          Supported by component
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-xs-1">
+          <span class="cross glossary">&times;</span>
+        </div>
+        <div class="col-xs-11">
+          Not supported by component (yet)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+          <span class="na glossary">&mdash;</span>
+        </div>
+        <div class="col-xs-11">
+          Not applicable to component type
+        </div>
+      </div>
+
     <p>
-      <img src="./assets/soon/3.jpg"/>
+      ARIA labels that are consistently supported across all components are applied using a custom <code>@Directive</code> which gets passed
+      the components <code>elementData</code> and <code>formGroup</code> to do its thing. If you dive into the code, you'll see it applied to each
+      component using:
     </p>
+    <pre class="prettyprint"><code>[appDefaultAccessibility]="getElementData()"</code></pre>
+    <p>
+      <code>getElementData()</code> simply returns an object of type: <code>{{'{'}} elementData: FormElement, formGroup: FormGroup {{'}'}}</code>
+    </p>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Accessibility</th>
+        <th class="is-supported title" scope="col">Text</th>
+        <th class="is-supported title" scope="col">Password</th>
+        <th class="is-supported title" scope="col">Date</th>
+        <th class="is-supported title" scope="col">Select</th>
+        <th class="is-supported title" scope="col">Radio</th>
+        <th class="is-supported title" scope="col">Checkbox</th>
+        <th class="is-supported title" scope="col">Range</th>
+        <th class="is-supported title" scope="col">Object</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">aria-label</th>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-labelledby</th>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-required</th>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-selected</th>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-valuemin</th>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-valuemax</th>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-valuenow</th>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-valuetext</th>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="na">&mdash;</span></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-readonly</th>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      <tr>
+        <th scope="row">aria-invalid</th>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"><span class="tick">&#10004;</span></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+        <td class="is-supported"></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
