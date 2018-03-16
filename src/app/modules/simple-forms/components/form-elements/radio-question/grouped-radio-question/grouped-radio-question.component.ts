@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormElement } from '../../../../simple-forms.types';
+import { FormElement, LabelConfig } from '../../../../simple-forms.types';
 import { RadioQuestionComponent } from '../radio-question.component';
 
 @Component({

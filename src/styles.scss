@@ -39,10 +39,6 @@ blockquote {
   border-radius: 0 5px 5px 0;
 }
 
-//code {
-//  color: blueviolet;
-//}
-
 strong {
   color: #111d26;
   font-weight: bold;
@@ -59,6 +55,7 @@ strong {
 .strike {
   text-decoration: line-through;
 }
+
 .section {
   padding: 15px 50px;
   background-color: white;
@@ -224,4 +221,8 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
       background-color: lighten(#2e3c48, 5%);
     }
   }
+}
+
+.customInputCss {
+  background-color: blue;
 }

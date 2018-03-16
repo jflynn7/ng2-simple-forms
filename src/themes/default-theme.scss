@@ -6,122 +6,48 @@ $question-blue: #4683ff;
 $inset-shadow: inset 0 2px 4px 0 rgba(78, 78, 78, 0.08);
 $field-border: 1px solid #dfdfdf;
 
-// Add theme name as overall wrapper class in form config
-.default-theme {
-
-  h2 {
-    color: darkblue;
-  }
-
-  // All elements are wrapped in .field for specificity
-  .field {
-    margin-bottom: 15px;
-    display: block;
-
-    select {
-      border: $field-border;
-      margin-top: 3px;
-      display: block;
-      height: 32px;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    input, select, textarea {
-      background-color: white;
-      border: $field-border;
-      border-radius: 5px;
-      text-indent:  10px;
-      padding: 5px;
-      margin-bottom: 0;
-      box-shadow: $inset-shadow;
-
-      &.valid {
-        border-color: $valid-green;
-        box-shadow: inset 0 2px 4px 0 rgba(81, 182, 99, 0.16);
-      }
-
-      &.invalid {
-        border-color: $invalid-red;
-        box-shadow: inset 0 2px 4px 0 rgba(227, 78, 80, 0.16);
-      }
-
-    }
-
-    input[type='range'] {
-      box-shadow: none;
-    }
-
-    label {
-
-      &.has-value {
-
-      }
-
-      &.input-focussed {
-
-      }
-    }
-
-    .icon-wrapper {
-      .icon {
-        margin-right: 10px;
-      }
-    }
-
-    .validation-icon {
-      position: absolute;
-      right: 8px;
-      top: 17px;
-      font-size: 16px;
-
-      &.valid {
-        color: $valid-green;
-      }
-
-      &.invalid {
-        color: $invalid-red;
-      }
-
-      &.question {
-        color: $question-blue;
-      }
-    }
-
-    .input-fieldset {
-      padding: 45px 0 0;
-      margin: 0 -15px;
-      border: 0;
-      box-shadow: none;
-
-      legend {
-          padding-left: 15px;
-          padding-top: 10px;
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-
-    }
-
-    fieldset {
-      border: 1px solid #dfdfdf;
-      border-radius: 5px;
-      margin: 10px 0;
-      position: relative;
-      padding: 15px 15px 10px;
-      box-shadow: $inset-shadow;
-
-      input[type="checkbox"], input[type="radio"] {
-        margin-right: 15px;
-      }
-    }
-
-  }
-}
-
 .required-label {
   color: darken($invalid-red, 10%);
   margin-left: -2px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.help-message {
+  text-decoration: dotted underline;
+  display: block;
+  height: 0;
+  overflow: hidden;
+
+  &.has-focus {
+    height: auto;
+  }
+
+  &:hover {
+    cursor: help;
+  }
+}
+
+.error-message {
+  text-decoration: dotted underline $invalid-red;
+  color: $invalid-red;
+  display: block;
+  height: 0;
+  overflow: hidden;
+
+  &.has-error {
+    height: auto;
+  }
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+fieldset {
+  label {
+    margin-left: 15px;
+  }
 }

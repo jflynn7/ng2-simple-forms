@@ -6,7 +6,10 @@ import { DropdownQuestionComponent } from '../dropdown-question.component';
 @Component({
   selector: 'app-ungrouped-dropdown-question',
   templateUrl: './ungrouped-dropdown-question.component.html',
-  styleUrls: ['./../dropdown-question.component.scss', './ungrouped-dropdown-question.component.scss']
+  styleUrls: [
+    './../../form-element.base.scss',
+    './../dropdown-question.component.scss',
+    './ungrouped-dropdown-question.component.scss']
 })
 export class UngroupedDropdownQuestionComponent extends DropdownQuestionComponent implements OnInit {
 

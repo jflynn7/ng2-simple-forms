@@ -1,7 +1,1 @@
-<span class="validation-container {{cssClassOverride}}">
-    <app-success-icon *ngIf="valid"></app-success-icon>
-    <app-error-icon *ngIf="invalid"></app-error-icon>
-    <app-help-icon *ngIf="showHelp" (click)="toggleHelp()"></app-help-icon>
-</span>
-<app-help-text *ngIf="helpVisible" [elementData]="elementData"></app-help-text>
 <app-error-message *ngIf="showError" [message]="elementData.errorText"></app-error-message>

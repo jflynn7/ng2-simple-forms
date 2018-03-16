@@ -5,14 +5,9 @@
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
 
+  <!-- INPUT -->
   <input
-    [attr.aria-valuenow]="formGroup.get(elementData.inputId).value"
-    [attr.aria-valuemin]="elementData.minLength"
-    [attr.aria-valuemax]="elementData.maxLength"
-    [attr.aria-valuetext]="toValueText(formGroup.get(elementData.inputId).value)"
-    [attr.aria-labelledby]="elementData.inputId + '_label'"
-    [attr.role]="'slider'"
-
+    [appDefaultAccessibility]="getElementData()"
     id="{{elementData.inputId}}"
     formControlName="{{elementData.inputId}}"
     type="range"
@@ -22,20 +17,16 @@
 
     min="{{elementData.minLength}}"
     max="{{elementData.maxLength}}"
-
+    [attr.aria-labelledby]="elementData.inputId + '_label'"
 
     [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'/>
 
+  <!-- RANGE VALUE DISPLAY -->
   <span class="range-value">{{formGroup.get(elementData.inputId).value || 0}}</span>
-  <app-validation-container
-    [valid]="valid()"
-    [invalid]="invalid()"
-    [showError]="showError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData"
-    [cssClassOverride]="'range-validation'">
-  </app-validation-container>
+
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 </app-field-group>

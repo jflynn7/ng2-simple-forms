@@ -1,6 +1,7 @@
-<legend
+<!-- LABEL -->
+<label
   [appLabelAccessibility]="labelConfig"
-  class="{{cssParent}}"
+  class="{{cssParent || 'groupLabel'}}"
   [ngClass]="
     {
       'input-focussed' : labelConfig.inputFocussed,
@@ -8,7 +9,5 @@
       'valid' : labelConfig.inputIsValid,
       'invalid' : labelConfig.inputIsInvalid
     }">
-  {{labelConfig.elementData.label}}
-  <!-- REQUIRED MARKER -->
-  <span class="required-label" *ngIf="labelConfig.elementData.required">{{labelConfig.requiredMarker}}</span>
-</legend>
+  {{groupName}}
+</label>

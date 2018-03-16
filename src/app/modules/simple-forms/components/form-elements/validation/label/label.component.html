@@ -1,8 +1,6 @@
 <!-- LABEL -->
 <label
-  [id]="getLabelId()"
-  [attr.data-test-id]="getTestId()"
-  [for]="getInputIdLabel()"
+  [appLabelAccessibility]="labelConfig"
   class="{{cssParent}}"
   [ngClass]="
     {

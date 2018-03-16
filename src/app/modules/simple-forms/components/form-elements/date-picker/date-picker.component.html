@@ -1,7 +1,11 @@
-<div class="field {{ getWrapperClass() }}" [formGroup]="formGroup">
+<div class="field form-group {{ getWrapperClass() }}" [formGroup]="formGroup">
+
+  <!-- INPUT LABEL -->
   <app-label
     [labelConfig]="getLabelConfig()">
   </app-label>
+
+  <!-- INPUT FIELD -->
   <input
     [appDefaultAccessibility]="getElementData()"
     [attr.aria-invalid]="!valid()"
@@ -13,17 +17,14 @@
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
 
+    class="form-control"
+
     [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'/>
 
-  <app-validation-container
-    [valid]="valid()"
-    [invalid]="invalid()"
-    [showError]="showError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData">
-  </app-validation-container>
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 
 </div>

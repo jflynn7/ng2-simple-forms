@@ -5,54 +5,38 @@
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
 
+  <!-- OPTION GROUPS -->
   <span *ngFor="let optionGroup of elementData.optionGroups">
 
-    <!-- Option Group Label -->
-    <label
-      [id]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
-      [attr.aria-label]="optionGroup.groupName"
+    <!-- OPTION GROUP LABEL -->
+    <app-group-label
+      [labelConfig]="getLabelConfig()"
+      [groupName]="optionGroup.groupName"
+      [cssParent]="getGroupLabelClass()">
+    </app-group-label>
 
-      class="{{getGroupLabelClass() || 'groupLabel'}}">{{optionGroup.groupName}}</label>
+    <!-- OPTIONS -->
+    <span *ngFor="let option of optionGroup.options" [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
 
-    <!-- Option Groups -->
-    <span
+      <!-- OPTION INPUT -->
+      <input id="{{elementData.inputId}}_{{option.value}}_id" name="{{elementData.inputId}}" value="{{option.value}}" type="radio"
 
-      *ngFor="let option of optionGroup.options"
+             formControlName="{{elementData.inputId}}"
+             (click)="activateValidationListener()"
+             [appDefaultAccessibility]="getElementData(option)"
+             [attr.aria-invalid]="!valid()">
 
-      [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
-
-
-      <!-- Radio Options -->
-      <input
-        formControlName="{{elementData.inputId}}"
-        id="{{elementData.inputId}}_{{option.value}}_id"
-        name="{{elementData.inputId}}"
-        value="{{option.value}}"
-        type="radio"
-
-
-        [appDefaultAccessibility]="getElementData(option)"
-
-        [attr.aria-invalid]="!valid()"
-        [attr.aria-checked]="isSelected(option.value)"
-        [attr.checked]="isSelected(option.value)">
-
+      <!-- OPTION LABEL -->
       <label
         [id]="elementData.inputId + '_' + toInputId(option.display)"
         [attr.aria-label]="elementData.inputId + '_' + toInputId(option.display) + '_option_label'"
         [attr.data-test-id]="elementData.getTestId(option.value)"
         for="{{elementData.inputId}}_{{option.value}}_id">{{option.display}}</label><br>
+
     </span>
   </span>
 
-  <!-- Validation -->
-  <app-validation-container
-    [valid]="isValid()"
-    [invalid]="isInvalid()"
-    [showError]="showError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData"
-    [cssClassOverride]="'fieldset-validation'">
-  </app-validation-container>
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 
 </app-field-group>

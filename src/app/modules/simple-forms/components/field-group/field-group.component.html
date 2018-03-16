@@ -1,5 +1,5 @@
 <span class="{{wrapperCssClass}}">
-  <span class="field">
+  <span class="form-group field">
     <fieldset [ngClass]="{
       'valid' : valid,
       'invalid' : invalid
@@ -9,8 +9,11 @@
         [labelConfig]="labelConfig"
         [cssParent]="'fieldset'">
       </app-legend>
+
       <legend class="label"  *ngIf="!labelConfig">{{groupTitle}}</legend>
+
       <ng-content></ng-content>
+
     </fieldset>
   </span>
 </span>

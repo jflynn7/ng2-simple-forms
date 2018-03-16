@@ -1,6 +1,10 @@
 <!-- WITH NO OPTION GROUPS -->
-<span [formGroup]="formGroup" class="field {{getWrapperClass()}}">
+<span [formGroup]="formGroup" class="field form-group {{getWrapperClass()}}">
+
+  <!-- INPUT LABEL -->
   <app-label [labelConfig]="getLabelConfig()"></app-label>
+
+    <!-- INPUT FIELD -->
     <select
 
       [appDefaultAccessibility]="getElementData()"
@@ -11,25 +15,21 @@
       id="{{elementData.inputId}}"
       name="{{elementData.inputId}}"
 
+      (click)="activateValidationListener()"
+
+      class="form-control"
+
       [ngClass]='{
       valid: valid(),
       invalid: invalid()
     }'>
 
-      <option
-        *ngFor="let option of elementData.options"
-        value="{{option.value}}"
-        [attr.aria-selected]="isSelected(option)">{{option.display}}</option>
+      <!-- OPTIONS -->
+      <option *ngFor="let option of elementData.options" value="{{option.value}}">{{option.display}}</option>
 
     </select>
 
-  <app-validation-container
-    [valid]="valid()"
-    [invalid]="invalid()"
-    [showError]="showError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData"
-    [cssClassOverride]="'select-validation'">
-  </app-validation-container>
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 
 </span>

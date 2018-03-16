@@ -5,21 +5,19 @@
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
   <div role="radiogroup">
+
+    <!-- OPTIONS -->
     <span *ngFor="let option of elementData.options">
-      <input
+
+      <!-- OPTION INPUT -->
+      <input id="{{elementData.inputId}}_{{option.value}}_id" name="{{elementData.inputId}}" value="{{option.value}}" type="radio"
 
         formControlName="{{elementData.inputId}}"
-        id="{{elementData.inputId}}_{{option.value}}_id"
-        name="{{elementData.inputId}}"
-        value="{{option.value}}"
-
-        type="radio"
-
+        (click)="activateValidationListener()"
         [appDefaultAccessibility]="getElementData(option)"
+        [attr.aria-invalid]="!valid()">
 
-        [attr.aria-invalid]="!valid()"
-        [attr.aria-checked]="isSelected(option.value)">
-
+      <!-- OPTION LABEL -->
       <label
         [attr.aria-label]="option.display"
         [attr.data-test-id]="elementData.getTestId(option.value + '_label')"
@@ -28,13 +26,7 @@
     </span>
   </div>
 
-  <app-validation-container
-    [valid]="isValid()"
-    [invalid]="isInvalid()"
-    [showError]="showError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData"
-    [cssClassOverride]="'fieldset-validation'">
-  </app-validation-container>
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 
 </app-field-group>

@@ -6,13 +6,12 @@
   [formGroup]="formGroup">
   <span *ngFor="let optionGroup of elementData.optionGroups" id="{{toInputId(optionGroup.groupName)}}_checkbox_optionGroup">
 
-    <!-- Group Label -->
-    <label
-      [attr.aria-label]="toInputId(optionGroup.groupName) + '_optionGroup_label'"
-      for="{{toInputId(optionGroup.groupName)}}_checkbox_optionGroup"
-      class="{{getGroupLabelClass() || 'groupLabel'}}">
-      {{optionGroup.groupName}}
-    </label>
+    <!-- Option Group Label -->
+    <app-group-label
+      [labelConfig]="getLabelConfig()"
+      [groupName]="optionGroup.groupName"
+      [cssParent]="getGroupLabelClass()">
+    </app-group-label>
 
     <!-- Option Groups -->
     <span
@@ -21,18 +20,12 @@
       [attr.labelledby]="toInputId(optionGroup.groupName) + '_optionGroup_label'">
 
       <!-- Checkbox -->
-      <input
-         formControlName="{{option.value}}"
-         id="{{option.value + '_id'}}"
-         type="checkbox"
-         name="{{elementData.inputId}}"
-         value="{{option.value}}"
+      <input id="{{option.value + '_id'}}" type="checkbox" name="{{elementData.inputId}}" value="{{option.value}}"
 
-         [appDefaultAccessibility]="getElementData(option)"
-
-         [attr.aria-invalid]="!valid()"
-         [attr.aria-checked]="isSelected(option.value)"
-         [attr.checked]="isSelected(option.value)">
+             formControlName="{{option.value}}"
+             (click)="activateValidationListener()"
+             [appDefaultAccessibility]="getElementData(option)"
+             [attr.aria-invalid]="!valid()">
 
       <!-- Checkbox Label -->
       <label
@@ -44,14 +37,7 @@
 
   </span>
 
-  <!-- Validation Container -->
-  <app-validation-container
-    [valid]="isValid()"
-    [invalid]="!isValid() && isTouched()"
-    [showError]="showCheckboxError()"
-    [showHelp]="showHelp()"
-    [elementData]="elementData"
-    [cssClassOverride]="'fieldset-validation'">
-  </app-validation-container>
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
 
 </app-field-group>

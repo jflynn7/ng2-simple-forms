@@ -14,10 +14,11 @@ export class FormElement {
   options?: ElementOption[];
   optionGroups?: ElementOptionGroup[];
   config?: FormElementConfig;
+  accessibilityConfig?: FormElementAccessibilityConfig;
 
   constructor(data: { inputId: string, type: string, label: string, subType?: string, required?: boolean, minLength?: number,
                       maxLength?: number, regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
-                      optionGroups?: ElementOptionGroup[], config?: FormElementConfig}) {
+                      optionGroups?: ElementOptionGroup[], config?: FormElementConfig, accessibilityConfig?: FormElementAccessibilityConfig}) {
     this.inputId = data.inputId;
     this.type = data.type;
     this.subType = data.subType;
@@ -31,6 +32,7 @@ export class FormElement {
     this.options = data.options;
     this.optionGroups = data.optionGroups;
     this.config = data.config || {};
+    this.accessibilityConfig = data.accessibilityConfig || {};
   }
 
   setConfig = (property: string, value: any) => {
@@ -130,16 +132,34 @@ export interface FormElementOptions {
 export interface FormElementConfig {
   wrapperCssClass?: string;
   groupLabelCssClass?: string;
+  inputCss?: string;
   ariaLabel?: string;
   ariaDescribedBy?: string;
   requiredMarker?: string;
   readOnly?: boolean;
 }
 
+export interface FormElementAccessibilityConfig {
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  ariaLabelledBy?: string;
+  ariaReadOnly?: boolean;
+}
+
+export interface FormElementStyleConfig {
+  wrappedCssClass?: string;
+  groupLabelCssClass?: string;
+  elementLabelCssClass?: string;
+  elementInputCssClass?: string;
+  fieldsetCssClass?: string;
+  legendCssClass?: string;
+}
+
 export interface LabelConfig {
   inputFocussed?: boolean;
   inputHasValue?: boolean;
   requiredMarker?: string;
+  modifier?: string;
   elementData: FormElement;
   inputIsValid?: boolean;
   inputIsInvalid?: boolean;

@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
 import { ComponentValue, FormElement, LabelConfig } from '../../../simple-forms.types';
+import { AccessibilityUtils } from '../../../accessibility-utils';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-element-base',
@@ -15,7 +17,6 @@ export class ElementBaseComponent implements OnInit {
   @Input() elementData: FormElement;
   @Output() changeEmitter: EventEmitter<ComponentValue> = new EventEmitter<ComponentValue>();
 
-  helpVisible = false;
   isFocussed = false;
 
   labelConfig: LabelConfig;
@@ -44,14 +45,15 @@ export class ElementBaseComponent implements OnInit {
     };
   }
 
-  getLabelConfig() {
-    return {
+  getLabelConfig(): LabelConfig {
+    return <LabelConfig> {
       isFocussed: this.isFocussed,
       elementData: this.elementData,
       inputHasValue: this.hasValue(),
       requiredMarker: this.getRequiredMarker(),
       inputIsInvalid: this.invalid(),
-      inputIsValid: this.valid()
+      inputIsValid: this.valid(),
+      testId: this.getTestId()
     };
   }
 
@@ -65,26 +67,12 @@ export class ElementBaseComponent implements OnInit {
       return SimpleFormBuilder.toFormGroup([this.elementData]);
   }
 
+  hasFocus(): boolean {
+    return this.isFocussed;
+  }
+
   hasConfig(): boolean {
     return !!(this.elementData && this.elementData.config);
-  }
-
-  getAriaLabel(): string {
-    return this.elementData.config.ariaLabel || this.getDefaultAria('label');
-  }
-
-  getLabelledBy(): string {
-    return `${this.elementData.inputId}_label`;
-  }
-
-  getRequired(): boolean {
-    return !!this.elementData.required;
-  }
-
-  getReadOnly() {
-    if (this.hasConfig()) {
-      return this.elementData.config.readOnly;
-    }
   }
 
   getTestId() {
@@ -97,10 +85,24 @@ export class ElementBaseComponent implements OnInit {
     }
   }
 
+  getInputClass() {
+    if (this.hasConfig()) {
+      return this.elementData.config.inputCss;
+    }
+  }
+
   getGroupLabelClass() {
     if (this.hasConfig()) {
       return this.elementData.config.groupLabelCssClass;
     }
+  }
+
+  getHelpTextId() {
+    return AccessibilityUtils.getHelpTextId(this.elementData);
+  }
+
+  getErrorMessageId() {
+    return AccessibilityUtils.getErrorMessageId(this.elementData);
   }
 
   getRequiredMarker() {
@@ -109,16 +111,22 @@ export class ElementBaseComponent implements OnInit {
     }
   }
 
-  getDefaultAria(type: string) {
-    switch (type) {
-      case 'label' : return this.elementData.label;
-    }
-  }
-
   toggleFocus(hasFocus: boolean) {
     this.isFocussed = hasFocus;
+    this.activateValidationListener();
   }
 
+  activateValidationListener() {
+    this.getElement().valueChanges.subscribe((value: any) => {
+      if (value && !this.touched()) {
+        this.formGroup.get(this.elementData.inputId).markAsTouched();
+      }
+    });
+  }
+
+  getElement() {
+    return this.formGroup.get(this.elementData.inputId);
+  }
   toInputId(str: string) {
     const words = str.split(' ');
     const mutated: string[] = words.map(function(word, index) {
