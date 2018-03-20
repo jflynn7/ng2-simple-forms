@@ -71,8 +71,8 @@ surname = builder.createElement('text', 'Surname', options: {{'{'}} required: tr
 
     <p>Now, let's add our error text to the fields that are required.</p>
 
-    <pre class="prettyprint"><code>this.firstName.setProperty('errorText', 'First name is a required field and must be 3 characters minimum');
-this.surname.setProperty('errorText', 'Surname is a required field and must be 3 characters minimum');</code></pre>
+    <pre class="prettyprint"><code>this.firstName.setProperty(Properties.ErrorText(), 'First name is a required field and must be 3 characters minimum');
+this.surname.setProperty(Properties.ErrorText(), 'Surname is a required field and must be 3 characters minimum');</code></pre>
     <p>
       Now, to create a formgroup for our elements, we can simply call the builders <code>toFormGroup()</code> method, which will create
       the formgroup, formcontrols and validators automagically for us!

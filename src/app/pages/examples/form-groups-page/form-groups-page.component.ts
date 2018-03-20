@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormGroup } from '@angular/forms';
-import { FormElement } from '../../../modules/simple-forms/simple-forms.types';
+import { FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
 
 declare var PR: any;
 
@@ -40,8 +40,8 @@ export class FormGroupsPageComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-    this.firstName.setProperty('errorText', 'First name is a required field and must be 3 characters minimum');
-    this.surname.setProperty('errorText', 'Surname is a required field and must be 3 characters minimum');
+    this.firstName.setProperty(Properties.ErrorText(), 'First name is a required field and must be 3 characters minimum');
+    this.surname.setProperty(Properties.ErrorText(), 'Surname is a required field and must be 3 characters minimum');
   }
 
   ngAfterViewInit() {
