@@ -64,7 +64,7 @@ export class FormComponent implements OnInit {
   clear() {
     this.form.formGroup.reset();
   }
-  
+
   isValid() {
     return this.form.formGroup.valid;
   }

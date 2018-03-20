@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormComponent } from '../../../modules/simple-forms/components/form/form.component';
-import { FormDetails, FormElement } from '../../../modules/simple-forms/simple-forms.types';
+import { Accessibility, FormDetails, FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -26,13 +26,13 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
     '\n' +
     '    /// With inline configuration (see Configuration for more info)\n' +
     '    builder.createElement(\'text\', \'Simple Three\')\n' +
-    '      .setConfig( \'ariaLabel\', \'Simple Three Aria Label\'),\n' +
+    '      .setAccessibility(Accessibility.AriaLabel(), \'Simple Three Aria Label Set By Config\'),,\n' +
     '\n' +
     '    /// With inline property value (see Setting Properties for more info)\n' +
     '    builder.createElement(\'text\', \'Simple Four\')\n' +
-    '      .setProperty(\'helpText\', \'Here is some helptext!\')\n' +
-    '      .setProperty(\'required\', true) ' +
-    '\n    /// ....etc\n' +
+    '      .setProperty(Properties.HelpText(), \'Here is some helptext!\')\n' +
+    '      .setProperty(Properties.Required(), true),' +
+    '\n  /// ....etc\n' +
     '];';
 
   createUnwrappedFormCode = 'this.myForm = builder.toFormDetails(this.myFormElements);';
@@ -51,12 +51,12 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
 
     /// With inline configuration (see Configuration for more info)
     builder.createElement('text', 'Simple Three')
-      .setAccessibility( 'ariaLabel', 'Simple Three Aria Label Set By Config'),
+      .setAccessibility(Accessibility.AriaLabel(), 'Simple Three Aria Label Set By Config'),
 
     /// With inline property value (see Setting Properties for more info)
     builder.createElement('text', 'Simple Four')
-      .setProperty('helpText', 'Here is some helptext!')
-      .setProperty('required', true),
+      .setProperty(Properties.HelpText(), 'Here is some helptext!')
+      .setProperty(Properties.Required(), true),
 
     /// Some extras for grouped elements example
     builder.createElement('password', 'Simple Five'),
@@ -65,12 +65,12 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
 
     // Add inline validation
     builder.createElement('text', 'Simple Eight')
-      .setProperty('required', true)
-      .setProperty('minLength', 8),
+      .setProperty(Properties.Required(), true)
+      .setProperty(Properties.MinLength(), 8),
 
     // Create checkbox group and add options.
     builder.createElement('checkbox', 'Simple Checkbox Group')
-      .setProperty('options', [
+      .setProperty(Properties.Options(), [
         {
           value: 'test1',
           display: 'Test Checkbox One'
@@ -87,7 +87,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
 
     // Create radio group and add options.
     builder.createElement('radio', 'Simple Radio Group')
-      .setProperty('options', [
+      .setProperty(Properties.Options(), [
         {
           value: 'test1',
           display: 'Test Radio One'
@@ -182,7 +182,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
   ngOnInit() {
     this.myForm = builder.toFormDetails(this.myFormElements);
     /// Set config on existing element
-    this.myForm.get('simpleOne').setAccessibility('ariaLabel', 'Simple One Aria Label Set By Config');
+    this.myForm.get('simpleOne').setAccessibility(Accessibility.AriaLabel(), 'Simple One Aria Label Set By Config');
 
   }
 

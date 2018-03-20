@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { HttpClient } from '@angular/common/http';
-import { FormDetails, Styles } from '../../../modules/simple-forms/simple-forms.types';
+import { Accessibility, FormDetails, Properties, Styles } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -218,6 +218,8 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
       this.jsonForm = builder.fromJson(value)
+                      // Set custom Accessibility for 'firstName' field
+                      .setAccessibility('firstName', Accessibility.AriaLabel(), 'My Custom Aria Label')
 
                       // Set custom styles for 'placesOfInterestUngrouped' field
                       .setStyle('placesOfInterestUngrouped', Styles.ElementWrapper(), 'customElementWrapperCss')

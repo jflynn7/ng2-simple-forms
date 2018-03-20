@@ -89,7 +89,7 @@ export class ElementBaseComponent implements OnInit {
       requiredMarker: this.getRequiredMarker(),
       inputIsInvalid: this.invalid(),
       inputIsValid: this.valid(),
-      testId: this.getTestId()
+      testId: this.elementData.getTestId()
     };
   }
 
@@ -118,12 +118,11 @@ export class ElementBaseComponent implements OnInit {
     return this.isFocussed;
   }
 
+  /**
+   * Check if element has config options
+   */
   hasConfig(): boolean {
     return !!(this.elementData && this.elementData.config);
-  }
-
-  getTestId() {
-    return this.elementData.getTestId();
   }
 
   /**

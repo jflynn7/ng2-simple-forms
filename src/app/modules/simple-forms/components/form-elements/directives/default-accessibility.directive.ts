@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
-import { FormElement, FormElementAccessibilityConfig } from '../../../simple-forms.types';
+import { Accessibility, FormElement, FormElementAccessibilityConfig } from '../../../simple-forms.types';
 import { FormGroup } from '@angular/forms';
 import { AccessibilityUtils } from '../../../accessibility-utils';
 
@@ -138,11 +138,13 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
 
   /// GETTERS
   getAriaLabel(): string {
-    return this.accessibilityConfig.ariaLabel || this.getDefaultAria('label', this.appDefaultAccessibility.option);
+    return this.elementData.getAccessibility(Accessibility.AriaLabel()) ||
+      this.getDefaultAria('label', this.appDefaultAccessibility.option);
   }
 
   getLabelledBy(): string {
-    return this.accessibilityConfig.ariaLabelledBy || `${this.appDefaultAccessibility.elementData.inputId}_label`;
+    return this.elementData.getAccessibility(Accessibility.AriaLabelledBy()) ||
+      `${this.appDefaultAccessibility.elementData.inputId}_label`;
   }
 
   getRequired(): string {

@@ -184,7 +184,7 @@ export interface FormElementOptions {
 export class Properties {
   static InputId(): string { return 'inputId'; }
   static Required(): string { return 'required'; }
-  static MinLenght(): string { return 'minLength'; }
+  static MinLength(): string { return 'minLength'; }
   static MaxLength(): string { return 'maxLength'; }
   static Regex(): string { return 'regex'; }
   static HelpText(): string { return 'helpText'; }
