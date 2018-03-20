@@ -1,5 +1,5 @@
 <!-- WITH NO OPTION GROUPS -->
-<span [formGroup]="formGroup" class="field form-group {{getWrapperClass()}}">
+<span [formGroup]="formGroup" class="field form-group {{elementWrapperClass}}">
 
   <!-- INPUT LABEL -->
   <app-label [labelConfig]="getLabelConfig()"></app-label>
@@ -17,7 +17,7 @@
 
       (click)="activateValidationListener()"
 
-      class="form-control"
+      class="form-control {{elementInputClass}}"
 
       [ngClass]='{
       valid: valid(),

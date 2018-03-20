@@ -23,6 +23,7 @@ export class GroupedCheckboxQuestionComponent extends CheckboxComponent implemen
     this.checkboxGroup.valueChanges.subscribe(value => {
       this.updateParentFormGroup(value);
     });
+    this.setElementStyles();
   }
 
   getOptions() {

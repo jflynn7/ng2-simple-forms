@@ -1,19 +1,17 @@
-<span class="{{wrapperCssClass}}">
-  <span class="form-group field">
-    <fieldset [ngClass]="{
-      'valid' : valid,
-      'invalid' : invalid
-    }">
-      <app-legend
-        *ngIf="labelConfig"
-        [labelConfig]="labelConfig"
-        [cssParent]="'fieldset'">
-      </app-legend>
+<span class="form-group field {{wrapperCssClass}}">
+  <fieldset class="{{fieldsetCssClass}}" [ngClass]="{
+    'valid' : valid,
+    'invalid' : invalid
+  }">
+    <app-legend
+      *ngIf="labelConfig"
+      [labelConfig]="labelConfig"
+      [cssParent]="'fieldset'">
+    </app-legend>
 
-      <legend class="label"  *ngIf="!labelConfig">{{groupTitle}}</legend>
+    <legend class="label"  *ngIf="!labelConfig">{{groupTitle}}</legend>
 
-      <ng-content></ng-content>
+    <ng-content></ng-content>
 
-    </fieldset>
-  </span>
+  </fieldset>
 </span>

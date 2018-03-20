@@ -13,7 +13,7 @@ export class DatePickerComponent extends ElementBaseComponent implements OnInit 
   }
 
   ngOnInit() {
-    this.getFormGroup();
+    this.initElement();
   }
 
 }

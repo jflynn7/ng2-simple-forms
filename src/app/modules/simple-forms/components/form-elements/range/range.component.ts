@@ -13,6 +13,7 @@ export class RangeComponent extends ElementBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initElement();
     this.formGroup.get(this.elementData.inputId).setValue(0);
   }
 

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
-import { ComponentValue, FormElement, LabelConfig } from '../../../simple-forms.types';
+import { Accessibility, ComponentValue, FormElement, FormElementStyleConfig, LabelConfig, Styles } from '../../../simple-forms.types';
 import { AccessibilityUtils } from '../../../accessibility-utils';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
@@ -19,7 +19,17 @@ export class ElementBaseComponent implements OnInit {
 
   isFocussed = false;
 
+  // Label config
   labelConfig: LabelConfig;
+
+  // Local Element Styles
+  elementWrapperClass: string;
+  elementGroupLabelClass: string;
+  elementLabelClass: string;
+  elementInputClass: string;
+  elementFieldsetClass: string;
+  elementLegendClass: string;
+  elementOptionLabelClass: string;
 
   constructor() {
   }
@@ -27,6 +37,25 @@ export class ElementBaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  initElement() {
+    this.getFormGroup();
+    this.setElementStyles();
+  }
+
+  setElementStyles() {
+    this.elementWrapperClass = this.elementData.getStyle(Styles.ElementWrapper());
+    this.elementGroupLabelClass = this.elementData.getStyle(Styles.GroupLabel());
+    this.elementLabelClass = this.elementData.getStyle(Styles.ElementLabel());
+    this.elementInputClass = this.elementData.getStyle(Styles.ElementInput());
+    this.elementFieldsetClass = this.elementData.getStyle(Styles.Fieldset());
+    this.elementLegendClass = this.elementData.getStyle(Styles.Legend());
+    this.elementOptionLabelClass = this.elementData.getStyle(Styles.OptionLabel());
+  }
+
+  /**
+   * Emit a ComponentValue when this element value changes
+   * (Used when an element is rendered as single element without a FormGroup)
+   */
   emit() {
     this.formGroup.valueChanges.subscribe(value => {
       this.changeEmitter.emit(new ComponentValue({
@@ -37,6 +66,10 @@ export class ElementBaseComponent implements OnInit {
     });
   }
 
+  /**
+   * Get the relevent data about this element
+   * (Used for accessibility directive)
+   */
   getElementData(option?: { display: string, value: any }) {
     return {
       elementData: this.elementData,
@@ -45,6 +78,9 @@ export class ElementBaseComponent implements OnInit {
     };
   }
 
+  /**
+   * Get this elements LabelConfig as an object to pass to LabelComponent
+   */
   getLabelConfig(): LabelConfig {
     return <LabelConfig> {
       isFocussed: this.isFocussed,
@@ -57,16 +93,27 @@ export class ElementBaseComponent implements OnInit {
     };
   }
 
+  /**
+   * Get the default FormGroup for this element
+   * (If part of a form, use forms Formgroup, else, create a FormGroup for JUST this element)
+   */
   getFormGroup() {
     this.formGroup = this.formGroup ? this.formGroup : this.toOwnFormgroup();
     this.elementData.setProperty('formGroup', this.formGroup);
     this.emit();
   }
 
+  /**
+   * Create a single element FormGroup from this element
+   */
   toOwnFormgroup() {
       return SimpleFormBuilder.toFormGroup([this.elementData]);
   }
 
+  /**
+   * Has the current element got focus?
+   * (Used to apply 'has-focus' class to surrounding DOM elements (label, etc)
+   */
   hasFocus(): boolean {
     return this.isFocussed;
   }
@@ -79,43 +126,28 @@ export class ElementBaseComponent implements OnInit {
     return this.elementData.getTestId();
   }
 
-  getWrapperClass() {
-    if (this.hasConfig()) {
-      return this.elementData.config.wrapperCssClass;
-    }
-  }
-
-  getInputClass() {
-    if (this.hasConfig()) {
-      return this.elementData.config.inputCss;
-    }
-  }
-
-  getGroupLabelClass() {
-    if (this.hasConfig()) {
-      return this.elementData.config.groupLabelCssClass;
-    }
-  }
-
-  getHelpTextId() {
-    return AccessibilityUtils.getHelpTextId(this.elementData);
-  }
-
-  getErrorMessageId() {
-    return AccessibilityUtils.getErrorMessageId(this.elementData);
-  }
-
+  /**
+   * Get a custom marker for required fields. If none supplied
+   * in config, return *
+   */
   getRequiredMarker() {
     if (this.hasConfig()) {
       return this.elementData.config.requiredMarker || '*';
     }
   }
 
+  /**
+   * Toggle focus of element input, and activate validation listener
+   */
   toggleFocus(hasFocus: boolean) {
     this.isFocussed = hasFocus;
     this.activateValidationListener();
   }
 
+  /**
+   * Subscribe to the elements value changes to activate validation
+   * on change, rather than on lose focus
+   */
   activateValidationListener() {
     this.getElement().valueChanges.subscribe((value: any) => {
       if (value && !this.touched()) {
@@ -124,9 +156,17 @@ export class ElementBaseComponent implements OnInit {
     });
   }
 
-  getElement() {
-    return this.formGroup.get(this.elementData.inputId);
+  /**
+   * Simple accessor for getting the FormControl by inputId
+   */
+  getElement(): FormControl {
+    return <FormControl> this.formGroup.get(this.elementData.inputId);
   }
+
+  /**
+   * Convert string to camelCase inputId
+   * @TODO - Remove from here and move to utils
+   */
   toInputId(str: string) {
     const words = str.split(' ');
     const mutated: string[] = words.map(function(word, index) {
@@ -153,20 +193,12 @@ export class ElementBaseComponent implements OnInit {
     return this.formGroup.controls[this.elementData.inputId].touched;
   }
 
-  showHelp() {
-    return this.elementData.helpText && !this.valid() && !this.invalid();
-  }
-
   hasValue() {
     if (this.formGroup && this.elementData) {
       return !!this.formGroup.get(this.elementData.inputId).value;
     }
 
     return false;
-  }
-
-  showError() {
-    return this.elementData.errorText && this.invalid();
   }
 
 }

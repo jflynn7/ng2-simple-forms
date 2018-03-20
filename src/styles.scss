@@ -112,11 +112,6 @@ h2 {
   }
 }
 
-
-/// THEMES
-@import './themes';
-
-
 /// CODE BLOCK STYLES
 pre, pre.prettyprint {
   padding: 15px;
@@ -223,6 +218,35 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   }
 }
 
-.customInputCss {
-  background-color: blue;
+// Theming example
+.form-group {
+
+  &.customElementWrapperCss {
+    // Custom wrapper styles
+
+    .customLabelCss {
+      // Custom label styles
+    }
+
+    .customInputCss {
+      // Custom input styles
+    }
+
+    .customGroupLabelCss {
+      // Custom group label styles
+    }
+
+    .customFieldsetCss {
+      // Custom fieldset styles
+    }
+
+    .customLegendCss {
+      // Custom legend styles
+    }
+
+    .customOptionLabelCss {
+      // Custom option label styles (radio button/checkbox etc)
+    }
+
+  }
 }

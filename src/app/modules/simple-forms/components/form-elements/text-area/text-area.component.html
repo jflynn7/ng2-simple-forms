@@ -1,5 +1,5 @@
 <!-- WRAPPER -->
-<div class="field form-group {{ getWrapperClass() }}" [formGroup]="formGroup" xmlns="http://www.w3.org/1999/html">
+<div class="field form-group {{elementWrapperClass}}" [formGroup]="formGroup" xmlns="http://www.w3.org/1999/html">
 
   <!-- LABEL -->
   <app-label
@@ -18,7 +18,7 @@
     (blur)="toggleFocus(false)"
 
     type="textarea"
-    class="form-control {{ getInputClass() }}"
+    class="form-control {{elementInputClass}}"
     [ngClass]='{
       valid: valid(),
       invalid: invalid()

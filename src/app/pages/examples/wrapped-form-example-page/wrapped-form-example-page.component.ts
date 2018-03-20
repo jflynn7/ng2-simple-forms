@@ -98,7 +98,7 @@ export class WrappedFormExamplePageComponent implements OnInit, AfterViewInit {
 
     /// With inline configuration (see Configuration for more info)
     builder.createElement('text', 'Simple Three')
-      .setConfig( 'ariaLabel', 'Simple Three Aria Label'),
+      .setAccessibility( 'ariaLabel', 'Simple Three Aria Label Set By Config'),
 
     /// With inline property value (see Setting Properties for more info)
     builder.createElement('text', 'Simple Four')

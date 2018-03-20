@@ -23,7 +23,9 @@ export class RenderingElementsPageComponent implements OnInit, AfterViewInit {
     '    }\n' +
     '  }';
 
-  singleElement: FormElement = builder.createElement('text', 'Single Element');
+  singleElement: FormElement = builder
+    .createElement('text', 'Single Element');
+
   singleRadioElement: FormElement = // Create radio group and add options.
     builder.createElement('radio', 'Single Radio Group')
       .setProperty('options', [

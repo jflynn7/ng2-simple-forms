@@ -2,6 +2,8 @@
   [groupTitle]="elementData.label"
   [valid]="isValid()"
   [invalid]="!isValid() && isTouched()"
+  [wrapperCssClass]="elementWrapperClass"
+  [fieldsetCssClass]="elementFieldsetClass"
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
   <div role="radiogroup">

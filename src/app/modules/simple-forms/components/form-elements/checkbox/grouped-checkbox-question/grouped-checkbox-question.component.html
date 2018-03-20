@@ -1,6 +1,8 @@
 <app-field-group
   [groupTitle]="elementData.label"
   [valid]="isValid()"
+  [wrapperCssClass]="elementWrapperClass"
+  [fieldsetCssClass]="elementFieldsetClass"
   [invalid]="!isValid() && isTouched()"
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
@@ -10,7 +12,7 @@
     <app-group-label
       [labelConfig]="getLabelConfig()"
       [groupName]="optionGroup.groupName"
-      [cssParent]="getGroupLabelClass()">
+      [cssParent]="elementGroupLabelClass">
     </app-group-label>
 
     <!-- Option Groups -->
@@ -21,7 +23,7 @@
 
       <!-- Checkbox -->
       <input id="{{option.value + '_id'}}" type="checkbox" name="{{elementData.inputId}}" value="{{option.value}}"
-
+             class="{{elementInputClass}}"
              formControlName="{{option.value}}"
              (click)="activateValidationListener()"
              [appDefaultAccessibility]="getElementData(option)"
@@ -29,6 +31,7 @@
 
       <!-- Checkbox Label -->
       <label
+         class="{{elementOptionLabelClass}}"
          for="{{option.value + '_id'}}">
          {{option.display}}
       </label><br>

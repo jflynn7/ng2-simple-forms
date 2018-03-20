@@ -51,7 +51,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
 
     /// With inline configuration (see Configuration for more info)
     builder.createElement('text', 'Simple Three')
-      .setConfig( 'ariaLabel', 'Simple Three Aria Label'),
+      .setAccessibility( 'ariaLabel', 'Simple Three Aria Label Set By Config'),
 
     /// With inline property value (see Setting Properties for more info)
     builder.createElement('text', 'Simple Four')
@@ -182,7 +182,7 @@ export class UnwrappedFormExamplePageComponent implements OnInit, AfterViewInit 
   ngOnInit() {
     this.myForm = builder.toFormDetails(this.myFormElements);
     /// Set config on existing element
-    this.myForm.get('simpleOne').setConfig('ariaLabel', 'Simple One Aria Label');
+    this.myForm.get('simpleOne').setAccessibility('ariaLabel', 'Simple One Aria Label Set By Config');
 
   }
 

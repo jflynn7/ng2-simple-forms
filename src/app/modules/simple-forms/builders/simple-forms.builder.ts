@@ -55,6 +55,9 @@ export class SimpleFormBuilder {
   }
 
 
+  /**
+   * Create a form from JSON
+   */
   static fromJson(jsonValue: any) {
     const elements: FormElement[] = jsonValue.map(value => {
       return new FormElement(value);

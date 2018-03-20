@@ -13,11 +13,7 @@ export class DropdownQuestionComponent extends ElementBaseComponent implements O
   }
 
   ngOnInit() {
-    this.getFormGroup();
-  }
-
-  isSelected(value: any) {
-    return value === this.formGroup.get(this.elementData.inputId).value;
+    this.initElement();
   }
 
 }

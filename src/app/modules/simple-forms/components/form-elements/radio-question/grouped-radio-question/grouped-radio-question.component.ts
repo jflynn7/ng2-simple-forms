@@ -18,6 +18,7 @@ export class GroupedRadioQuestionComponent extends RadioQuestionComponent implem
   }
 
   ngOnInit() {
+    this.initElement();
   }
 
 }

@@ -5,7 +5,7 @@ import { ElementOption, FormElement } from './simple-forms.types';
 
 export class AccessibilityUtils {
 
-  public static toInputId = (str: string) => {
+  public static toInputId(str: string){
     const words = str.split(' ');
     const mutated: string[] = words.map(function(word, index) {
       // If it is the first word make sure to lowercase all the chars.
@@ -18,27 +18,27 @@ export class AccessibilityUtils {
     return mutated.join('');
   }
 
-  public static isValid = (elementData: FormElement, formGroup: FormGroup): string => {
+  public static isValid(elementData: FormElement, formGroup: FormGroup): string {
     return (formGroup.get(elementData.inputId).valid).toString();
   }
 
-  public static isSelected = (elementData: FormElement, formGroup: FormGroup, option: ElementOption): string => {
+  public static isSelected(elementData: FormElement, formGroup: FormGroup, option: ElementOption): string {
     return option ? (formGroup.get(elementData.inputId).value === option.value).toString() : 'false';
   }
 
-  public static isChecked = (elementData: FormElement, formGroup: FormGroup, option: ElementOption): string => {
+  public static isChecked(elementData: FormElement, formGroup: FormGroup, option: ElementOption): string {
     return (!!formGroup.get(elementData.inputId).value[option.value]).toString();
   }
 
-  public static toValueText = (value: number) => {
+  public static toValueText(value: number) {
     return value ? numberToWords.toWords(value) : 'zero';
   }
 
-  public static getHelpTextId = (elementData: FormElement) => {
+  public static getHelpTextId(elementData: FormElement) {
     return `${elementData.inputId}_helpText`;
   }
 
-  public static getErrorMessageId = (elementData: FormElement) => {
+  public static getErrorMessageId(elementData: FormElement) {
     return `${elementData.inputId}_error`;
   }
 

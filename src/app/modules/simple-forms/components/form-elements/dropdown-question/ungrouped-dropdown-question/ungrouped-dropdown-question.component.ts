@@ -21,6 +21,7 @@ export class UngroupedDropdownQuestionComponent extends DropdownQuestionComponen
   }
 
   ngOnInit() {
+    this.initElement();
   }
 
 }

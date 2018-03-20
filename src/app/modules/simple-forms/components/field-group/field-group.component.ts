@@ -10,6 +10,7 @@ export class FieldGroupComponent implements OnInit {
 
   @Input() groupTitle: string;
   @Input() wrapperCssClass: string;
+  @Input() fieldsetCssClass: string;
   @Input() valid: boolean;
   @Input() invalid: boolean;
 

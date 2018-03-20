@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormElement, LabelConfig } from '../../../../simple-forms.types';
+import { LabelConfig, Styles } from '../../../../simple-forms.types';
 
 @Component({
   selector: 'app-label',
@@ -11,9 +11,12 @@ export class LabelComponent implements OnInit {
   @Input() labelConfig: LabelConfig;
   @Input() cssParent: string;
 
+  labelStyle: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.labelStyle = this.labelConfig.elementData.getStyle(Styles.ElementLabel());
   }
 
 }

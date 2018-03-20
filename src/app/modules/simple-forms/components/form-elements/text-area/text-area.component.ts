@@ -13,6 +13,7 @@ export class TextAreaComponent extends ElementBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initElement();
   }
 
 }

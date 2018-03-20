@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { HttpClient } from '@angular/common/http';
-import { FormDetails } from '../../../modules/simple-forms/simple-forms.types';
+import { FormDetails, Styles } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -218,9 +218,16 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
       this.jsonForm = builder.fromJson(value)
-                      // .setConfig('countryOfResidenceGrouped', 'groupLabelCssClass', 'groupLabelSetByConfig')
-                      // .setConfig('placesOfInterestGrouped', 'groupLabelCssClass', 'groupLabelSetByConfig')
-                      .setConfig('firstName', 'inputCss', 'customInputCss');
+
+                      // Set custom styles for 'placesOfInterestUngrouped' field
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementWrapper(), 'customElementWrapperCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementInput(), 'customInputCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementLabel(), 'customLabelCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.OptionLabel(), 'customOptionLabelCss')
+
+                      // Set custom styles for 'Gender' field
+                      .setStyle('gender', Styles.ElementWrapper(), 'customElementWrapperCss')
+                      .setStyle('gender', Styles.Fieldset(), 'customFieldsetCss');
     });
 
 

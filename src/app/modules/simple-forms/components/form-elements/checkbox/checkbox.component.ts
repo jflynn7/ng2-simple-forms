@@ -15,6 +15,7 @@ export class CheckboxComponent extends ElementBaseComponent implements OnInit {
 
   ngOnInit() {
     this.getFormGroup();
+    this.setElementStyles();
   }
 
   updateParentFormGroup(value: {}) {

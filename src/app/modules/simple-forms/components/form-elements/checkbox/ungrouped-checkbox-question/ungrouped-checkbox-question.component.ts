@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormElement } from '../../../../simple-forms.types';
+import { FormElement, Styles } from '../../../../simple-forms.types';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -23,6 +23,8 @@ export class UngroupedCheckboxQuestionComponent extends CheckboxComponent implem
     this.checkboxGroup.valueChanges.subscribe(value => {
       this.updateParentFormGroup(value);
     });
+    this.setElementStyles();
+
   }
 
   getOptions() {
@@ -33,7 +35,4 @@ export class UngroupedCheckboxQuestionComponent extends CheckboxComponent implem
     return childForm;
   }
 
-  isSelected(value: any) {
-    return !!this.checkboxGroup.controls[value].value;
-  }
 }

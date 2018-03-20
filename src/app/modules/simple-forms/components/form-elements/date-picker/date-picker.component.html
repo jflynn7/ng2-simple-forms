@@ -1,4 +1,4 @@
-<div class="field form-group {{ getWrapperClass() }}" [formGroup]="formGroup">
+<div class="field form-group {{elementWrapperClass}}" [formGroup]="formGroup">
 
   <!-- INPUT LABEL -->
   <app-label
@@ -17,7 +17,7 @@
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
 
-    class="form-control"
+    class="form-control {{elementInputClass}}"
 
     [ngClass]='{
       valid: valid(),

@@ -66,6 +66,7 @@
     "inputId" : "biography",
     "label" : "Your Bio",
     "maxLength" : "500",
+    "helpText" : "Tell us a bit about you! Use this area to really sell yourself, you never know what information could make the difference!",
     "errorText" : "Please ensure your bio is less than 500 characters.",
     "type" : "TEXTAREA"
   },

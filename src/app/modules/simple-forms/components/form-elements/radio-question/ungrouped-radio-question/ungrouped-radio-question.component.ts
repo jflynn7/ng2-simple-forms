@@ -19,6 +19,7 @@ export class UngroupedRadioQuestionComponent extends RadioQuestionComponent impl
   }
 
   ngOnInit() {
+    this.initElement();
   }
 
 }

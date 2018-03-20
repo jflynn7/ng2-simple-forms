@@ -172,7 +172,8 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
   }
 
   getTestId() {
-    return this.option ? this.appDefaultAccessibility.elementData.getTestId(this.option.value) : this.appDefaultAccessibility.elementData.getTestId();
+    return this.option ? this.appDefaultAccessibility.elementData.getTestId(this.option.value)
+      : this.appDefaultAccessibility.elementData.getTestId();
   }
 
 }

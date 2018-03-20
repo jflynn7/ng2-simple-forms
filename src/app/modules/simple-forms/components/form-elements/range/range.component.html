@@ -2,6 +2,8 @@
   [groupTitle]="elementData.label"
   [valid]="valid()"
   [invalid]="!valid() && touched()"
+  [wrapperCssClass]="elementWrapperClass"
+  [fieldsetCssClass]="elementFieldsetClass"
   [labelConfig]="getLabelConfig()"
   [formGroup]="formGroup">
 
@@ -14,7 +16,7 @@
 
     (focus)="toggleFocus(true)"
     (blur)="toggleFocus(false)"
-
+    class="{{elementInputClass}}"
     min="{{elementData.minLength}}"
     max="{{elementData.maxLength}}"
     [attr.aria-labelledby]="elementData.inputId + '_label'"

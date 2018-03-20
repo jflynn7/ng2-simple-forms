@@ -64,11 +64,7 @@ export class FormComponent implements OnInit {
   clear() {
     this.form.formGroup.reset();
   }
-
-  setConfig(propertyName: string, value: string) {
-    this.formOptions[propertyName] = value;
-  }
-
+  
   isValid() {
     return this.form.formGroup.valid;
   }
