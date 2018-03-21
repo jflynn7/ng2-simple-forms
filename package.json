@@ -1,6 +1,6 @@
 {
   "name": "ng2-simple-forms",
-  "version": "0.0.13",
+  "version": "0.0.16",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -21,7 +21,6 @@
   ],
   "private": false,
   "dependencies": {
-    "@angular/animations": "^5.2.9",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",

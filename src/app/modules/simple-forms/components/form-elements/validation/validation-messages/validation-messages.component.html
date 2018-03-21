@@ -1,11 +1,11 @@
 <div class="help-message" [ngClass]="{ 'has-focus' : hasFocus }">
-  <small [id]="getHelpTextId()" [attr.aria-live]="hasFocus" class="form-text text-muted">
+  <small #helpMessage [id]="getHelpTextId()" class="form-text text-muted">
     {{elementData.helpText}}
   </small>
 </div>
 
 <div class="error-message" [ngClass]="{ 'has-error' : hasError }">
-  <small [id]="getErrorMessageId()" [attr.aria-live]="hasError" class="form-text text-muted">
+  <small #errorMessage [id]="getErrorMessageId()" class="form-text text-muted">
     {{elementData.errorText}}
   </small>
 </div>

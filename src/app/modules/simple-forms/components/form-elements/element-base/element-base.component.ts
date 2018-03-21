@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup } from '@angular/forms';
 import { SimpleFormBuilder } from '../../../builders/simple-forms.builder';
-import { Accessibility, ComponentValue, FormElement, FormElementStyleConfig, LabelConfig, Styles } from '../../../simple-forms.types';
-import { AccessibilityUtils } from '../../../accessibility-utils';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ComponentValue, FormElement, LabelConfig, Styles } from '../../../simple-forms.types';
 
 @Component({
   selector: 'app-element-base',

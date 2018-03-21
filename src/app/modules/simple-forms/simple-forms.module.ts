@@ -34,16 +34,13 @@ import { LabelAccessibilityDirective } from './components/form-elements/directiv
 import { FormElementStyleDirective } from './components/form-elements/directives/form-element-style.directive';
 import { GroupLabelComponent } from './components/form-elements/validation/label/group-label/group-label.component';
 import { FormElementValidationDirective } from './components/form-elements/directives/form-element-validation.directive';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidationMessagesComponent } from './components/form-elements/validation/validation-messages/validation-messages.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule
+    ReactiveFormsModule
   ],
   declarations: [
     FormComponent,
