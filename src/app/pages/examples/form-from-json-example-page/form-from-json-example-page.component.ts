@@ -219,17 +219,17 @@ export class FormFromJsonExamplePageComponent implements OnInit, AfterViewInit {
     this.http.get('./assets/sampleForm.json').subscribe(value => {
       this.jsonForm = builder.fromJson(value)
                       // Set custom Accessibility for 'firstName' field
-                      .setAccessibility('firstName', Accessibility.AriaLabel(), 'My Custom Aria Label')
+                      .setAccessibility('firstName', Accessibility.AriaLabel, 'My Custom Aria Label')
 
                       // Set custom styles for 'placesOfInterestUngrouped' field
-                      .setStyle('placesOfInterestUngrouped', Styles.ElementWrapper(), 'customElementWrapperCss')
-                      .setStyle('placesOfInterestUngrouped', Styles.ElementInput(), 'customInputCss')
-                      .setStyle('placesOfInterestUngrouped', Styles.ElementLabel(), 'customLabelCss')
-                      .setStyle('placesOfInterestUngrouped', Styles.OptionLabel(), 'customOptionLabelCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementWrapper, 'customElementWrapperCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementInput, 'customInputCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.ElementLabel, 'customLabelCss')
+                      .setStyle('placesOfInterestUngrouped', Styles.OptionLabel, 'customOptionLabelCss')
 
                       // Set custom styles for 'Gender' field
-                      .setStyle('gender', Styles.ElementWrapper(), 'customElementWrapperCss')
-                      .setStyle('gender', Styles.Fieldset(), 'customFieldsetCss');
+                      .setStyle('gender', Styles.ElementWrapper, 'customElementWrapperCss')
+                      .setStyle('gender', Styles.Fieldset, 'customFieldsetCss');
     });
 
 

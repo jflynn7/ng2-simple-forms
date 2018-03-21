@@ -43,13 +43,13 @@ export class ElementBaseComponent implements OnInit {
   }
 
   setElementStyles() {
-    this.elementWrapperClass = this.elementData.getStyle(Styles.ElementWrapper());
-    this.elementGroupLabelClass = this.elementData.getStyle(Styles.GroupLabel());
-    this.elementLabelClass = this.elementData.getStyle(Styles.ElementLabel());
-    this.elementInputClass = this.elementData.getStyle(Styles.ElementInput());
-    this.elementFieldsetClass = this.elementData.getStyle(Styles.Fieldset());
-    this.elementLegendClass = this.elementData.getStyle(Styles.Legend());
-    this.elementOptionLabelClass = this.elementData.getStyle(Styles.OptionLabel());
+    this.elementWrapperClass = this.elementData.getStyle(Styles.ElementWrapper);
+    this.elementGroupLabelClass = this.elementData.getStyle(Styles.GroupLabel);
+    this.elementLabelClass = this.elementData.getStyle(Styles.ElementLabel);
+    this.elementInputClass = this.elementData.getStyle(Styles.ElementInput);
+    this.elementFieldsetClass = this.elementData.getStyle(Styles.Fieldset);
+    this.elementLegendClass = this.elementData.getStyle(Styles.Legend);
+    this.elementOptionLabelClass = this.elementData.getStyle(Styles.OptionLabel);
   }
 
   /**

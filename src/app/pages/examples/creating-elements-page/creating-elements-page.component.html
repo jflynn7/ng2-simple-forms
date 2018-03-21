@@ -68,8 +68,8 @@
       we can add further properties to the already created element.
     </p>
 
-    <pre class="prettyprint"><code>this.myFirstFormElement.setProperty('required', true);
-this.myFirstFormElement.setProperty('helpText', 'My Help Text');</code></pre>
+    <pre class="prettyprint"><code>this.myFirstFormElement.setProperty(Properties.Required, true);
+this.myFirstFormElement.setProperty(Properties.HelpText, 'My Help Text');</code></pre>
   </div>
 
  <!-- Creating elements using the builder -->
@@ -87,11 +87,11 @@ this.myFirstFormElement.setProperty('helpText', 'My Help Text');</code></pre>
 
     <p>Calling the builder method (assuming you have imported SimpleFormBuilder as <code>builder</code>) for our first example would be:</p>
 
-    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element', {{'{'}} inputId: 'myInputId' {{'}'}});</code></pre>
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement(Elements.Text, 'My First Form Element', {{'{'}} inputId: 'myInputId' {{'}'}});</code></pre>
 
     <p>This will create exactly the same form element object as the constructor method. It can also be called without the third parameter, as follows...</p>
 
-    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element');</code></pre>
+    <pre class="prettyprint"><code>myFirstFormElement: FormElement = builder.createElement(Elements.Text, 'My First Form Element');</code></pre>
 
     <p>...which will create exactly the same as the first method, except the form elements <code>inputId</code> will now be <code>myFirstFormElement</code>.
       This can come in <strong>very</strong> handy if you have a lot of elements and don't want to think of an inputId for all of them, or when creating

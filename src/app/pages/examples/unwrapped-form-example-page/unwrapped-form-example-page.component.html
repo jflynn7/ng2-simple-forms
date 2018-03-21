@@ -140,6 +140,26 @@
           </div>
         </div>
 
+        <!-- Select options -->
+        <div class="row">
+          <div class="col-xs-12">
+            <app-form-element
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleSelectBox')">
+            </app-form-element>
+          </div>
+        </div>
+
+        <!-- Select options with option groups -->
+        <div class="row">
+          <div class="col-xs-12">
+            <app-form-element
+              [formGroup]="myForm.formGroup"
+              [formElement]="myForm.get('simpleSelectBoxWithOptionGroups')">
+            </app-form-element>
+          </div>
+        </div>
+
         <button class="btn btn-primary"
                 *ngIf="myForm.formGroup.valid"
                 (click)="unwrappedSubmit()">Submit Unwrapped</button>

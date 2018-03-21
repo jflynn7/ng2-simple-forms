@@ -1,6 +1,6 @@
 {
   "name": "ng2-simple-forms",
-  "version": "0.0.8",
+  "version": "0.0.13",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -11,6 +11,14 @@
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json"
   },
+  "keywords": [
+    "reactive",
+    "forms",
+    "angular4",
+    "angular-cli",
+    "formbuilder",
+    "accessible"
+  ],
   "private": false,
   "dependencies": {
     "@angular/animations": "^5.2.9",

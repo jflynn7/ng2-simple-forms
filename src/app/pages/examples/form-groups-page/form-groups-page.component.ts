@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormGroup } from '@angular/forms';
-import { FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
+import { Elements, FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
 
 declare var PR: any;
 
@@ -31,17 +31,17 @@ export class FormGroupsPageComponent implements OnInit, AfterViewInit {
     '<app-form-element [formGroup]="formGroup" [formElement]="firstName"></app-form-element>\n' +
     '<app-form-element [formGroup]="formGroup" [formElement]="surname"></app-form-element>\n';
 
-  title = builder.createElement('text', 'Title');
-  firstName: FormElement = builder.createElement('text', 'First Name', { required: true, minLength: 3 });
-  surname = builder.createElement('text', 'Surname',  { required: true, minLength: 3 });
+  title = builder.createElement(Elements.Text, 'Title');
+  firstName: FormElement = builder.createElement(Elements.Text, 'First Name', { required: true, minLength: 3 });
+  surname = builder.createElement(Elements.Text, 'Surname',  { required: true, minLength: 3 });
 
   formGroup: FormGroup = builder.toFormGroup([this.title, this.firstName, this.surname]);
 
   constructor() { }
 
   ngOnInit() {
-    this.firstName.setProperty(Properties.ErrorText(), 'First name is a required field and must be 3 characters minimum');
-    this.surname.setProperty(Properties.ErrorText(), 'Surname is a required field and must be 3 characters minimum');
+    this.firstName.setProperty(Properties.ErrorText, 'First name is a required field and must be 3 characters minimum');
+    this.surname.setProperty(Properties.ErrorText, 'Surname is a required field and must be 3 characters minimum');
   }
 
   ngAfterViewInit() {

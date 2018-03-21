@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
-import { ComponentValue, FormElement } from '../../../modules/simple-forms/simple-forms.types';
+import { ComponentValue, Elements, FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
 
 declare var PR: any;
 
@@ -24,11 +24,11 @@ export class RenderingElementsPageComponent implements OnInit, AfterViewInit {
     '  }';
 
   singleElement: FormElement = builder
-    .createElement('text', 'Single Element');
+    .createElement(Elements.Text, 'Single Element');
 
   singleRadioElement: FormElement = // Create radio group and add options.
-    builder.createElement('radio', 'Single Radio Group')
-      .setProperty('options', [
+    builder.createElement(Elements.Radio, 'Single Radio Group')
+      .setProperty(Properties.Options, [
         {
           value: 'test1',
           display: 'Test Radio One'

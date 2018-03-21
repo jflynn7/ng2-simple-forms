@@ -65,14 +65,14 @@
 
     <p>Suppose we make our form elements (which we want to be part of the same form), like so:</p>
 
-    <pre class="prettyprint"><code>title = builder.createElement('text', 'Title');
-firstName = builder.createElement('text', 'First Name', options: {{'{'}} required: true, minLength: 3 {{'}'}});
-surname = builder.createElement('text', 'Surname', options: {{'{'}} required: true, minLength: 3 {{'}'}});</code></pre>
+    <pre class="prettyprint"><code>title = builder.createElement(Elements.Text, 'Title');
+firstName = builder.createElement(Elements.Text, 'First Name', options: {{'{'}} required: true, minLength: 3 {{'}'}});
+surname = builder.createElement(Elements.Text, 'Surname', options: {{'{'}} required: true, minLength: 3 {{'}'}});</code></pre>
 
     <p>Now, let's add our error text to the fields that are required.</p>
 
-    <pre class="prettyprint"><code>this.firstName.setProperty(Properties.ErrorText(), 'First name is a required field and must be 3 characters minimum');
-this.surname.setProperty(Properties.ErrorText(), 'Surname is a required field and must be 3 characters minimum');</code></pre>
+    <pre class="prettyprint"><code>this.firstName.setProperty(Properties.ErrorText, 'First name is a required field and must be 3 characters minimum');
+this.surname.setProperty(Properties.ErrorText, 'Surname is a required field and must be 3 characters minimum');</code></pre>
     <p>
       Now, to create a formgroup for our elements, we can simply call the builders <code>toFormGroup()</code> method, which will create
       the formgroup, formcontrols and validators automagically for us!

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import { DOCUMENT } from '@angular/common';
-import { ElementOption, ElementOptionGroup } from '../../modules/simple-forms/simple-forms.types';
+import { ElementOption, ElementOptionGroup, Elements } from '../../modules/simple-forms/simple-forms.types';
 import { SimpleFormBuilder as builder } from '../../modules/simple-forms/builders/simple-forms.builder';
 
 declare var PR: any;
@@ -50,14 +50,14 @@ export class ApiReferencePageComponent implements OnInit, AfterViewInit {
     }
   ];
 
-  singleSelectWithGroups = builder.createElement('select', 'My Select Input', {
+  singleSelectWithGroups = builder.createElement(Elements.Select, 'My Select Input', {
     optionGroups: this.myElementOptionsGroups
   }).setConfig('wrapperCssClass', 'default-theme');
 
   myElementsArrayCode: string = 'myElementsArray = [\n' +
-    '    builder.createElement(\'text\', \'Element One\'),\n' +
-    '    builder.createElement(\'text\', \'Element Two\'),\n' +
-    '    builder.createElement(\'radio\', \'Element Three\', { options:\n' +
+    '    builder.createElement(Elements.Text, \'Element One\'),\n' +
+    '    builder.createElement(Elements.Text, \'Element Two\'),\n' +
+    '    builder.createElement(Elements.Radio, \'Element Three\', { Properties.Options:\n' +
     '        [\n' +
     '          new ElementOption({ value: \'elementThreeValueOne\', display: \'Value One\' }),\n' +
     '          new ElementOption({ value: \'elementThreeValueTwo\', display: \'Value Two\' }),\n' +
@@ -66,9 +66,9 @@ export class ApiReferencePageComponent implements OnInit, AfterViewInit {
     '  ];';
 
   myElementsArray = [
-    builder.createElement('text', 'Element One'),
-    builder.createElement('text', 'Element Two'),
-    builder.createElement('radio', 'Element Three', { options:
+    builder.createElement(Elements.Text, 'Element One'),
+    builder.createElement(Elements.Text, 'Element Two'),
+    builder.createElement(Elements.Radio, 'Element Three', { options:
         [
           new ElementOption({ value: 'elementThreeValueOne', display: 'Value One' }),
           new ElementOption({ value: 'elementThreeValueTwo', display: 'Value Two' }),

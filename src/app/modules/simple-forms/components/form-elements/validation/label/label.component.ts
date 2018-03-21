@@ -16,7 +16,7 @@ export class LabelComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.labelStyle = this.labelConfig.elementData.getStyle(Styles.ElementLabel());
+    this.labelStyle = this.labelConfig.elementData.getStyle(Styles.ElementLabel);
   }
 
 }

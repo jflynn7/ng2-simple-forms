@@ -2,8 +2,6 @@
 
 A simple(ish) module for creating accessible, reactive forms.
 
-**NB**: This is still in experimental stages, I would **NOT** recommend this in production....yet.
-
 ## Advanced Usage
 
 Complete documentation for this project is available at https://jflynn7.github.io/
@@ -29,7 +27,7 @@ Complete documentation for this project is available at https://jflynn7.github.i
 Before you can start rendering elements, you'll need to start creating! `SimpleFormsBuilder` exposes a function to quickly create a default option by type. For example, to create a text input element, you can do:
 
 ```
-myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element');
+myFirstFormElement: FormElement = builder.createElement(Elements.Text, 'My First Form Element');
 ```
 
 This will create a `FormElement` object of `type='text'`, with a `label` of 'My First Form Element' and an `inputId` of 'myFirstFormElement' which is calculated from the label.
@@ -37,7 +35,7 @@ This will create a `FormElement` object of `type='text'`, with a `label` of 'My 
 The `inputId` can be overriden by providing `FormElementOptions` as the third parameter from `createElement`, for example:
 
 ```
-myFirstFormElement: FormElement = builder.createElement('text', 'My First Form Element', { inputId: 'myCustomInputId' });
+myFirstFormElement: FormElement = builder.createElement(Elements.Text, 'My First Form Element', { Properties.InputId: 'myCustomInputId' });
 ```
 
 ##### Add properties to FormElement
@@ -45,8 +43,8 @@ myFirstFormElement: FormElement = builder.createElement('text', 'My First Form E
 `createElement` will create a simple element with no additional properties (unless provided in the `FormElementOptions` object passed as the third parameter. However, you can add properties (for example, validation properties, or options/option groups to an element with the `setProperty` function as follows:
 
 ```
-myFirstFormElement.setProperty(Properties.Required(), true);
-myFirstFormElement.setProperty(Properties.MinLength(), 8);
+myFirstFormElement.setProperty(Properties.Required, true);
+myFirstFormElement.setProperty(Properties.MinLength, 8);
 ```
 
 When you move on to creating a `FormGroup` from your elements, these properties are used to create the relevent `Validators` that Angular uses to validate your form element.
@@ -55,9 +53,9 @@ When you move on to creating a `FormGroup` from your elements, these properties 
 By default, form elements use Bootstrap styles, but these can be overridden using the `setStyle` function on `FormElement` as follows:
 
 ```
-myFirstFormElement.setStyle(Styles.ElementWrapper(), 'customElementWrapperCss');
-myFirstFormElement.setStyle(Styles.ElementInput(), 'customInputCss');
-myFirstFormElement.setStyle(Styles.ElementLabel(), 'customLabelCss');
+myFirstFormElement.setStyle(Styles.ElementWrapper, 'customElementWrapperCss');
+myFirstFormElement.setStyle(Styles.ElementInput, 'customInputCss');
+myFirstFormElement.setStyle(Styles.ElementLabel, 'customLabelCss');
 ```
 
 Because of the nature of CSS specificity, you need to first set a custom wrapper for your form element, so that you can target the custom css in your styles. An example of theming in a styles scss file looks like this:
@@ -103,13 +101,13 @@ The `Styles` class exposes the available options that can be overriden.
 
 ```
 export class Styles {
-  static ElementWrapper(): string { return 'wrapperCssClass'; }
-  static GroupLabel(): string { return 'groupLabelCssClass'; }
-  static ElementLabel(): string { return 'elementLabelCssClass'; }
-  static ElementInput(): string { return 'elementInputCssClass'; }
-  static Fieldset(): string { return 'fieldsetCssClass'; }
-  static Legend(): string { return 'legendCssClass'; }
-  static OptionLabel(): string { return 'optionLabelCssClass'; }
+  static ElementWrapper = 'wrapperCssClass';
+  static GroupLabel = 'groupLabelCssClass';
+  static ElementLabel = 'elementLabelCssClass';
+  static ElementInput = 'elementInputCssClass';
+  static Fieldset = 'fieldsetCssClass';
+  static Legend = 'legendCssClass';
+  static OptionLabel = 'optionLabelCssClass';
 }
 ```
 
@@ -118,17 +116,17 @@ export class Styles {
 Accessibility options are automatically set when you create the element (using input labels for aria-labels, etc), but should you wish to override these default options, you can use the `setAccessibility` function on `FormElement` as follows:
 
 ```
-myFirstFormElement.setAccessibility(Accessibility.AriaLabel(), 'My First Aria Label');
+myFirstFormElement.setAccessibility(Accessibility.AriaLabel, 'My First Aria Label');
 ```
 
 The `Accessibility` class exposes the available options that can be overriden.
 
 ```
 export class Accessibility {
-  static AriaLabel(): string { return 'ariaLabel'; }
-  static AriaDescribedBy(): string { return 'ariaDescribedBy'; }
-  static AriaLabelledBy(): string { return 'ariaLabelledBy'; }
-  static AriaReadOnly(): string { return 'ariaReadOnly'; }
+  static AriaLabel = 'ariaLabel';
+  static AriaDescribedBy = 'ariaDescribedBy';
+  static AriaLabelledBy = 'ariaLabelledBy';
+  static AriaReadOnly = 'ariaReadOnly';
 }
 ```
 
@@ -179,10 +177,10 @@ Whilst rendering elements individually by type can be handy, in situations where
 To render a complete form, we need a `FormGroup` which will track the state and validity of the form, as well as an array of `FormElements` that make up the complete form. ng2-simple-forms provides a helper function to do just that;
 
 ```
-myFirstFormElement: FormElement = builder.createElement('text', 'My First Element', { Properties.Required(): true });
-mySecondFormElement: FormElement = builder.createElement('text', 'My Second Element', { Properties.MinLength(): 8 });
+myFirstFormElement: FormElement = builder.createElement('text', 'My First Element', { Properties.Required: true });
+mySecondFormElement: FormElement = builder.createElement('text', 'My Second Element', { Properties.MinLength: 8 });
 
-myFormDetails: FormDetails = builder.toFormGroup([this.myFirstFormElement, this.mySecondFormElement]);
+myFormDetails: FormDetails = builder.toFormDetails([this.myFirstFormElement, this.mySecondFormElement]);
 ```
 
 #### Using the FormComponent

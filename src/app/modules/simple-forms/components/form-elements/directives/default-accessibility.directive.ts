@@ -138,12 +138,12 @@ export class DefaultAccessibilityDirective implements AfterViewInit {
 
   /// GETTERS
   getAriaLabel(): string {
-    return this.elementData.getAccessibility(Accessibility.AriaLabel()) ||
+    return this.elementData.getAccessibility(Accessibility.AriaLabel) ||
       this.getDefaultAria('label', this.appDefaultAccessibility.option);
   }
 
   getLabelledBy(): string {
-    return this.elementData.getAccessibility(Accessibility.AriaLabelledBy()) ||
+    return this.elementData.getAccessibility(Accessibility.AriaLabelledBy) ||
       `${this.appDefaultAccessibility.elementData.inputId}_label`;
   }
 

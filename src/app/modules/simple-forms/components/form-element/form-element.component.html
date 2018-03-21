@@ -53,7 +53,14 @@
   <app-range
     *ngSwitchCase="'range'"
     [formGroup]="formGroup"
-    [elementData]="formElement">>
+    [elementData]="formElement">
   </app-range>
+
+  <!-- OBJECT SELECTOR -->
+  <app-object-selector
+    *ngSwitchCase="'object'"
+    [formGroup]="formGroup"
+    [elementData]="formElement">
+  </app-object-selector>
 
 </div>

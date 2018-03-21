@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SimpleFormBuilder as builder } from '../../../modules/simple-forms/builders/simple-forms.builder';
 import { FormComponent, FormConfig } from '../../../modules/simple-forms/components/form/form.component';
-import { Accessibility, FormDetails, FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
+import { Accessibility, Elements, FormDetails, FormElement, Properties } from '../../../modules/simple-forms/simple-forms.types';
 declare var PR: any;
 
 @Component({
@@ -18,19 +18,19 @@ export class WrappedFormExamplePageComponent implements OnInit, AfterViewInit {
 
   createFormElementsArrayCode: string = 'myFormElements: FormElement[] = [\n' +
     '    /// Simple text element (inputId generated from label)\n' +
-    '    builder.createElement(\'text\', \'Simple One\'),\n' +
+    '    builder.createElement(Elements.Text, \'Simple One\'),\n' +
     '\n' +
     '    /// With explicit inputId\n' +
-    '    builder.createElement(\'text\', \'Simple Two\', { inputId: \'simpleTwoInputId\' }),\n' +
+    '    builder.createElement(Elements.Text, \'Simple Two\', { inputId: \'simpleTwoInputId\' }),\n' +
     '\n' +
     '    /// With inline configuration (see Configuration for more info)\n' +
-    '    builder.createElement(\'text\', \'Simple Three\')\n' +
-    '      .setAccessibility( Accessibility.AriaLabel(), \'Simple Three Aria Label Set By Config\'),\n' +
+    '    builder.createElement(Elements.Text, \'Simple Three\')\n' +
+    '      .setAccessibility( Accessibility.AriaLabel, \'Simple Three Aria Label Set By Config\'),\n' +
     '\n' +
     '    /// With inline property value (see Setting Properties for more info)\n' +
-    '    builder.createElement(\'text\', \'Simple Four\')\n' +
-    '      .setProperty(Properties.HelpText(), \'Here is some helptext!\')\n' +
-    '      .setProperty(Properties.Required(), true),' +
+    '    builder.createElement(Elements.Text, \'Simple Four\')\n' +
+    '      .setProperty(Properties.HelpText, \'Here is some helptext!\')\n' +
+    '      .setProperty(Properties.Required, true),' +
     '];';
   createFormDetailsCode = 'myFormDetails: FormDetails = builder.toFormDetails(this.myFormElements)';
   formWithTitleAndSubtitleCode = '<app-form [form]="myFormDetails" [formTitle]="\'My Form Title\'" ' +
@@ -89,19 +89,19 @@ export class WrappedFormExamplePageComponent implements OnInit, AfterViewInit {
   myFormElements: FormElement[] = [
 
     /// Simple text element (inputId generated from label)
-    builder.createElement('text', 'Simple One'),
+    builder.createElement(Elements.Text, 'Simple One'),
 
     /// With explicit inputId
-    builder.createElement('text', 'Simple Two', { inputId: 'simpleTwoInputId' }),
+    builder.createElement(Elements.Text, 'Simple Two', { inputId: 'simpleTwoInputId' }),
 
     /// With inline configuration (see Configuration for more info)
-    builder.createElement('text', 'Simple Three')
-      .setAccessibility( Accessibility.AriaLabel(), 'Simple Three Aria Label Set By Config'),
+    builder.createElement(Elements.Text, 'Simple Three')
+      .setAccessibility( Accessibility.AriaLabel, 'Simple Three Aria Label Set By Config'),
 
     /// With inline property value (see Setting Properties for more info)
-    builder.createElement('text', 'Simple Four')
-      .setProperty(Properties.HelpText(), 'Here is some helptext!')
-      .setProperty(Properties.Required(), true),
+    builder.createElement(Elements.Text, 'Simple Four')
+      .setProperty(Properties.HelpText, 'Here is some helptext!')
+      .setProperty(Properties.Required, true),
   ] ;
 
   myFormDetails: FormDetails = builder.toFormDetails(this.myFormElements);

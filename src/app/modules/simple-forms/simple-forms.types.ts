@@ -180,29 +180,43 @@ export interface FormElementOptions {
   optionGroups?: ElementOptionGroup[];
 }
 
+export class Elements {
+  static Text = 'text';
+  static Select = 'select';
+  static Checkbox = 'checkbox';
+  static Radio = 'radio';
+  static Password = 'password';
+  static Datepicker = 'datepicker';
+  static Range = 'range';
+  static Textarea = 'textarea';
+  static ObjectSelector = 'object';
+}
+
 // Accessors for element properties (so nobody tries to set erroneous properties that don't exist)
 export class Properties {
-  static InputId(): string { return 'inputId'; }
-  static Required(): string { return 'required'; }
-  static MinLength(): string { return 'minLength'; }
-  static MaxLength(): string { return 'maxLength'; }
-  static Regex(): string { return 'regex'; }
-  static HelpText(): string { return 'helpText'; }
-  static ErrorText(): string { return 'errorText'; }
-  static Options(): string { return 'options'; }
-  static OptionGroups(): string { return 'optionGroups'; }
+  static InputId = 'inputId';
+  static Required = 'required';
+  static MinLength = 'minLength';
+  static MaxLength = 'maxLength';
+  static Regex = 'regex';
+  static HelpText = 'helpText';
+  static ErrorText = 'errorText';
+  static Options = 'options';
+  static OptionGroups = 'optionGroups';
 }
 
 // General element config interface
 export interface FormElementConfig {
   requiredMarker?: string;
   readOnly?: boolean;
+  objectDisplayProperty?: string;
 }
 
 // Accessors for general element config (so nobody tries to set erroneous properties that don't exist)
 export class Config {
-  static RequiredMarker(): string { return 'requiredMarker'; }
-  static ReadOnly(): string { return 'readOnly'; }
+  static RequiredMarker = 'requiredMarker';
+  static ReadOnly = 'readOnly';
+  static ObjectDisplayProperty = 'objectDisplayProperty';
 }
 
 // Accessibility config interface
@@ -215,10 +229,10 @@ export interface FormElementAccessibilityConfig {
 
 // Accessors for element accessibility (so nobody tries to set erroneous properties that don't exist)
 export class Accessibility {
-  static AriaLabel(): string { return 'ariaLabel'; }
-  static AriaDescribedBy(): string { return 'ariaDescribedBy'; }
-  static AriaLabelledBy(): string { return 'ariaLabelledBy'; }
-  static AriaReadOnly(): string { return 'ariaReadOnly'; }
+  static AriaLabel = 'ariaLabel';
+  static AriaDescribedBy = 'ariaDescribedBy';
+  static AriaLabelledBy = 'ariaLabelledBy';
+  static AriaReadOnly = 'ariaReadOnly';
 }
 
 // Style config interface
@@ -234,13 +248,13 @@ export interface FormElementStyleConfig {
 
 // Accessors for element styles (so nobody tries to set erroneous styles that don't exist)
 export class Styles {
-  static ElementWrapper(): string { return 'wrapperCssClass'; }
-  static GroupLabel(): string { return 'groupLabelCssClass'; }
-  static ElementLabel(): string { return 'elementLabelCssClass'; }
-  static ElementInput(): string { return 'elementInputCssClass'; }
-  static Fieldset(): string { return 'fieldsetCssClass'; }
-  static Legend(): string { return 'legendCssClass'; }
-  static OptionLabel(): string { return 'optionLabelCssClass'; }
+  static ElementWrapper = 'wrapperCssClass';
+  static GroupLabel = 'groupLabelCssClass';
+  static ElementLabel = 'elementLabelCssClass';
+  static ElementInput = 'elementInputCssClass';
+  static Fieldset = 'fieldsetCssClass';
+  static Legend = 'legendCssClass';
+  static OptionLabel = 'optionLabelCssClass';
 }
 
 
