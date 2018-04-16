@@ -35,6 +35,8 @@ import { FormElementStyleDirective } from './components/form-elements/directives
 import { GroupLabelComponent } from './components/form-elements/validation/label/group-label/group-label.component';
 import { FormElementValidationDirective } from './components/form-elements/directives/form-element-validation.directive';
 import { ValidationMessagesComponent } from './components/form-elements/validation/validation-messages/validation-messages.component';
+import { FormArrayElementComponent } from './components/form-elements/form-array-element/form-array-element.component';
+import { FormArrayElementResolverComponent } from './components/form-elements/form-array-element/form-array-element-resolver/form-array-element-resolver.component';
 
 @NgModule({
   imports: [
@@ -76,7 +78,9 @@ import { ValidationMessagesComponent } from './components/form-elements/validati
     FormElementStyleDirective,
     GroupLabelComponent,
     FormElementValidationDirective,
-    ValidationMessagesComponent
+    ValidationMessagesComponent,
+    FormArrayElementComponent,
+    FormArrayElementResolverComponent
   ],
   exports: [
     FormComponent,
@@ -106,7 +110,9 @@ import { ValidationMessagesComponent } from './components/form-elements/validati
     RangeComponent,
     ObjectSelectorComponent,
     LegendComponent,
-    DefaultAccessibilityDirective
+    DefaultAccessibilityDirective,
+    FormArrayElementComponent,
+    FormArrayElementResolverComponent
   ]
 })
 export class SimpleFormsModule { }

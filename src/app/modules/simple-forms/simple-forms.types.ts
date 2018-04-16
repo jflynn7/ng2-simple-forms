@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs/Subject';
 
 export class FormElement {
   inputId: string;
@@ -13,14 +14,19 @@ export class FormElement {
   errorText?: string;
   options?: ElementOption[];
   optionGroups?: ElementOptionGroup[];
+  optionObjects?: {}[];
+  formArrayControls?: FormElement[];
+  formArraySingularName?: string;
   config?: FormElementConfig;
   accessibilityConfig?: FormElementAccessibilityConfig;
   stylesConfig?: FormElementStyleConfig;
+  formArrayValue?: Subject<any[]>;
 
   constructor(data: { inputId: string, type: string, label: string, subType?: string, required?: boolean, minLength?: number,
                       maxLength?: number, regex?: string, helpText?: string, errorText?: string, options?: ElementOption[],
                       optionGroups?: ElementOptionGroup[], config?: FormElementConfig, accessibilityConfig?: FormElementAccessibilityConfig,
-                      stylesConfig?: FormElementStyleConfig}) {
+                      stylesConfig?: FormElementStyleConfig, optionObjects?: {}[], formArrayControls?: FormElement[],
+                      formArraySingularName?: string, formArrayValue?: Subject<any[]>}) {
     this.inputId = data.inputId;
     this.type = data.type;
     this.subType = data.subType;
@@ -33,14 +39,26 @@ export class FormElement {
     this.errorText = data.errorText;
     this.options = data.options;
     this.optionGroups = data.optionGroups;
+    this.optionObjects = data.optionObjects;
     this.config = data.config || {};
     this.accessibilityConfig = data.accessibilityConfig || {};
     this.stylesConfig = data.stylesConfig || {};
+    this.formArrayControls = data.formArrayControls;
+    this.formArrayValue = data.formArrayValue || new Subject<any[]>();
+    this.formArraySingularName = data.formArraySingularName;
+  }
+
+  setArrayValues = (data: any[]) => {
+    this.formArrayValue.next(data);
   }
 
   setConfig = (property: string, value: any) => {
     this.config[property] = value;
     return this;
+  }
+
+  getConfig = (property: string) => {
+    return this.config[property];
   }
 
   setProperty = (property: string, value: any) => {
@@ -105,6 +123,16 @@ export class ElementOptionGroup {
 
 }
 
+export class ObjectGroup {
+  groupName: string;
+  objects: {}[];
+
+  constructor(data: { groupName: string, objects: {}[] }) {
+    this.groupName = data.groupName;
+    this.objects = data.objects;
+  }
+}
+
 /**
  * FormDetails object for unwrapped forms
  * @TODO - refer to this as a loose form? Does that make more sense? Who knows! 🙈
@@ -153,6 +181,16 @@ export class FormDetails {
     return this;
   }
 
+  // Set style for all elements in the formDetails
+  setGlobalStyle = (propertyName: string, value: string) => {
+    this.elements.forEach((element: { inputId: string, element: FormElement }) => {
+        const elementTmp = element.element;
+        elementTmp.setStyle(propertyName, value);
+        element.element = elementTmp;
+    });
+    return this;
+  }
+
   // Set accessibility on a particular element by its inputId
   setAccessibility = (inputId: string, propertyName: string, value: string) => {
     const foundElement = this.get(inputId);
@@ -178,6 +216,9 @@ export interface FormElementOptions {
   errorText?: string;
   options?: ElementOption[];
   optionGroups?: ElementOptionGroup[];
+  optionObjects?: {}[];
+  formArrayControls?: FormElement[];
+  formArraySingularName?: string;
 }
 
 export class Elements {
@@ -186,10 +227,11 @@ export class Elements {
   static Checkbox = 'checkbox';
   static Radio = 'radio';
   static Password = 'password';
-  static Datepicker = 'datepicker';
+  static Datepicker = 'date';
   static Range = 'range';
   static Textarea = 'textarea';
   static ObjectSelector = 'object';
+  static FormArray = 'formArray';
 }
 
 // Accessors for element properties (so nobody tries to set erroneous properties that don't exist)
@@ -210,6 +252,8 @@ export interface FormElementConfig {
   requiredMarker?: string;
   readOnly?: boolean;
   objectDisplayProperty?: string;
+  objectGroupProperty?: string;
+  shouldGroupObjects?: string;
 }
 
 // Accessors for general element config (so nobody tries to set erroneous properties that don't exist)
@@ -217,6 +261,8 @@ export class Config {
   static RequiredMarker = 'requiredMarker';
   static ReadOnly = 'readOnly';
   static ObjectDisplayProperty = 'objectDisplayProperty';
+  static ObjectGroupProperty = 'objectGroupProperty';
+  static ShouldGroupObjects = 'shouldGroupObjects';
 }
 
 // Accessibility config interface

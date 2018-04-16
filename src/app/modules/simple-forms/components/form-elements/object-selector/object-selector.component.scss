@@ -1,0 +1,27 @@
+.object-wrapper {
+  margin-bottom: 15px;
+  display: block;
+}
+
+.object-display {
+  padding: 5px 15px;
+  margin: 2px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+
+  &:hover {
+    background-color: #f6f6f6;
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: #f2f2f2;
+  }
+
+}
+
+.object-grouping {
+  display: block;
+  text-decoration: underline;
+  margin: 15px 0;
+}

@@ -40,6 +40,11 @@ export class ElementBaseComponent implements OnInit {
     this.setElementStyles();
   }
 
+  getId() {
+    const id = this.elementData.getConfig('arrayIndex') ? `${this.elementData.inputId}_${this.elementData.getConfig('arrayIndex')}` : `${this.elementData.inputId}`;
+    return this.elementData.inputId;
+  }
+
   setElementStyles() {
     this.elementWrapperClass = this.elementData.getStyle(Styles.ElementWrapper);
     this.elementGroupLabelClass = this.elementData.getStyle(Styles.GroupLabel);

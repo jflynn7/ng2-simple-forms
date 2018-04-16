@@ -24,6 +24,80 @@
     ]
   },
   {
+    "inputId" : "references",
+    "label" : "References",
+    "helpText" : "Please enter any persons we may contact for a reference",
+    "type": "FORMARRAY",
+    "formArrayControls": [
+      {
+        "inputId" : "referenceName",
+        "type": "TEXT",
+        "label" : "Name",
+        "helpText": "Please enter the name of the person we can contact",
+        "required": true
+      },
+      {
+        "inputId" : "referenceNumber",
+        "type": "TEXT",
+        "label" : "Contact Number",
+        "helpText": "Please enter the number of the person we can contact",
+        "required": true
+      },
+      {
+        "inputId" : "referenceEmail",
+        "type": "TEXT",
+        "label" : "Contact Email",
+        "helpText": "Please enter the email address of the person we can contact",
+        "required": true
+      }
+    ],
+    "formArraySingularName": "Reference"
+  },
+  {
+    "inputId" : "yourCar",
+    "label" : "Your Car",
+    "helpText" : "Please choose your car from the list",
+    "type" : "OBJECT",
+    "optionObjects" : [
+      {
+        "maker" : "Toyota",
+        "model" : "Celica",
+        "fuel" : "Petrol",
+        "engine":"1.8"
+      },
+      {
+        "maker" : "Toyota",
+        "model" : "Corolla",
+        "fuel" : "Diesel",
+        "engine":"1.3"
+      },
+      {
+        "maker" : "Toyota",
+        "model" : "Aygo",
+        "fuel" : "Petrol",
+        "engine":"1.1"
+      },
+      {
+        "maker" : "Citroen",
+        "model" : "Picasso",
+        "fuel" : "Petrol",
+        "engine":"1.8"
+      },
+      {
+        "maker" : "Suzuki",
+        "model" : "Swift",
+        "fuel" : "Petrol",
+        "engine":"1.3"
+      },
+      {
+        "maker" : "Suzuki",
+        "model" : "Alto",
+        "fuel" : "Petrol",
+        "engine":"1.9"
+      }
+    ]
+  },
+  {
     "inputId" : "password",
     "label" : "Password",
     "required": true,

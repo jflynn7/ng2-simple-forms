@@ -1,3 +1,34 @@
-<p>
-  object-selector works!
-</p>
+<app-field-group
+  [groupTitle]="elementData.label"
+  [valid]="valid()"
+  [wrapperCssClass]="elementWrapperClass"
+  [fieldsetCssClass]="elementFieldsetClass"
+  [invalid]="!valid() && touched()"
+  [labelConfig]="getLabelConfig()"
+  [formGroup]="formGroup">
+
+  <!-- UNGROUPED -->
+  <span class="object-wrapper" *ngIf="!shouldGroupObjects">
+    <span *ngFor="let object of elementData.optionObjects">
+      <span class="object-display" [ngClass]="{ selected: isSelected(object) }" (click)="selectObject(object)">
+        {{getObjectDisplay(object)}}
+      </span>
+    </span>
+  </span>
+
+  <!-- GROUPED -->
+  <span class="object-wrapper" *ngIf="shouldGroupObjects">
+    <span *ngFor="let objectGroup of filteredObjectGroups">
+      <span class="object-grouping">{{objectGroup.groupName}}</span>
+      <span *ngFor="let object of objectGroup.objects">
+        <span class="object-display" [ngClass]="{ selected: isSelected(object) }" (click)="selectObject(object)">
+          {{getObjectDisplay(object)}}
+        </span>
+      </span>
+    </span>
+  </span>
+
+  <!-- VALIDATION MESSAGES -->
+  <app-validation-messages [elementData]="elementData" [hasError]="invalid()" [hasFocus]="hasFocus()"></app-validation-messages>
+
+</app-field-group>

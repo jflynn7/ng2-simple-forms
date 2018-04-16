@@ -1,5 +1,5 @@
-import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { FormDetails, FormElement, FormElementConfig, FormElementOptions } from '../simple-forms.types';
+import { FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Elements, FormDetails, FormElement, FormElementConfig, FormElementOptions } from '../simple-forms.types';
 
 export class SimpleFormBuilder {
 
@@ -36,7 +36,16 @@ export class SimpleFormBuilder {
   static toFormGroup(formElements: FormElement[]): any {
     const formGroup: {} = {};
     formElements.forEach((element: FormElement) => {
-      formGroup[element.inputId] = ['', SimpleFormBuilder.getValidators(element)];
+      if (element.type === Elements.FormArray) {
+        const arrayControls: FormElement[] = element.formArrayControls;
+        const arrayGroup: {} = {};
+        arrayControls.forEach((arrayElement: FormElement) => {
+          arrayGroup[arrayElement.inputId] = ['', SimpleFormBuilder.getValidators(arrayElement)];
+        });
+        formGroup[element.inputId] = new FormArray([SimpleFormBuilder.formBuilder.group(arrayGroup)]);
+      } else {
+        formGroup[element.inputId] = ['', SimpleFormBuilder.getValidators(element)];
+      }
     });
     return SimpleFormBuilder.formBuilder.group(formGroup);
   }
