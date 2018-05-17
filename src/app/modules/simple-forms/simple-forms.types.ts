@@ -223,6 +223,7 @@ export interface FormElementOptions {
 
 export class Elements {
   static Text = 'text';
+  static Number = 'number';
   static Select = 'select';
   static Checkbox = 'checkbox';
   static Radio = 'radio';

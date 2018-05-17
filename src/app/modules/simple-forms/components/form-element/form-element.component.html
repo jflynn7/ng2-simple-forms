@@ -7,6 +7,14 @@
     [elementData]="formElement"
   ></app-text-input>
 
+  <!-- NUMBER INPUT FIELD -->
+  <app-text-input
+    *ngSwitchCase="'number'"
+    [formGroup]="formGroup"
+    [textTypeOverride]="'number'"
+    [elementData]="formElement"
+  ></app-text-input>
+
   <!-- TEXT AREA FIELD -->
   <app-text-area
     *ngSwitchCase="'textarea'"

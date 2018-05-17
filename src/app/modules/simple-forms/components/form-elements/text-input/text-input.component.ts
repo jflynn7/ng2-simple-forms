@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ElementBaseComponent } from '../element-base/element-base.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { ElementBaseComponent } from '../element-base/element-base.component';
   styleUrls: ['../form-element.base.scss', './text-input.component.scss']
 })
 export class TextInputComponent extends ElementBaseComponent implements OnInit {
+
+  @Input() textTypeOverride: string = 'text';
 
   constructor() {
     super();
