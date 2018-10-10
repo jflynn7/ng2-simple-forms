@@ -1,6 +1,6 @@
 {
   "name": "ng2-simple-forms",
-  "version": "0.1.0",
+  "version": "0.0.37",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
